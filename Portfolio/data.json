@@ -1,0 +1,340 @@
+{
+    "site": {
+        "name": { "en": "Beghdad Amine", "ar": "بغداد أمين" },
+        "email": "topplay020@gmail.com",
+        "contactLink": "https://www.linkedin.com/in/beghded-amine-a98130259/",
+        "yearsExperience": 6,
+        "social": [
+            { "name": "LinkedIn", "href": "https://www.linkedin.com/in/beghded-amine-a98130259/", "icon": "ph-linkedin-logo" },
+            { "name": "GitHub", "href": "https://github.com/TopPlay020", "icon": "ph-github-logo" },
+            { "name": "Facebook", "href": "https://web.facebook.com/a.i.e.beghdad/", "icon": "ph-facebook-logo" }
+        ]
+    },
+
+    "ui": {
+        "en": {
+            "skip": "Skip to content",
+            "home": "Home",
+            "menu": "Menu",
+            "toTop": "Back to top",
+            "nav": { "features": "Why me", "services": "Services", "portfolio": "Work", "process": "Process", "contact": "Contact" },
+            "hero": {
+                "badge": "Open to new projects",
+                "title": { "pre": "I build custom desktop & web apps in", "hl": "C# / .NET" },
+                "rolesPrefix": "Right now I build",
+                "roles": [
+                    "WPF desktop apps",
+                    "ASP.NET backends",
+                    "Blazor web apps",
+                    "secure REST APIs",
+                    "cloud deployments",
+                    "Unity mobile games"
+                ],
+                "description": "Professional C# and .NET solutions for Windows and the web: lightweight, fast apps with clean architecture, solid database access and a deployment you can trust.",
+                "primary": "Message me",
+                "secondary": "See the work",
+                "seal": "Full Stack .NET developer · Available for work · ",
+                "stats": { "years": "Years shipping .NET", "projects": "Projects in this portfolio", "tech": "Technologies in the toolbox" }
+            },
+            "sections": {
+                "features": { "pre": "Why work with", "hl": "me", "lede": "Six things clients tend to notice first." },
+                "services": { "pre": "What I", "hl": "build", "lede": "From a one-file CLI tool to a deployed, multi-service platform." },
+                "stack": { "pre": "The", "hl": "toolbox", "lede": "" },
+                "portfolio": { "pre": "Selected", "hl": "work", "lede": "Real projects, from desktop tools to a mobile game on its way to Google Play." },
+                "process": { "pre": "How a project", "hl": "runs", "lede": "Four steps, no surprises." },
+                "contact": { "pre": "Got an idea? Let's", "hl": "build it." }
+            },
+            "filters": { "all": "All", "desktop": "Desktop", "web": "Web", "mobile": "Mobile" },
+            "project": { "open": "Open project page", "featured": "Featured", "count": "projects" },
+            "contact": {
+                "text": "Tell me what you need: a desktop tool, a web platform or a backend. I reply with a plan, not a pitch.",
+                "primary": "Message on LinkedIn",
+                "copy": "Copy email",
+                "copied": "Email copied to clipboard",
+                "copyFailed": "Could not copy. Email: "
+            },
+            "footer": "Full Stack .NET developer."
+        },
+        "ar": {
+            "skip": "تخطَّ إلى المحتوى",
+            "home": "الرئيسية",
+            "menu": "القائمة",
+            "toTop": "العودة للأعلى",
+            "nav": { "features": "لماذا أنا", "services": "الخدمات", "portfolio": "الأعمال", "process": "الخطوات", "contact": "تواصل" },
+            "hero": {
+                "badge": "متاح لمشاريع جديدة",
+                "title": { "pre": "أبني تطبيقات سطح مكتب وويب مخصصة بـ", "hl": "C# و .NET" },
+                "rolesPrefix": "أعمل الآن على",
+                "roles": [
+                    "تطبيقات سطح المكتب WPF",
+                    "خدمات ASP.NET الخلفية",
+                    "تطبيقات الويب Blazor",
+                    "واجهات REST API آمنة",
+                    "النشر على السحابة",
+                    "ألعاب موبايل بـ Unity"
+                ],
+                "description": "حلول احترافية بـ C# و .NET لنظام Windows والويب: تطبيقات خفيفة وسريعة بمعمارية نظيفة، وتعامل متقن مع قواعد البيانات، ونشر يمكنك الوثوق به.",
+                "primary": "راسلني",
+                "secondary": "شاهد أعمالي",
+                "seal": "Full Stack .NET developer · Available for work · ",
+                "stats": { "years": "سنوات في تطوير .NET", "projects": "مشاريع في هذا المعرض", "tech": "تقنية في صندوق الأدوات" }
+            },
+            "sections": {
+                "features": { "pre": "لماذا", "hl": "تختارني", "lede": "ست نقاط يلاحظها العملاء أولاً." },
+                "services": { "pre": "ماذا", "hl": "أبني", "lede": "من أداة سطر أوامر بسيطة إلى منصة كاملة منشورة." },
+                "stack": { "pre": "صندوق", "hl": "الأدوات", "lede": "" },
+                "portfolio": { "pre": "أعمال", "hl": "مختارة", "lede": "مشاريع حقيقية، من أدوات سطح المكتب إلى لعبة موبايل في طريقها إلى Google Play." },
+                "process": { "pre": "كيف يسير", "hl": "المشروع", "lede": "أربع خطوات واضحة، بلا مفاجآت." },
+                "contact": { "pre": "عندك فكرة؟ لنبنِها", "hl": "معاً." }
+            },
+            "filters": { "all": "الكل", "desktop": "سطح المكتب", "web": "ويب", "mobile": "موبايل" },
+            "project": { "open": "افتح صفحة المشروع", "featured": "مميّز", "count": "مشاريع" },
+            "contact": {
+                "text": "أخبرني بما تحتاجه: أداة سطح مكتب، منصة ويب أو خدمة خلفية. سأرد عليك بخطة، لا بعرض ترويجي.",
+                "primary": "راسلني على LinkedIn",
+                "copy": "انسخ البريد",
+                "copied": "تم نسخ البريد الإلكتروني",
+                "copyFailed": "تعذّر النسخ. البريد: "
+            },
+            "footer": "مطوّر Full Stack .NET."
+        }
+    },
+
+    "features": [
+        {
+            "icon": "ph-lightning",
+            "title": { "en": "Fast by default", "ar": "سريع افتراضياً" },
+            "text": {
+                "en": "Native apps tuned for performance: they open instantly and stay responsive under load.",
+                "ar": "تطبيقات أصلية مضبوطة للأداء: تفتح فوراً وتبقى سلسة تحت الضغط."
+            }
+        },
+        {
+            "icon": "ph-code",
+            "title": { "en": "Clean code", "ar": "كود نظيف" },
+            "text": {
+                "en": "MVVM and MVC structure that the next developer can read, extend and trust.",
+                "ar": "بنية MVVM وMVC يستطيع المطوّر التالي قراءتها وتوسيعها والوثوق بها."
+            }
+        },
+        {
+            "icon": "ph-database",
+            "title": { "en": "Database ready", "ar": "جاهز لقواعد البيانات" },
+            "text": {
+                "en": "ORM or raw SQL, on SQL Server, PostgreSQL, Oracle, MongoDB or MariaDB.",
+                "ar": "ORM أو SQL مباشر، على SQL Server وPostgreSQL وOracle وMongoDB وMariaDB."
+            }
+        },
+        {
+            "icon": "ph-seal-check",
+            "title": { "en": "Reliable", "ar": "موثوق" },
+            "text": {
+                "en": "I deliver what we agreed, on the date we agreed.",
+                "ar": "أسلّم ما اتفقنا عليه، في الموعد الذي اتفقنا عليه."
+            }
+        },
+        {
+            "icon": "ph-handshake",
+            "title": { "en": "Long-term partner", "ar": "شريك طويل الأمد" },
+            "text": {
+                "en": "I care about how the product does after launch, not only about the handover.",
+                "ar": "يهمّني أداء المنتج بعد الإطلاق، لا لحظة التسليم فقط."
+            }
+        },
+        {
+            "icon": "ph-medal",
+            "title": { "en": "Proven experience", "ar": "خبرة مثبتة" },
+            "text": {
+                "en": "6+ years solving real problems for real users.",
+                "ar": "أكثر من 6 سنوات في حل مشكلات حقيقية لمستخدمين حقيقيين."
+            }
+        }
+    ],
+
+    "services": [
+        {
+            "icon": "ph-terminal-window",
+            "title": { "en": "Console applications", "ar": "تطبيقات سطر الأوامر" },
+            "text": { "en": "Fast CLI tools and automation scripts.", "ar": "أدوات سطر أوامر سريعة وسكربتات أتمتة." }
+        },
+        {
+            "icon": "ph-desktop",
+            "title": { "en": "WPF applications", "ar": "تطبيقات WPF" },
+            "text": { "en": "Modern, responsive Windows interfaces.", "ar": "واجهات Windows حديثة وسريعة الاستجابة." }
+        },
+        {
+            "icon": "ph-browsers",
+            "title": { "en": "Blazor applications", "ar": "تطبيقات Blazor" },
+            "text": { "en": "Interactive web apps written in C#.", "ar": "تطبيقات ويب تفاعلية مكتوبة بـ C#." }
+        },
+        {
+            "icon": "ph-globe",
+            "title": { "en": "ASP.NET backend", "ar": "خدمات ASP.NET الخلفية" },
+            "text": { "en": "Robust backend services with ASP.NET.", "ar": "خدمات خلفية متينة بـ ASP.NET." }
+        },
+        {
+            "icon": "ph-plugs-connected",
+            "title": { "en": "API development", "ar": "تطوير واجهات API" },
+            "text": { "en": "Secure RESTful APIs on .NET Core.", "ar": "على .NET Core، واجهات REST آمنة." }
+        },
+        {
+            "icon": "ph-cloud",
+            "title": { "en": "Cloud deployment", "ar": "النشر السحابي" },
+            "text": { "en": "Azure and self-hosted, with full control of the environment.", "ar": "على Azure أو خوادمك الخاصة، مع تحكم كامل في البيئة." }
+        },
+        {
+            "icon": "ph-chart-line-up",
+            "title": { "en": "Interactive charts", "ar": "رسوم بيانية تفاعلية" },
+            "text": { "en": "Data visualisation that turns numbers into decisions.", "ar": "تمثيل بصري للبيانات يحوّل الأرقام إلى قرارات." }
+        },
+        {
+            "icon": "ph-game-controller",
+            "title": { "en": "Unity games", "ar": "ألعاب Unity" },
+            "text": { "en": "Android games from prototype to Play Store.", "ar": "ألعاب أندرويد من النموذج الأولي إلى متجر Play." }
+        },
+        {
+            "icon": "ph-puzzle-piece",
+            "title": { "en": "Extensions & plugins", "ar": "الإضافات والملحقات" },
+            "text": { "en": "Scalable custom features for existing products.", "ar": "ميزات مخصصة قابلة للتوسع للمنتجات القائمة." }
+        },
+        {
+            "icon": "ph-sliders-horizontal",
+            "title": { "en": "Custom features", "ar": "ميزات مخصصة" },
+            "text": { "en": "Tailored to the way your team works.", "ar": "مصممة على قياس طريقة عمل فريقك." }
+        }
+    ],
+
+    "technologies": [
+        "C#", ".NET Core", "ASP.NET", "MAUI", "WPF", "WinForms", "Java", "Kotlin", "Python",
+        "Node.js", "React", "Vue.js", "Blazor", "SQL Server", "PostgreSQL", "Oracle", "MongoDB",
+        "MariaDB", "Azure", "Git", "CI/CD", "REST APIs", "SignalR", "Unity", "Blender",
+        { "en": "AI Tools", "ar": "أدوات AI" }
+    ],
+
+    "projects": [
+        {
+            "id": "wach-taaref",
+            "image": "Assets/project8.webp",
+            "link": "wach-taaref/",
+            "featured": true,
+            "categories": ["mobile"],
+            "tags": [
+                "Unity", "C#", "Android",
+                { "en": "Game", "ar": "لعبة" }
+            ],
+            "title": { "en": "Wach Ta3ref", "ar": "واش تعرف؟" },
+            "subtitle": { "en": "Algerian word puzzle game", "ar": "لعبة ألغاز كلمات جزائرية" },
+            "description": {
+                "en": "A Unity mobile game in Algerian darija, live on Google Play: a 3D low-poly map of the 69 wilayas that lights up at night, hexagon word boards, 3000+ local questions, daily challenges and a heritage museum. Built with AdMob, Google Play purchases and Play Games.",
+                "ar": "لعبة موبايل بـ Unity بالدارجة الجزائرية، متوفرة على Google Play: خريطة 3D للولايات الـ69 بأسلوب low-poly تضوي في الليل، لوحات كلمات سداسية، أكثر من 3000 سؤال محلي، تحديات يومية ومتحف للتراث. مبنية مع إعلانات AdMob ومشتريات Google Play و Play Games."
+            }
+        },
+        {
+            "id": "stations",
+            "image": "Assets/project7.webp",
+            "categories": ["desktop"],
+            "tags": ["WPF", "C#", "EF Core", "SQLite"],
+            "title": { "en": "Stations", "ar": "Stations" },
+            "subtitle": { "en": "Fleet & maintenance management platform", "ar": "منصة إدارة الأسطول والصيانة" },
+            "description": {
+                "en": "Desktop platform for managing a nationwide fleet of mobile technical stations: deployment, readiness, repairs and spare parts in one place.",
+                "ar": "منصة سطح مكتب لإدارة أسطول وطني من المحطات التقنية المتنقلة: النشر والجاهزية والإصلاحات وقطع الغيار في مكان واحد."
+            }
+        },
+        {
+            "id": "dztutor",
+            "image": "Assets/project4.webp",
+            "categories": ["web"],
+            "tags": ["React", { "en": "Web", "ar": "ويب" }],
+            "title": { "en": "DzTutor", "ar": "DzTutor" },
+            "subtitle": { "en": "Web app for private tutors", "ar": "تطبيق ويب للمدرّسين الخصوصيين" },
+            "description": {
+                "en": "A React web application for private tutors in Algeria, enabling tutors and students to connect and manage lessons efficiently.",
+                "ar": "تطبيق ويب بـ React للمدرّسين الخصوصيين في الجزائر، يتيح للمدرّسين والطلاب التواصل وإدارة الدروس بكفاءة."
+            }
+        },
+        {
+            "id": "dss",
+            "image": "Assets/project5.webp",
+            "categories": ["web"],
+            "tags": ["Python", "OR-Tools"],
+            "title": { "en": "DSS", "ar": "DSS" },
+            "subtitle": { "en": "Spare-parts decision support", "ar": "دعم القرار لقطع الغيار" },
+            "description": {
+                "en": "A decision support system using OR-Tools to predict car spare parts demand and optimise inventory based on past usage.",
+                "ar": "نظام دعم قرار يستخدم OR-Tools للتنبؤ بالطلب على قطع غيار السيارات وتحسين المخزون اعتماداً على الاستهلاك السابق."
+            }
+        },
+        {
+            "id": "wpf-tools",
+            "image": "Assets/project1.webp",
+            "categories": ["desktop"],
+            "tags": ["WPF", "C#"],
+            "title": { "en": "WPF Tools", "ar": "WPF Tools" },
+            "subtitle": { "en": "Everyday utilities for Windows", "ar": "أدوات يومية لنظام Windows" },
+            "description": {
+                "en": "A custom WPF app with everyday tools, such as converting image types and monitoring the network.",
+                "ar": "تطبيق WPF مخصص يضم أدوات يومية، مثل تحويل صيغ الصور ومراقبة الشبكة."
+            }
+        },
+        {
+            "id": "qtosgearth",
+            "image": "Assets/project2.webp",
+            "categories": ["desktop"],
+            "tags": ["C++", "Qt"],
+            "title": { "en": "QtOsgEarth", "ar": "QtOsgEarth" },
+            "subtitle": { "en": "Geospatial visualisation", "ar": "التصور الجغرافي" },
+            "description": {
+                "en": "A C++ project that combines the Qt framework with osgEarth to enhance geospatial visualisation tools.",
+                "ar": "مشروع C++ يجمع بين إطار Qt ومكتبة osgEarth لتطوير أدوات التصور الجغرافي."
+            }
+        },
+        {
+            "id": "p2p-chat",
+            "image": "Assets/project3.webp",
+            "categories": ["desktop"],
+            "tags": ["WPF", "Sockets"],
+            "title": { "en": "P2P Chat", "ar": "P2P Chat" },
+            "subtitle": { "en": "Direct messaging, no server", "ar": "مراسلة مباشرة بلا خادم" },
+            "description": {
+                "en": "A WPF peer-to-peer chat app that uses sockets to send messages directly between users, without a central server.",
+                "ar": "تطبيق دردشة WPF من نظير إلى نظير يستخدم المقابس لإرسال الرسائل مباشرة بين المستخدمين دون خادم مركزي."
+            }
+        },
+        {
+            "id": "workstation",
+            "image": "Assets/project6.webp",
+            "categories": ["desktop", "mobile"],
+            "tags": ["MAUI", "Blazor"],
+            "title": { "en": "WorkStation Manager", "ar": "WorkStation Manager" },
+            "subtitle": { "en": "People & equipment management", "ar": "إدارة العمال والمعدات" },
+            "description": {
+                "en": "A MAUI hybrid app with Blazor for managing workers and equipment efficiently inside a workstation environment.",
+                "ar": "تطبيق MAUI هجين مع Blazor لإدارة العمال والمعدات بكفاءة داخل بيئة محطة العمل."
+            }
+        }
+    ],
+
+    "process": [
+        {
+            "icon": "ph-chats-circle",
+            "title": { "en": "Discussion", "ar": "النقاش" },
+            "text": { "en": "We talk through goals, users and constraints.", "ar": "نناقش الأهداف والمستخدمين والقيود." }
+        },
+        {
+            "icon": "ph-map-trifold",
+            "title": { "en": "Planning", "ar": "التخطيط" },
+            "text": { "en": "A clear roadmap with scope and milestones.", "ar": "خارطة طريق واضحة بنطاق ومراحل محددة." }
+        },
+        {
+            "icon": "ph-code",
+            "title": { "en": "Development", "ar": "التطوير" },
+            "text": { "en": "Clean code, delivered in short iterations you can review.", "ar": "كود نظيف يُسلَّم على دفعات قصيرة تستطيع مراجعتها." }
+        },
+        {
+            "icon": "ph-rocket-launch",
+            "title": { "en": "Delivery", "ar": "التسليم" },
+            "text": { "en": "A working app or site, deployed and handed over.", "ar": "تطبيق أو موقع يعمل، منشور ومُسلَّم." }
+        }
+    ]
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // set language + js flag before first paint (shares the "lang" choice with the portfolio)
+        (function () {
+            var l = 'ar', q = new URLSearchParams(location.search).get('lang');
+            try { l = localStorage.getItem('lang') || 'ar'; } catch (e) { }
+            if (q === 'ar' || q === 'en') l = q;
+            if (l !== 'en') l = 'ar';
+            document.documentElement.lang = l;
+            document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.className = 'js';
+        })();
+    </script>
+    <title>واش تعرف؟ · Wach Ta3ref | لعبة ألغاز كلمات جزائرية على Google Play</title>
+    <meta name="description" content="واش تعرف؟ لعبة كلمات وألغاز جزائرية بالدارجة: 69 ولاية على خريطة 3D، أكثر من 3000 سؤال، والبلاد تضوي في الليل. مجانية على Google Play. Wach Ta3ref is a free Algerian word puzzle game in darija for Android.">
+    <meta name="theme-color" content="#062a1f">
+    <link rel="canonical" href="https://topplay020.github.io/Portfolio/wach-taaref/">
+    <meta name="google-play-app" content="app-id=com.wachtaaref.game">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://topplay020.github.io/Portfolio/wach-taaref/">
+    <meta property="og:title" content="واش تعرف؟ · Wach Ta3ref">
+    <meta property="og:description" content="لعبة كلمات وألغاز جزائرية بالدارجة: 69 ولاية، +3000 سؤال، خريطة 3D بالنهار والليل. مجانية على Google Play.">
+    <meta property="og:image" content="https://topplay020.github.io/Portfolio/wach-taaref/og.jpg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="500">
+    <meta property="og:image:alt" content="واش تعرف؟ - ألغاز كلمات جزائرية بالدارجة">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://topplay020.github.io/Portfolio/wach-taaref/og.jpg">
+    <link rel="icon" href="icon.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="icon.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="s-play.webp" as="image" type="image/webp">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Lalezar&family=Readex+Pro:wght@300..600&family=Geist+Mono:wght@400..600&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="game.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "واش تعرف؟ (Wach Ta3ref)",
+        "operatingSystem": "Android",
+        "applicationCategory": "GameApplication",
+        "genre": "Word",
+        "inLanguage": ["ar-DZ", "en"],
+        "description": "A free Algerian word puzzle game in darija: 69 wilayas on a 3D map, 3000+ questions, a living map by day and by night.",
+        "url": "https://play.google.com/store/apps/details?id=com.wachtaaref.game",
+        "downloadUrl": "https://play.google.com/store/apps/details?id=com.wachtaaref.game",
+        "image": "https://topplay020.github.io/Portfolio/wach-taaref/icon.webp",
+        "screenshot": "https://topplay020.github.io/Portfolio/wach-taaref/og.jpg",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "DZD" },
+        "author": { "@type": "Person", "name": "Beghdad Amine", "url": "https://topplay020.github.io/Portfolio/" }
+    }
+    </script>
+</head>
+
+<body>
+    <header class="nav" id="nav">
+        <div class="nav-bar">
+            <a href="#top" class="brand" aria-label="Wach Ta3ref">
+                <img src="icon.webp" alt="" width="36" height="36">
+                <span><span data-l="ar">واش تعرف؟</span><span data-l="en">Wach Ta3ref</span></span>
+            </a>
+            <nav class="nav-links" aria-label="Primary">
+                <a class="nav-link" href="#try"><span data-l="ar">جرّب</span><span data-l="en">Try it</span></a>
+                <a class="nav-link" href="#features"><span data-l="ar">المميزات</span><span data-l="en">Features</span></a>
+                <a class="nav-link" href="#screens"><span data-l="ar">الشاشات</span><span data-l="en">Screens</span></a>
+            </nav>
+            <div class="lang" role="group" aria-label="Language">
+                <span class="lang-pill" id="langPill"></span>
+                <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                <button type="button" data-lang="ar" aria-pressed="true">AR</button>
+            </div>
+            <a class="nav-get play-link" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game"><i class="ph ph-google-play-logo"></i><span><span data-l="ar">حمّلها</span><span data-l="en">Get it</span></span></a>
+            <a class="back" href="../" aria-label="Portfolio"><i class="ph ph-arrow-left flip"></i><span>Portfolio</span></a>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-fx" aria-hidden="true">
+                <div class="hero-poly" id="heroPoly"></div>
+                <div class="hero-glow"></div>
+                <div class="drift" id="drift"></div>
+            </div>
+            <div class="wrap hero-inner">
+                <div>
+                    <div class="chip live" data-reveal><span class="ping" aria-hidden="true"></span><span><span data-l="ar">متوفرة درك على Google Play · مجانية</span><span data-l="en">Out now on Google Play · free</span></span></div>
+                    <h1 data-reveal style="--d:.08s">
+                        <span data-l="ar">واش تعرف<span class="q">؟</span></span>
+                        <span data-l="en">Wach Ta3ref<span class="q">?</span></span>
+                    </h1>
+                    <p class="tagline" data-reveal style="--d:.14s"><span data-l="ar">لعبة كلمات وألغاز جزائرية بالدارجة</span><span data-l="en">An Algerian word puzzle game, in darija</span></p>
+                    <p class="gloss" data-reveal style="--d:.18s" data-l="en">“Wach ta3ref?” means “what do you know?”</p>
+                    <p class="sub" data-reveal style="--d:.22s"><span data-l="ar">جول في 69 ولاية على خريطة 3D، لقا الكلمات المخبية وسط الحروف السداسية، وكمّل الولايات حتى تولّي الخريطة كاملة ذهب. واش راك دزيري&nbsp;<bdi dir="ltr">100%</bdi>؟</span><span data-l="en">Travel all 69 wilayas on a 3D map, find the words hidden in the hexagons, and complete the wilayas until the whole map turns gold. Are you 100% Algerian?</span></p>
+                    <div class="hero-cta" data-reveal style="--d:.3s">
+                        <a class="btn btn-go play-link" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game">
+                            <span><small><span data-l="ar">مجانية · أندرويد</span><span data-l="en">Free · Android</span></small><span data-l="ar">حمّلها من Google Play</span><span data-l="en">Get it on Google Play</span></span>
+                            <span class="ico"><i class="ph ph-google-play-logo"></i></span>
+                        </a>
+                        <a class="btn btn-ghost" href="#try"><span><span data-l="ar">جرّب لغز درك</span><span data-l="en">Try a riddle</span></span><span class="ico"><i class="ph ph-hand-pointing"></i></span></a>
+                    </div>
+                </div>
+
+                <div class="stage" id="stage" data-reveal style="--d:.1s">
+                    <div class="phone p-left"><img src="s-map3d.webp" alt="" width="540" height="960" data-alt-ar="خريطة 3D بالجبال والبحر" data-alt-en="A 3D map with mountains and sea"></div>
+                    <div class="phone p-right"><img src="s-city.webp" alt="" width="540" height="960" data-alt-ar="البلاد تضوي في الليل" data-alt-en="The country lights up at night"></div>
+                    <div class="phone p-main"><img src="s-play.webp" alt="" width="540" height="960" fetchpriority="high" data-alt-ar="لوحة الحروف السداسية" data-alt-en="The hexagon word board"></div>
+                    <span class="hex hex-1" aria-hidden="true"><b>D</b></span>
+                    <span class="hex hex-2" aria-hidden="true"><b>Z</b></span>
+                    <span class="hex hex-3" aria-hidden="true"><b>ش</b></span>
+                    <span class="hex hex-4" aria-hidden="true"><b>؟</b></span>
+                    <span class="hex hex-5" aria-hidden="true"><b>ر</b></span>
+                    <span class="hex hex-6" aria-hidden="true"><b>ع</b></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numbers -->
+        <section class="stats" aria-label="Numbers">
+            <div class="sec-fx fx-stats" aria-hidden="true"><div class="fx-poly"></div><div class="fx-flag"></div></div>
+            <div class="wrap stats-grid">
+                <div class="stat" data-reveal><b><span data-count="69">69</span></b><span><span data-l="ar">ولاية على خريطة 3D</span><span data-l="en">wilayas on a 3D map</span></span></div>
+                <div class="stat" data-reveal style="--d:.08s"><b><span data-count="3000">3000</span>+</b><span><span data-l="ar">سؤال بالدارجة</span><span data-l="en">questions in darija</span></span></div>
+                <div class="stat" data-reveal style="--d:.16s"><b><span data-count="207">207</span></b><span><span data-l="ar">معلومة «تعرف بلّي؟»</span><span data-l="en">“Did you know?” facts</span></span></div>
+                <div class="stat" data-reveal style="--d:.24s"><b><span data-count="69">69</span></b><span><span data-l="ar">كنز من التراث</span><span data-l="en">heritage treasures</span></span></div>
+            </div>
+        </section>
+
+        <!-- Try it -->
+        <section class="section try" id="try">
+            <div class="sec-fx fx-try" aria-hidden="true"><div class="fx-poly"></div><div class="drift" data-drift="8"></div></div>
+            <div class="wrap">
+                <div class="sec-head">
+                    <h2 class="sec-title" data-reveal><span data-l="ar">جرّب <span class="hl">درك</span></span><span data-l="en">Try it <span class="hl">now</span></span></h2>
+                    <p class="sec-lede" data-reveal style="--d:.08s"><span data-l="ar">3 ألغاز حقيقيين من اللعبة. جرّ صبعك (ولا الفأرة) على الحروف باش تكتب الجواب.</span><span data-l="en">3 real riddles from the game. Swipe your finger (or mouse) across the letters to spell the answer.</span></p>
+                </div>
+                <div class="try-grid">
+                    <div class="qcard" data-reveal>
+                        <div class="q-top">
+                            <div class="q-dots" id="qDots" aria-hidden="true"><i></i><i></i><i></i></div>
+                            <span class="q-cat" id="qCat"></span>
+                        </div>
+                        <p class="q-text" id="qText" dir="rtl" lang="ar" aria-live="polite"></p>
+                        <p class="q-gloss" id="qGloss" data-l="en"></p>
+                        <div class="q-word" aria-live="polite"><span id="qWord" dir="rtl"></span></div>
+                        <div class="q-tools">
+                            <button type="button" class="tool" id="qHint"><i class="ph ph-lightbulb"></i><span><span data-l="ar">تلميح</span><span data-l="en">Hint</span></span></button>
+                            <button type="button" class="tool" id="qShow"><i class="ph ph-eye"></i><span><span data-l="ar">ورّيني</span><span data-l="en">Show me</span></span></button>
+                            <span class="q-score"><i class="ph ph-star"></i><b id="qScore">0</b></span>
+                        </div>
+                        <div class="q-win" id="qWin">
+                            <h3><span data-l="ar">واعر! راك <span class="hl">دزيري&nbsp;<bdi dir="ltr">100%</bdi></span></span><span data-l="en">Wa3er! <span class="hl">100% Algerian</span></span></h3>
+                            <p><span data-l="ar">هادو كانو 3 برك. في اللعبة يستناوك أكثر من 3000 سؤال، 69 ولاية و69 كنز.</span><span data-l="en">That was only 3. In the game, 3000+ questions, 69 wilayas and 69 treasures are waiting.</span></p>
+                            <div class="hero-cta">
+                                <a class="btn btn-go play-link" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game"><span><span data-l="ar">حمّلها من Google Play</span><span data-l="en">Get it on Google Play</span></span><span class="ico"><i class="ph ph-google-play-logo"></i></span></a>
+                                <button type="button" class="tool" id="qAgain"><i class="ph ph-arrow-counter-clockwise"></i><span><span data-l="ar">عاود</span><span data-l="en">Again</span></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-wrap" data-reveal style="--d:.1s">
+                        <svg id="board" aria-label="hexagon board"></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day & night -->
+        <section class="section daynight" id="daynight">
+            <div class="sec-fx fx-sky" aria-hidden="true"><div class="fx-poly"></div><div class="fx-day"></div><div class="fx-night"><div class="stars" id="stars"></div></div></div>
+            <div class="wrap dn-grid">
+                <div>
+                    <h2 class="sec-title" data-reveal><span data-l="ar">النهار <span class="hl">ولا</span> الليل؟</span><span data-l="en">Day <span class="hl">or</span> night?</span></h2>
+                    <p class="dn-text" data-reveal style="--d:.08s"><span data-l="ar">الخريطة تتبع ساعتك: كي يطيح الليل، المدن تشعل والطرقان يبرقو، وقلب الدزاير يدق من العاصمة. ولا اختار انت الوقت بالمسطرة.</span><span data-l="en">The map follows your clock: when night falls, the cities light up, the roads glow and Algeria's heart beats from Algiers. Or pick the hour yourself.</span></p>
+                </div>
+                <div class="dn-stage" data-reveal style="--d:.1s">
+                    <div class="compare" id="compare">
+                        <img src="s-day.webp" alt="" width="540" height="960" loading="lazy" data-alt-ar="الخريطة في النهار" data-alt-en="The map by day">
+                        <img class="night" src="s-night.webp" alt="" width="540" height="960" loading="lazy" data-alt-ar="الخريطة في الليل" data-alt-en="The map at night">
+                    </div>
+                    <div class="dn-switch" role="group" aria-label="Day / night">
+                        <span class="dn-pill" aria-hidden="true"></span>
+                        <button type="button" data-dn="day" aria-pressed="true"><i class="ph ph-sun"></i><span><span data-l="ar">النهار</span><span data-l="en">Day</span></span></button>
+                        <button type="button" data-dn="night" aria-pressed="false"><i class="ph ph-moon-stars"></i><span><span data-l="ar">الليل</span><span data-l="en">Night</span></span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="section" id="features">
+            <div class="sec-fx fx-features" aria-hidden="true"><div class="fx-lattice"></div><div class="fx-poly"></div><div class="drift" data-drift="10"></div></div>
+            <div class="wrap">
+                <div class="sec-head">
+                    <h2 class="sec-title" data-reveal><span data-l="ar">واش لقيتي <span class="hl">فيها؟</span></span><span data-l="en">What's <span class="hl">inside</span></span></h2>
+                    <p class="sec-lede" data-reveal style="--d:.08s"><span data-l="ar">ست حاجات تخليك تقول «جولة وحدة أخرى».</span><span data-l="en">Six reasons to say “one more round”.</span></p>
+                </div>
+                <div class="bento">
+                    <article class="tile" data-reveal>
+                        <i class="ph ph-mountains mark"></i>
+                        <div class="ico"><i class="ph ph-mountains"></i></div>
+                        <h3><span data-l="ar">خريطة 3D حيّة</span><span data-l="en">A living 3D map</span></h3>
+                        <p><span data-l="ar">69 ولاية بالجبال والبحر والبلدان الجيران. القوافل في الصحرا، المعز في الجبل والفلايك في البحر، وكل ولاية تكملها تتلبس الذهب.</span><span data-l="en">69 wilayas with mountains, sea and neighbouring countries. Caravans in the desert, goats in the mountains, boats at sea, and every wilaya you complete turns gold.</span></p>
+                    </article>
+                    <article class="tile" data-reveal style="--d:.08s">
+                        <i class="ph ph-hexagon mark"></i>
+                        <div class="ico"><i class="ph ph-hexagon"></i></div>
+                        <h3><span data-l="ar">ألغاز بالدارجة تاعنا</span><span data-l="en">Riddles in our darija</span></h3>
+                        <p><span data-l="ar">أكثر من 3000 سؤال، والجواب ساعات يتبدل من ولاية لأخرى: «كيما يقولوها عندكم».</span><span data-l="en">3000+ questions, and some answers change from one wilaya to another: “the way you say it”.</span></p>
+                    </article>
+                    <article class="tile" data-reveal>
+                        <i class="ph ph-heartbeat mark"></i>
+                        <div class="ico"><i class="ph ph-heartbeat"></i></div>
+                        <h3><span data-l="ar">كومبو وقلب يدق</span><span data-l="en">Combos & a racing heart</span></h3>
+                        <p><span data-l="ar">كل كلمة في وقتها تزيد الكومبو، وفي آخر 10 ثواني الحواشي تحمار وتدق كيما القلب.</span><span data-l="en">Every word in time builds the combo, and in the last 10 seconds the edges turn red and beat like a heart.</span></p>
+                    </article>
+                    <article class="tile" data-reveal style="--d:.08s">
+                        <i class="ph ph-game-controller mark"></i>
+                        <div class="ico"><i class="ph ph-game-controller"></i></div>
+                        <h3><span data-l="ar">العب برك، كيما تحب</span><span data-l="en">Free play, your way</span></h3>
+                        <p><span data-l="ar">بالوقت ولا بلا، 3 فرص ولا غلطة وحدة، بلا تلميح، والماراطون. كل ما تصعّبها، تربح كثر.</span><span data-l="en">Timed or not, 3 lives or one mistake, no hints, and marathon. The harder you make it, the more you win.</span></p>
+                    </article>
+                    <article class="tile" data-reveal>
+                        <i class="ph ph-map-pin mark"></i>
+                        <div class="ico"><i class="ph ph-map-pin"></i></div>
+                        <h3><span data-l="ar">تحدي اليوم و«وين راهي؟»</span><span data-l="en">Daily challenge & “Win rahi?”</span></h3>
+                        <p><span data-l="ar">نفس اللغز للجميع كل نهار، ولعبة الخريطة: البهجة، مدينة الورود… لقاها في 10 ثواني.</span><span data-l="en">The same puzzle for everyone each day, and the map game: El Bahja, the City of Roses… find it in 10 seconds.</span></p>
+                    </article>
+                    <article class="tile" data-reveal style="--d:.08s">
+                        <i class="ph ph-crown mark"></i>
+                        <div class="ico"><i class="ph ph-crown"></i></div>
+                        <h3><span data-l="ar">كنوز، بطاقات وقاموس</span><span data-l="en">Treasures, postcards, dictionary</span></h3>
+                        <p><span data-l="ar">69 كنز لـ«متحف بلادي»، بطاقة بريدية من كل ولاية تشاركها، وقاموسك فيه كل كلمة بمعناها.</span><span data-l="en">69 treasures for “My Country Museum”, a postcard from every wilaya to share, and a dictionary of every word you find.</span></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screens -->
+        <section class="section screens" id="screens">
+            <div class="sec-fx fx-screens" aria-hidden="true"><div class="fx-poly"></div><div class="fx-shine"></div><div class="drift" data-drift="6"></div></div>
+            <div class="wrap">
+                <div class="sec-head">
+                    <h2 class="sec-title" data-reveal><span data-l="ar">شوف <span class="hl">بعينك</span></span><span data-l="en">See it <span class="hl">in action</span></span></h2>
+                    <div class="sec-lede rail-bar" data-reveal style="--d:.08s">
+                        <span><span data-l="ar">اسحب أو استعمل الأسهم.</span><span data-l="en">Drag, swipe or use the arrows.</span></span>
+                        <div class="rail-ctrl">
+                            <button type="button" id="railPrev" aria-label="Previous"><i class="ph ph-arrow-left flip"></i></button>
+                            <button type="button" id="railNext" aria-label="Next"><i class="ph ph-arrow-right flip"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rail" id="rail" data-reveal tabindex="0" aria-label="Screenshots">
+                <figure class="shot"><img src="s-play.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="لوحة الألغاز" data-alt-en="Puzzle board"><figcaption><b>01</b><span><span data-l="ar">ألغاز بالدارجة تاعنا</span><span data-l="en">Riddles in our darija</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-map3d.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="خريطة 3D" data-alt-en="3D map"><figcaption><b>02</b><span><span data-l="ar">خريطة 3D بالجبال والبحر</span><span data-l="en">A 3D map with mountains and sea</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-city.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="الخريطة في الليل" data-alt-en="The map at night"><figcaption><b>03</b><span><span data-l="ar">في الليل، البلاد تضوي</span><span data-l="en">At night, the country lights up</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-beat.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="آخر الثواني" data-alt-en="The last seconds"><figcaption><b>04</b><span><span data-l="ar">آخر 10 ثواني… قلبك يدق</span><span data-l="en">Last 10 seconds, heart pounding</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-quiz.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="وين راهي؟" data-alt-en="Where is it?"><figcaption><b>05</b><span><span data-l="ar">وين راهي؟ اختبر خريطتك</span><span data-l="en">“Win rahi?” Test your map</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-free.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="العب برك" data-alt-en="Free play"><figcaption><b>06</b><span><span data-l="ar">العب برك، كيما تحب</span><span data-l="en">Free play, your way</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-gold.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="ولاية ذهبية" data-alt-en="A golden wilaya"><figcaption><b>07</b><span><span data-l="ar">كمّل الولاية وتولّي ذهب</span><span data-l="en">Complete a wilaya, it turns gold</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-postcard.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="بطاقة بريدية" data-alt-en="A postcard"><figcaption><b>08</b><span><span data-l="ar">بطاقة بريدية من كل ولاية</span><span data-l="en">A postcard from every wilaya</span></span></figcaption></figure>
+                <figure class="shot"><img src="s-menu.webp" loading="lazy" alt="" width="540" height="960" data-alt-ar="القائمة الرئيسية" data-alt-en="Main menu"><figcaption><b>09</b><span><span data-l="ar">يلا نلعبو!</span><span data-l="en">Let's play!</span></span></figcaption></figure>
+            </div>
+            <div class="rail-progress" aria-hidden="true"><i id="railBar"></i></div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="wrap">
+                <div class="cta" data-reveal>
+                    <div class="cta-poly" aria-hidden="true"></div>
+                    <div class="drift drift-cta" id="driftCta" aria-hidden="true"></div>
+                    <span class="hex hex-a" aria-hidden="true"><b>ش</b></span>
+                    <span class="hex hex-b" aria-hidden="true"><b>Z</b></span>
+                    <span class="hex hex-c" aria-hidden="true"><b>؟</b></span>
+                    <h2><span data-l="ar">وانت؟ <span class="hl">قدّاش تجيب؟</span></span><span data-l="en">And you? <span class="hl">How far can you go?</span></span></h2>
+                    <p><span data-l="ar">اللعبة متوفرة درك على Google Play ومجانية. حمّلها، كمّل الـ69 ولاية، وورّي صحابك شكون يعرف البلاد خير.</span><span data-l="en">The game is out now on Google Play, for free. Download it, complete the 69 wilayas and show your friends who knows the country best.</span></p>
+                    <div class="hero-cta">
+                        <a class="btn btn-go play-link" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game">
+                            <span><small><span data-l="ar">مجانية · أندرويد</span><span data-l="en">Free · Android</span></small><span data-l="ar">حمّلها من Google Play</span><span data-l="en">Get it on Google Play</span></span>
+                            <span class="ico"><i class="ph ph-google-play-logo"></i></span>
+                        </a>
+                        <a class="btn btn-ghost" href="privacy.html"><span><span data-l="ar">سياسة الخصوصية</span><span data-l="en">Privacy policy</span></span><span class="ico"><i class="ph ph-shield-check"></i></span></a>
+                    </div>
+                    <a class="mail-link" href="mailto:topplay020@gmail.com"><i class="ph ph-envelope-simple"></i><span>topplay020@gmail.com</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="sec-fx fx-foot" aria-hidden="true"><div class="fx-poly"></div></div>
+        <div class="wrap foot">
+            <nav aria-label="Footer">
+                <a class="play-link" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game">Google Play</a>
+                <a href="privacy.html"><span data-l="ar">سياسة الخصوصية</span><span data-l="en">Privacy policy</span></a>
+                <a href="../"><span data-l="ar">المعرض (Portfolio)</span><span data-l="en">← Back to portfolio</span></a>
+            </nav>
+            <p><span data-l="ar">صُنع في الجزائر</span><span data-l="en">Made in Algeria</span> <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span></p>
+        </div>
+    </footer>
+
+    <a class="m-get play-link" id="mGet" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game"><i class="ph ph-google-play-logo"></i><span><span data-l="ar">حمّلها مجانًا من Google Play</span><span data-l="en">Get it free on Google Play</span></span></a>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="game.js" defer></script>
+</body>
+
+</html>

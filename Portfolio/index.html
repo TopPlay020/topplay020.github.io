@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beghdad Amine · Full Stack .NET Developer</title>
+    <meta name="description" content="Beghdad Amine, Full Stack .NET developer. Custom C# and .NET solutions for Windows and the web: WPF, Blazor, ASP.NET, REST APIs, Unity games and cloud deployment.">
+    <meta name="theme-color" content="#09090b">
+    <meta name="color-scheme" content="dark">
+    <link rel="canonical" href="https://topplay020.github.io/Portfolio/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://topplay020.github.io/Portfolio/">
+    <meta property="og:title" content="Beghdad Amine · Full Stack .NET Developer">
+    <meta property="og:description" content="Custom C# and .NET solutions for Windows and the web: lightweight, fast apps with clean architecture, solid database access and reliable deployment.">
+    <meta property="og:image" content="https://topplay020.github.io/Portfolio/Assets/preview.webp">
+    <meta property="og:image:alt" content="Beghdad Amine, Full Stack .NET developer, portfolio preview">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="Assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preload" href="Assets/image.webp" as="image" type="image/webp">
+    <link rel="preload" href="data.json" as="fetch" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+    <link rel="stylesheet" href="Assets/site.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Beghdad Amine",
+        "alternateName": "بغداد أمين",
+        "jobTitle": "Full Stack .NET Developer",
+        "url": "https://topplay020.github.io/Portfolio/",
+        "image": "https://topplay020.github.io/Portfolio/Assets/image.webp",
+        "sameAs": [
+            "https://www.linkedin.com/in/beghded-amine-a98130259/",
+            "https://github.com/TopPlay020",
+            "https://web.facebook.com/a.i.e.beghdad/"
+        ],
+        "knowsAbout": ["C#", ".NET", "ASP.NET", "WPF", "Blazor", "REST APIs", "Unity", "SQL Server", "PostgreSQL", "Azure"]
+    }
+    </script>
+    <noscript><style>#preloader { display: none; }</style></noscript>
+</head>
+
+<body>
+    <a class="skip" href="#main" id="skipLink">Skip to content</a>
+
+    <!-- Preloader -->
+    <div id="preloader" aria-hidden="true">
+        <div class="pl-name" id="plName"></div>
+        <div class="pl-meta"><span>.NET / C# / WPF / Blazor</span><b id="plPct">00%</b></div>
+        <div class="pl-bar"></div>
+    </div>
+
+    <div id="progress" aria-hidden="true"></div>
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <header class="nav" id="nav">
+        <div class="nav-bar">
+            <a href="#home" class="brand" aria-label="Beghdad Amine">
+                <span class="brand-mark">BA</span>
+                <span class="brand-name" id="brandName">Beghdad Amine</span>
+            </a>
+            <nav class="nav-links" id="navLinks" aria-label="Primary"></nav>
+            <div class="lang" role="group" aria-label="Language">
+                <span class="lang-pill" id="langPill"></span>
+                <button type="button" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" data-lang="ar" aria-pressed="false">AR</button>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-sm nav-cta" id="navCta" data-magnetic><span id="navCtaText"></span><span class="ico"><i class="ph ph-arrow-up-right"></i></span></a>
+            <button type="button" class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><i class="ph ph-list"></i></button>
+        </div>
+    </header>
+    <div id="mobile-menu" aria-hidden="true">
+        <nav id="mobileLinks" aria-label="Mobile"></nav>
+        <div class="m-foot">
+            <a class="m-mail" id="mobileMail" href="#"></a>
+            <div class="foot-social" id="mobileSocial"></div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home" aria-labelledby="heroTitle">
+        <div class="hero-grid"></div>
+        <div class="wrap hero-inner">
+            <div>
+                <div class="badge" data-reveal style="--d:.05s"><span class="dot"></span><span id="heroBadge"></span></div>
+                <h1 id="heroTitle" class="split"></h1>
+                <div class="roles" data-reveal style="--d:.35s"><span id="rolesPrefix"></span><span><span class="typed" id="typed"></span><span class="caret"></span></span></div>
+                <p class="hero-desc" id="heroDesc" data-reveal style="--d:.45s"></p>
+                <div class="hero-cta" data-reveal style="--d:.55s">
+                    <a id="heroPrimary" class="btn btn-primary" data-magnetic target="_blank" rel="noopener"><span id="heroPrimaryText"></span><span class="ico"><i class="ph ph-paper-plane-tilt"></i></span></a>
+                    <a id="heroSecondary" class="btn btn-ghost" href="#portfolio" data-magnetic><span id="heroSecondaryText"></span><span class="ico"><i class="ph ph-arrow-down"></i></span></a>
+                </div>
+                <div class="stats" id="stats" data-reveal style="--d:.65s"></div>
+            </div>
+            <div class="portrait-col" data-reveal style="--d:.2s">
+                <div class="portrait" id="portrait">
+                    <div class="ring"></div>
+                    <img src="Assets/image.webp" alt="Portrait of Beghdad Amine" width="480" height="710" fetchpriority="high">
+                    <div class="seal" aria-hidden="true">
+                        <svg viewBox="0 0 120 120">
+                            <defs><path id="sealPath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"></path></defs>
+                            <text><textPath href="#sealPath" textLength="292" lengthAdjust="spacing" id="sealText"></textPath></text>
+                        </svg>
+                        <span class="seal-core"><i class="ph ph-code"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="main">
+        <!-- Why me -->
+        <section class="section alt" id="features">
+            <div class="wrap">
+                <div class="sec-head"><h2 class="sec-title split" id="featuresTitle"></h2><p class="sec-lede" id="featuresLede" data-reveal></p></div>
+                <div class="bento" id="featuresGrid"></div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="section" id="services">
+            <div class="wrap">
+                <div class="sec-head"><h2 class="sec-title split" id="servicesTitle"></h2><p class="sec-lede" id="servicesLede" data-reveal></p></div>
+                <div class="svc-list" id="servicesList"></div>
+            </div>
+        </section>
+
+        <!-- Toolbox -->
+        <section class="section alt" id="stack" style="overflow:clip">
+            <div class="wrap"><div class="sec-head"><h2 class="sec-title split" id="stackTitle"></h2><p class="sec-lede" id="stackLede"></p></div></div>
+            <div data-reveal aria-hidden="true">
+                <div class="marquee"><div class="mq-track" id="mq1"></div></div>
+                <div class="marquee"><div class="mq-track rev" id="mq2"></div></div>
+            </div>
+            <ul class="sr-only" id="stackList"></ul>
+        </section>
+
+        <!-- Work -->
+        <section class="section" id="portfolio">
+            <div class="wrap">
+                <div class="sec-head"><h2 class="sec-title split" id="portfolioTitle"></h2><p class="sec-lede" id="portfolioLede" data-reveal></p></div>
+                <div class="work-bar" data-reveal>
+                    <div class="filters" id="filters" role="group"><span class="filter-pill" id="filterPill"></span></div>
+                    <div class="work-count" id="workCount" aria-live="polite"></div>
+                </div>
+                <div class="projects" id="projects"></div>
+                <div id="projectDots" aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="section alt" id="process">
+            <div class="wrap">
+                <div class="sec-head"><h2 class="sec-title split" id="processTitle"></h2><p class="sec-lede" id="processLede" data-reveal></p></div>
+                <div class="steps" id="steps"></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="wrap">
+                <div class="contact" data-reveal>
+                    <h2 class="split" id="contactTitle"></h2>
+                    <p id="contactText"></p>
+                    <div class="contact-cta">
+                        <a id="contactPrimary" class="btn btn-primary" data-magnetic target="_blank" rel="noopener"><span id="contactPrimaryText"></span><span class="ico"><i class="ph ph-arrow-up-right"></i></span></a>
+                        <button type="button" id="copyMail" class="btn btn-ghost" data-magnetic><span><span id="copyMailText"></span> <span class="mail" id="mailText"></span></span><span class="ico"><i class="ph ph-copy"></i></span></button>
+                    </div>
+                    <div class="social-rows" id="socialRows"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="wordmark" aria-hidden="true">BEGHDAD AMINE</div>
+            <div class="foot-row">
+                <p id="footerText"></p>
+                <div class="foot-social" id="footerSocial"></div>
+            </div>
+        </div>
+    </footer>
+
+    <nav id="dock" aria-label="Quick navigation"><div id="dock-items"></div></nav>
+    <button type="button" id="toTop" aria-label="Back to top"><i class="ph ph-arrow-up"></i></button>
+    <div id="toast" role="status" aria-live="polite"><i class="ph ph-check-circle"></i><span id="toastText"></span></div>
+
+    <noscript>
+        <div class="ns">
+            <h1>Beghdad Amine · Full Stack .NET Developer</h1>
+            <p>Custom C# and .NET solutions for Windows and the web. Please enable JavaScript to view the full portfolio, or reach me on
+                <a href="https://www.linkedin.com/in/beghded-amine-a98130259/">LinkedIn</a> or at <a href="mailto:topplay020@gmail.com">topplay020@gmail.com</a>.</p>
+        </div>
+    </noscript>
+
+    <script src="Assets/site.js" defer></script>
+</body>
+
+</html>
