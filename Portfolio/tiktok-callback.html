@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="referrer" content="no-referrer">
+    <title>Wach Ta3ref · TikTok</title>
+    <link rel="icon" href="wach-taaref/icon.webp" type="image/webp">
+    <style>
+        body { margin: 0; min-height: 100vh; display: grid; place-items: center; font: 16px/1.5 system-ui, "Segoe UI", sans-serif;
+               color: #f3f7f4; background: radial-gradient(900px 600px at 70% -10%, #155e47 0%, transparent 60%), #071a14; }
+        main { max-width: 440px; padding: 32px; text-align: center; }
+        img { width: 72px; height: 72px; border-radius: 18px; }
+        h1 { font-size: 20px; margin: 16px 0 8px; }
+        p { color: #9fb5ab; margin: 0; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+
+<body>
+    <main>
+        <img src="wach-taaref/icon.webp" alt="">
+        <h1 id="title">Connecting TikTok…</h1>
+        <p id="text">Going back to the Wach Ta3ref publisher on this computer.</p>
+    </main>
+    <script>
+        // TikTok sends the login back here (it only accepts https). The publisher runs on this computer
+        // (http://127.0.0.1:8790), so hand the answer to it; nothing is kept or sent anywhere else.
+        (function () {
+            var q = new URLSearchParams(location.search);
+            if (!q.get("state") || !(q.get("code") || q.get("error"))) {
+                document.getElementById("title").textContent = "Nothing to do here";
+                document.getElementById("text").textContent = "This page finishes the TikTok login of the Wach Ta3ref publisher.";
+                return;
+            }
+            history.replaceState(null, "", location.pathname);       // the code leaves the address bar
+            setTimeout(function () {
+                document.getElementById("title").textContent = "Is the publisher running?";
+                document.getElementById("text").textContent = "Start Tools/Social/start.bat, then press «Connect TikTok» again.";
+            }, 4000);
+            location.replace("http://127.0.0.1:8790/tiktok/callback?" + q.toString());
+        })();
+    </script>
+</body>
+
+</html>
