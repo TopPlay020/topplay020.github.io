@@ -57,6 +57,31 @@
         "author": { "@type": "Person", "name": "Beghdad Amine", "url": "https://topplay020.github.io/Portfolio/" }
     }
     </script>
+    <!-- Meta Pixel Code: counts the visits from the Facebook / Instagram ads, and the taps on Google Play (game.js).
+         Visitors in Europe get it only once they say yes on the #consent bar. -->
+    <script>
+        window.metaPixel = function () {
+            if (window.fbq) return;
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '3272538362934372');
+            fbq('track', 'PageView');
+        };
+        (function () {
+            var c = null, tz = '';
+            try { c = localStorage.getItem('pixel'); } catch (e) { }
+            try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { }
+            window.pixelAsk = c === null && /^(Europe\/|Atlantic\/(Canary|Madeira|Azores))/.test(tz);
+            if (c !== 'no' && !window.pixelAsk) metaPixel();
+        })();
+    </script>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -308,6 +333,13 @@
     </footer>
 
     <a class="m-get play-link" id="mGet" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game"><i class="ph ph-google-play-logo"></i><span><span data-l="ar">حمّلها مجانًا من Google Play</span><span data-l="en">Get it free on Google Play</span></span></a>
+    <div class="consent" id="consent" role="dialog" aria-label="Meta Pixel" hidden>
+        <p><span data-l="ar">نستعملو Meta Pixel باش نعرفو إذا الإشهار تاعنا في فيسبوك وإنستغرام راهو يجيب الناس. <a href="privacy.html#ar-web">التفاصيل</a></span><span data-l="en">We use the Meta Pixel to see whether our Facebook and Instagram ads bring visitors. <a href="privacy.html#en-web">Details</a></span></p>
+        <div class="consent-do">
+            <button type="button" class="tool" data-pixel="no"><span data-l="ar">لا، شكرا</span><span data-l="en">No thanks</span></button>
+            <button type="button" class="consent-ok" data-pixel="yes"><span data-l="ar">موافق</span><span data-l="en">OK</span></button>
+        </div>
+    </div>
     <div id="toast" role="status" aria-live="polite"></div>
     <script src="game.js" defer></script>
 </body>

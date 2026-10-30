@@ -34,7 +34,23 @@
     $$('.lang button').forEach((b) => b.addEventListener('click', () => { if (b.dataset.lang !== lang()) applyLang(b.dataset.lang); }));
 
     /* ---------- Play buttons ---------- */
-    $$('.play-link').forEach((a) => { a.href = PLAY_URL; a.target = '_blank'; a.rel = 'noopener'; });
+    // Each tap is a "Lead" for the Meta Pixel (index.html): the ads can then aim at people who go and get the game.
+    $$('.play-link').forEach((a) => {
+        a.href = PLAY_URL; a.target = '_blank'; a.rel = 'noopener';
+        a.addEventListener('click', () => { if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Google Play' }); });
+    });
+
+    /* ---------- Meta Pixel consent (asked in Europe only, see index.html) ---------- */
+    const consent = $('#consent');
+    if (consent && window.pixelAsk) {
+        consent.hidden = false; document.body.classList.add('ask');
+        $$('[data-pixel]', consent).forEach((b) => b.addEventListener('click', () => {
+            const yes = b.dataset.pixel === 'yes';
+            try { localStorage.setItem('pixel', yes ? 'yes' : 'no'); } catch (e) { /* storage blocked: asked again next time */ }
+            if (yes) window.metaPixel();
+            consent.hidden = true; document.body.classList.remove('ask');
+        }));
+    }
     let toastTimer;
     function toast(msg) {
         const t = $('#toast'); t.textContent = msg; t.classList.add('show');
