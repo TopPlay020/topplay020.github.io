@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>topplay020 · Custom desktop &amp; web apps in C# / .NET</title>
-    <meta name="description" content="topplay020 builds custom C# and .NET software for Windows and the web: WPF, Blazor, ASP.NET, REST APIs, Unity games and cloud deployment.">
+    <title>Topplay020 · Custom desktop &amp; web apps in C# / .NET</title>
+    <meta name="description" content="Topplay020 builds custom C# and .NET software for Windows and the web: WPF, Blazor, ASP.NET, REST APIs, Unity games and cloud deployment.">
     <meta name="theme-color" content="#0c0a1c">
     <meta name="color-scheme" content="dark">
     <link rel="canonical" href="https://topplay020.github.io/Portfolio/">
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="topplay020">
+    <meta property="og:site_name" content="Topplay020">
     <meta property="og:url" content="https://topplay020.github.io/Portfolio/">
-    <meta property="og:title" content="topplay020 · Custom desktop &amp; web apps in C# / .NET">
+    <meta property="og:title" content="Topplay020 · Custom desktop &amp; web apps in C# / .NET">
     <meta property="og:description" content="Windows tools, web platforms, APIs and Unity games, built in C# and .NET.">
     <meta property="og:image" content="https://topplay020.github.io/Portfolio/Assets/og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="topplay020: a low-poly crystal over a faceted blue, pink and gold gradient">
+    <meta property="og:image:alt" content="Topplay020: a low-poly crystal over a faceted blue, pink and gold gradient">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="Assets/favicon.ico" sizes="any">
@@ -34,7 +34,7 @@
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "topplay020",
+        "name": "Topplay020",
         "url": "https://topplay020.github.io/Portfolio/",
         "logo": "https://topplay020.github.io/Portfolio/Assets/apple-touch-icon.png",
         "email": "topplay020@gmail.com",
@@ -51,6 +51,9 @@
             var l = q === 'ar' || q === 'en' ? q : s === 'ar' || s === 'en' ? s : (navigator.language || 'en').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en';
             document.documentElement.lang = l;
             document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+            var t = null;
+            try { t = localStorage.getItem('theme'); } catch (e) { /* storage blocked */ }
+            document.documentElement.setAttribute('data-theme', /^(prism|ember|aurora|arctic|paper)$/.test(t) ? t : 'prism');
         })();
     </script>
     <noscript><style>[data-enter] { opacity: 1 !important; transform: none !important; } html[lang="ar"] .hero .col { visibility: visible !important; } .noscript-hide { display: none !important; }</style></noscript>
@@ -59,15 +62,20 @@
 <body>
     <a class="skip" href="#main" id="skipLink">Skip to content</a>
     <div id="progress" aria-hidden="true"></div>
+    <div id="themeRim" aria-hidden="true"></div>
 
     <!-- The low-poly world. Fixed behind the page; the poster holds its place until the first frame is drawn. -->
     <img id="poster" src="Assets/scene-poster.webp" alt="" width="806" height="900" fetchpriority="high" decoding="async">
     <canvas id="scene" aria-hidden="true"></canvas>
 
     <header class="nav" id="nav">
-        <a href="#home" class="brand" id="brand"><span>topplay</span><b>020</b></a>
+        <a href="#home" class="brand" id="brand"><span>Topplay</span><b>020</b></a>
         <nav class="nav-links noscript-hide" id="navLinks" aria-label="Primary"></nav>
         <div class="nav-end noscript-hide">
+            <div class="theme" id="themeBox">
+                <button type="button" class="theme-btn" id="themeBtn" aria-expanded="false" aria-controls="themeMenu" aria-label="Theme"><span class="hexa"></span></button>
+                <div class="theme-menu" id="themeMenu" role="group" aria-label="Theme" hidden></div>
+            </div>
             <div class="lang" role="group" aria-label="Language">
                 <button type="button" data-lang="en" aria-pressed="true">EN</button>
                 <button type="button" data-lang="ar" aria-pressed="false" lang="ar">عربي</button>
@@ -81,7 +89,10 @@
 
     <div id="mobile-menu" aria-hidden="true" inert>
         <nav id="mobileLinks" aria-label="Mobile"></nav>
-        <a class="m-mail" id="mobileMail" href="mailto:topplay020@gmail.com">topplay020@gmail.com</a>
+        <div class="m-foot">
+            <div class="m-channels" id="mobileChannels"></div>
+            <a class="m-mail" id="mobileMail" href="mailto:topplay020@gmail.com">topplay020@gmail.com</a>
+        </div>
     </div>
 
     <nav id="floors" class="noscript-hide" aria-label="Sections"></nav>
@@ -93,7 +104,7 @@
                 <div class="col">
                     <p class="badge" data-enter style="--i:0"><span class="dot"></span><span id="heroBadge">Open to new projects</span></p>
                     <h1 id="heroTitle" data-enter style="--i:1">
-                        <span class="wm">topplay<b>020</b></span>
+                        <span class="wm">Topplay<b>020</b></span>
                         <span class="h1-sub" id="heroSub">Custom desktop &amp; web apps in <em>C# / .NET</em></span>
                     </h1>
                     <p class="hero-desc" id="heroDesc" data-enter style="--i:2">Windows tools, web platforms, APIs and Unity games, built in short iterations you can review and deployed on Azure or your own servers.</p>
@@ -176,6 +187,8 @@
                     <a class="mail-big" id="mailBig" href="mailto:topplay020@gmail.com" data-hl="mail:0">topplay020@gmail.com</a>
                     <div class="cta noscript-hide">
                         <a id="contactPrimary" class="btn btn-primary" href="mailto:topplay020@gmail.com" data-hl="mail:0"></a>
+                        <a id="contactWhatsApp" class="btn btn-ghost msg-wa" target="_blank" rel="noopener" hidden></a>
+                        <a id="contactTelegram" class="btn btn-ghost msg-tg" target="_blank" rel="noopener" hidden></a>
                         <button type="button" id="copyMail" class="btn btn-ghost" data-hl="mail:0"></button>
                     </div>
                 </div>
@@ -185,7 +198,7 @@
 
     <footer class="foot">
         <div class="col">
-            <p id="footerText">&copy; topplay020. Full Stack .NET developer.</p>
+            <p id="footerText">&copy; Topplay020. Full Stack .NET developer.</p>
             <div class="foot-social" id="footerSocial"><a href="https://github.com/TopPlay020" rel="noopener">GitHub</a></div>
         </div>
     </footer>

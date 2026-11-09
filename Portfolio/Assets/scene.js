@@ -6,7 +6,6 @@
    Native scroll only: this file reads scrollY once a frame and never touches it. */
 import * as THREE from './vendor/three.module.min.js';
 
-const BG = 0x0c0a1c;
 const FOV = 30;
 const TAU = Math.PI * 2;
 const SHARDS = 1536;      // grid planes use 28 x 24 x 2 of these, the rest float around each shape
@@ -19,24 +18,16 @@ const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t *
 const damp = (dt, k) => 1 - Math.exp(-dt * k);
 function hash(n) { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
 
-/* The reference gradient, as colour stops from the top of the page to the bottom. */
-const STOPS = [
-    [0.13, 0.82, 1.00], [0.17, 0.52, 1.00], [0.22, 0.20, 0.82], [0.48, 0.20, 0.85],
-    [0.92, 0.38, 0.72], [1.00, 0.13, 0.42], [1.00, 0.50, 0.28], [1.00, 0.84, 0.48]
-];
-function palette(t, out = [0, 0, 0]) {
-    t = clamp(t) * (STOPS.length - 1);
-    const i = Math.min(STOPS.length - 2, Math.floor(t)), f = t - i;
-    for (let k = 0; k < 3; k++) out[k] = lerp(STOPS[i][k], STOPS[i + 1][k], f);
-    return out;
-}
+/* Every theme is eight colour stops from the top of the page to the bottom, read from the page's own --pal token.
+   Shapes only store a place on that gradient and a lightness, so any theme can recolour them while running. */
 const GLSL_PALETTE = `
-    const vec3 PAL[8] = vec3[8](${STOPS.map((c) => `vec3(${c.map((v) => v.toFixed(3)).join(',')})`).join(',')});
+    uniform vec3 uPal[8];
     vec3 palette(float t) {
         t = clamp(t, 0., 1.) * 7.;
         int i = int(min(floor(t), 6.));
-        return mix(PAL[i], PAL[i + 1], t - float(i));
+        return mix(uPal[i], uPal[i + 1], t - float(i));
     }`;
+const hex = (h) => { h = h.trim().replace('#', ''); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255); };
 
 /* ---------- Building shapes out of big flat facets ---------- */
 function facetsFrom(geometry, matrix, colorAt, group = -1) {
@@ -84,8 +75,7 @@ function fillTo(list, n) {
 /* Facet colour: a band of the gradient, shifted across the shape, with a little per-facet variation. */
 const bandColor = (hue, spread, seed = 0) => (c, i) => {
     const t = hue + (c[0] * .6 - c[1]) * spread + (hash(i + seed) - .5) * .09;
-    const out = palette(t), l = .84 + hash(i * 3 + seed) * .3;
-    return [out[0] * l, out[1] * l, out[2] * l];
+    return [t, .84 + hash(i * 3 + seed) * .3, 0];
 };
 
 function gem() {
@@ -100,8 +90,7 @@ function gem() {
     // The full reference gradient on one object: blue at one side, pink and gold at the other.
     return facetsFrom(geo, null, (c, i) => {
         const t = .47 + (c[0] * .75 + c[1] * .2 - c[2] * .12) * .1 + (hash(i) - .5) * .13;
-        const out = palette(t), l = .86 + hash(i * 5) * .26;
-        return [out[0] * l, out[1] * l, out[2] * l];
+        return [t, .86 + hash(i * 5) * .26, 0];
     });
 }
 
@@ -162,7 +151,7 @@ function rising(hue, count) {
 /* An origami dart: the send button of the page. */
 function paperPlane(hue) {
     const N = [0, .2, 5.6], L = [-4.5, .9, -3.2], R = [4.5, .9, -3.2], S = [0, .25, -2.6], K = [0, -1.5, -3.2], FL = [-.9, .75, -3], FR = [.9, .75, -3];
-    const face = (a, b, c, t) => ({ a, b, c, col: palette(hue + t), group: -1 });
+    const face = (a, b, c, t) => ({ a, b, c, col: [hue + t, 1, 0], group: -1 });
     return [
         face(N, L, FL, .0), face(N, FL, S, .05), face(N, S, FR, -.04), face(N, FR, R, -.08),
         face(N, S, K, -.2), face(N, K, S, -.14), face(S, FL, L, .04), face(S, R, FR, -.05)
@@ -202,7 +191,7 @@ function imagePlane(aspect, hue, surface) {
     const at = (x, y) => v[y * (cols + 1) + x], list = [];
     for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
         const a = at(x, y), b = at(x + 1, y), c = at(x, y + 1), d = at(x + 1, y + 1), flip = hash(x * 5 + y * 11) > .5;
-        const col = palette(hue + (x / cols - .5) * .18 + (y / rows - .5) * .12);
+        const col = [hue + (x / cols - .5) * .18 + (y / rows - .5) * .12, 1, 0];
         const push = (p, q, r) => list.push({ a: p.p, b: q.p, c: r.p, uvs: [p.uv, q.uv, r.uv], col, group: 0 });
         if (flip) { push(a, b, d); push(a, d, c); } else { push(a, b, c); push(b, d, c); }
     }
@@ -218,7 +207,7 @@ function debris(count, seed, hue, behind) {
         const z = behind ? -2 - hash(i * 5 + seed) * 8 : (hash(i * 5 + seed) - .55) * 8;
         const c = [Math.cos(a) * r * 4.7, Math.sin(a) * r * 7, z];
         const s = .1 + hash(i * 7 + seed) * .3, d = (k) => (hash(i * k + seed) - .5) * s * 2;
-        const col = palette(hue + (hash(i * 11 + seed) - .5) * .22);
+        const col = [hue + (hash(i * 11 + seed) - .5) * .22, 1, 0];
         list.push({ a: [c[0] + d(13), c[1] + d(17), c[2] + d(19)], b: [c[0] + d(23), c[1] + d(29), c[2] + d(31)], c: [c[0] + d(37), c[1] + d(41), c[2] + d(43)], col, group: -1, uvs: NO_UV });
     }
     return list;
@@ -250,12 +239,13 @@ const SHARD_VERT = `
     attribute vec2 aUvA, aUvB;
     attribute float aGrpA, aGrpB, aLoose;
     attribute vec4 aRand;
-    uniform float uT, uIntro, uScatter, uHoverGroup, uHoverAmt, uKickX, uStyle, uTime, uVel, uKindA, uKindB, uPush, uLooseY;
+    uniform float uT, uIntro, uScatter, uHoverGroup, uHoverAmt, uKickX, uStyle, uTime, uVel, uKindA, uKindB, uPush, uLooseY, uPulse;
     uniform mat3 uRotA, uRotB;
     uniform vec3 uCenterA, uCenterB, uPtr;
     varying vec3 vP, vCol;
     varying vec2 vUvA, vUvB;
     varying float vE, vHover;
+    ${GLSL_PALETTE}
 
     mat3 spin(vec3 a, float t) {
         float s = sin(t), c = cos(t), o = 1. - c;
@@ -322,6 +312,11 @@ const SHARD_VERT = `
         }
         rel = spin(ax, arc * (2.5 + r0 * 5.) * uScatter * tumble) * rel;
 
+        // A new theme passes through: the shape bursts and reforms in its colours.
+        float pu = sin(clamp(uPulse * 1.7 - r0 * .7, 0., 1.) * 3.14159);
+        c += rnd * vec3(11., 9., 18.) * pu;
+        rel = spin(ax, pu * (3. + r0 * 4.)) * rel;
+
         // Loose chips drift on their own, and streak when the page moves fast.
         c += vec3(sin(uTime * .6 + aRand.x * 6.28), cos(uTime * .5 + aRand.y * 6.28), 0.) * .42 * aLoose;
         c.y += uVel * (.4 + r0) * 4.5 * aLoose;
@@ -346,7 +341,8 @@ const SHARD_VERT = `
         vec3 p = c + rel;
         vP = p;
         vE = e;
-        vCol = mix(aColA, aColB, e);
+        vec3 place = mix(aColA, aColB, e);
+        vCol = palette(place.x) * place.y;
         vUvA = aUvA; vUvB = aUvB;
         gl_Position = projectionMatrix * viewMatrix * vec4(p, 1.);
     }`.replace('uniform mat3 uRotA', 'uniform float uHasA, uHasB;\n    uniform mat3 uRotA');
@@ -379,8 +375,8 @@ const SHARD_FRAG = `
 
 const WALL_VERT = `
     attribute vec2 aHue;
-    uniform float uTime, uVel;
-    uniform vec3 uPtrW;
+    uniform float uTime, uVel, uRingR, uRingA;
+    uniform vec3 uPtrW, uRingO;
     varying vec3 vP;
     varying vec2 vHue;
     varying float vGlow;
@@ -392,7 +388,10 @@ const WALL_VERT = `
         vec2 d = p.xy - uPtrW.xy;
         float near = exp(-dot(d, d) / 70.);
         p.z += near * 3.2;
-        vGlow = near;
+        float front = length(p.xy - uRingO.xy) - uRingR;
+        float ring = exp(-front * front / 46.) * uRingA;
+        p.z += ring * 6.5;
+        vGlow = near + ring * 1.6;
         vP = p; vHue = aHue;
         gl_Position = projectionMatrix * viewMatrix * vec4(p, 1.);
     }`;
@@ -457,7 +456,17 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
     renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    renderer.setClearColor(BG, 1);
+    const pal = Array.from({ length: 8 }, () => new THREE.Vector3());
+    const bgColor = new THREE.Color();
+    /* Reads the theme the page is showing right now. */
+    function readTheme() {
+        const cs = getComputedStyle(document.documentElement);
+        cs.getPropertyValue('--pal').split(',').map(hex).forEach((c, i) => pal[i].set(c[0], c[1], c[2]));
+        const b = hex(cs.getPropertyValue('--bg'));
+        bgColor.setRGB(b[0], b[1], b[2]);
+        renderer.setClearColor(bgColor, 1);
+    }
+    readTheme();
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(FOV, 1, 1, 300);
@@ -522,7 +531,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     blank.needsUpdate = true;
     const U = {
         uT: { value: 0 }, uIntro: { value: reduced ? 0 : 1 }, uScatter: { value: reduced ? 0 : 1 },
-        uHoverGroup: { value: -99 }, uHoverAmt: { value: 0 }, uKickX: { value: 0 }, uStyle: { value: 0 }, uTime: { value: 0 }, uVel: { value: 0 }, uLooseY: { value: 1 },
+        uHoverGroup: { value: -99 }, uHoverAmt: { value: 0 }, uKickX: { value: 0 }, uStyle: { value: 0 }, uTime: { value: 0 }, uVel: { value: 0 }, uLooseY: { value: 1 }, uPulse: { value: 0 }, uPal: { value: pal },
         uKindA: { value: 0 }, uKindB: { value: 0 }, uPush: { value: reduced ? 0 : 1 }, uPtr: { value: new THREE.Vector3(999, 999, 0) },
         uRotA: { value: new THREE.Matrix3() }, uRotB: { value: new THREE.Matrix3() },
         uCenterA: { value: new THREE.Vector3() }, uCenterB: { value: new THREE.Vector3() },
@@ -536,7 +545,8 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     const wallU = {
         uRes: { value: new THREE.Vector2(1, 1) }, uFocus: { value: new THREE.Vector2(.5, .5) },
         uHalf: { value: .2 }, uAxis: { value: 0 }, uKMin: { value: .1 }, uKMax: { value: .62 }, uTime: U.uTime, uVel: U.uVel,
-        uPtrW: { value: new THREE.Vector3(999, 999, 0) }, uLight: U.uLight, uBg: { value: new THREE.Color(BG) }
+        uPtrW: { value: new THREE.Vector3(999, 999, 0) }, uLight: U.uLight, uBg: { value: bgColor }, uPal: U.uPal,
+        uRingO: { value: new THREE.Vector3() }, uRingR: { value: 0 }, uRingA: { value: 0 }
     };
     const wall = new THREE.Mesh(buildWall(44, -(nStops - 1) * GAP - 44, hueOfY), new THREE.ShaderMaterial({ vertexShader: WALL_VERT, fragmentShader: WALL_FRAG, uniforms: wallU, side: THREE.DoubleSide }));
     wall.frustumCulled = false;
@@ -622,6 +632,8 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     /* ---------- State ---------- */
     let cur = 0, segment = -1, time = 0, paused = false;
     let px = 0, py = 0, pxS = 0, pyS = 0, intro = reduced ? 1 : 0;
+    let pulse = 1, ringMax = 0;
+    const THEME_SECONDS = 1.5;
     let hoverAmt = 0, hoverWant = 0, hasPointer = false, ss = scrollY, vel = 0, lastCur = 0;
 
     if (!reduced && matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -694,7 +706,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         const pointerMoving = Math.abs(pxS - px) > .002 || Math.abs(pyS - py) > .002;
         const hoverMoving = Math.abs(hoverAmt - hoverWant) > .002 || Math.abs(vel) > .003 || Math.abs(ss - scrollY) > .5;
         const idle = !reduced && !paused;
-        if (intro < 1) moving = true;
+        if (intro < 1 || pulse < 1) moving = true;
 
         // Nothing changed and the idle spin is off: draw nothing at all.
         if (!moving && !pointerMoving && !hoverMoving && !idle && !dirty) return;
@@ -738,6 +750,12 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         vel += (v - vel) * damp(dt, 6);
         U.uVel.value = vel;
 
+        if (pulse < 1) {
+            pulse = Math.min(1, pulse + dt / THEME_SECONDS);
+            U.uPulse.value = pulse < 1 ? pulse : 0;
+            wallU.uRingR.value = smooth(0, 1, pulse) * ringMax;
+            wallU.uRingA.value = pulse < 1 ? Math.sin(pulse * Math.PI) ** .5 : 0;
+        }
         if (intro < 1) { intro = Math.min(1, intro + dt / 2); U.uIntro.value = Math.pow(1 - intro, 2.2); }
 
         /* Camera walks straight down, and leans in through the shards between two stops */
@@ -807,6 +825,19 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     return {
         highlight,
         setPaused(v) { paused = v; dirty = true; },
+        /* The page changed theme, starting at screen point x, y. */
+        setTheme(x, y, animate) {
+            readTheme();
+            dirty = true;
+            if (!animate) return;
+            camera.updateMatrixWorld();
+            ptr.set(x / innerWidth * 2 - 1, -(y / innerHeight * 2 - 1), .5).unproject(camera).sub(camera.position).normalize();
+            const atWall = (-24 - camera.position.z) / ptr.z;
+            wallU.uRingO.value.set(camera.position.x + ptr.x * atWall, camera.position.y + ptr.y * atWall, 0);
+            const far = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+            ringMax = far * (camera.position.z + 24) * 2 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)) / H * 1.25;
+            pulse = 0;
+        },
         relayout() {
             requestAnimationFrame(() => { fit = focus(); applyFit(); measureStops(); });
         }

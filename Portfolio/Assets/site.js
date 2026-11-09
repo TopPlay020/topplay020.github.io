@@ -1,4 +1,4 @@
-/* topplay020 · Portfolio
+/* Topplay020 · Portfolio
    data.json drives every piece of content. Each item carries both languages ({ en, ar }),
    so the two languages cannot drift apart. Validate with: node scripts/check-data.mjs
    The low-poly 3D world lives in scene.js and is loaded after the page is readable. */
@@ -49,11 +49,20 @@
             return `<a href="#${k}" data-spy="${k}" aria-label="${esc(label)}"><span>${pad(i)} ${esc(label)}</span><i></i></a>`;
         }).join('');
         $('#footerText').textContent = `© ${new Date().getFullYear()} ${site.name}. ${state.data.ui[state.lang].footer}`;
-        $('#footerSocial').innerHTML = site.social.map((s) =>
+        const m = messengers();
+        const channels = [
+            ...(m.whatsapp ? [{ name: 'WhatsApp', href: m.whatsapp, icon: 'ph-whatsapp-logo' }] : []),
+            ...(m.telegram ? [{ name: 'Telegram', href: m.telegram, icon: 'ph-telegram-logo' }] : []),
+            ...site.social
+        ];
+        $('#footerSocial').innerHTML = channels.map((s) =>
+            `<a href="${esc(s.href)}" target="_blank" rel="noopener">${icon(s.icon)}${esc(s.name)}</a>`).join('');
+        $('#mobileChannels').innerHTML = channels.filter((s) => s.name !== 'GitHub').map((s) =>
             `<a href="${esc(s.href)}" target="_blank" rel="noopener">${icon(s.icon)}${esc(s.name)}</a>`).join('');
         document.title = state.data.ui[state.lang].meta.title;
         $$('[data-floor]').forEach((el) => { el.textContent = pad(FLOORS.indexOf(el.closest('section').id)); });
         syncMotionBtn();
+        syncThemeUi();
     }
 
     function renderHero() {
@@ -61,13 +70,13 @@
         $('#heroBadge').textContent = h.badge;
         $('#heroSub').innerHTML = `${esc(h.title.pre)} <em>${esc(h.title.hl)}</em>`;
         $('#heroDesc').textContent = h.description;
-        $('#heroFact').textContent = h.fact
+        // Filled from the raw text: the Arabic direction fix would wrap the placeholders' Latin names.
+        $('#heroFact').textContent = fx(d.ui[state.lang].hero.fact
             .replace('{years}', site.yearsExperience)
             .replace('{projects}', d.projects.length)
-            .replace('{tech}', d.technologies.length);
-        const mail = `mailto:${site.email}`;
-        $('#heroPrimary').href = mail;
-        $('#heroPrimary').innerHTML = `${esc(h.primary)}${icon('ph-envelope-simple')}`;
+            .replace('{tech}', d.technologies.length));
+        $('#heroPrimary').href = '#contact';
+        $('#heroPrimary').innerHTML = `${esc(h.primary)}${icon('ph-chats-circle')}`;
         $('#heroSecondary').innerHTML = `${esc(h.secondary)}${icon('ph-arrow-down')}`;
     }
 
@@ -79,6 +88,7 @@
         });
     }
 
+    const TILT = [-3, 2, -1.5, 3, -2, 1.5];
     function renderProjects() {
         const u = ui();
         $('#projects').innerHTML = state.data.projects.map((p, i) => {
@@ -97,7 +107,9 @@
                     <p class="row-meta">${cats.map((c) => `<span>${esc(c)}</span>`).join('')}${p.featured ? `<span>${esc(u.project.featured)}</span>` : ''}</p>
                     <h3>${p.link ? `<a ${attrs}>${title}</a>` : title}</h3>
                     <p class="row-sub">${esc(L(p.subtitle))}</p>
+                    ${p.stickers ? `<div class="stickers">${p.stickers.map((t, k) => `<span class="sticker" style="--k:${k};--r:${TILT[(i * 2 + k) % TILT.length]}deg">${esc(L(t))}</span>`).join('')}</div>` : ''}
                     <p class="row-desc">${esc(L(p.description))}</p>
+                    ${p.points ? `<ul class="row-points">${p.points.map((t) => `<li>${esc(L(t))}</li>`).join('')}</ul>` : ''}
                     <div class="tags">${p.tags.map((t) => `<span class="tag">${esc(L(t))}</span>`).join('')}</div>
                     ${p.link ? `<a class="go" ${attrs}>${esc(ext ? u.project.visit : u.project.open)}${icon('ph-arrow-up-right')}</a>` : ''}
                 </div>
@@ -116,6 +128,16 @@
             <li data-hl="process:${i}"><b>${pad(i + 1)}</b><div><h3>${esc(L(s.title))}</h3><p>${esc(L(s.text))}</p></div></li>`).join('');
     }
 
+    // Only what data.json actually has: an empty field means no button anywhere on the page.
+    function messengers() {
+        const site = state.data.site, out = {};
+        const digits = String(site.whatsapp || '').replace(/\D/g, '');
+        const user = String(site.telegram || '').trim().replace(/^@/, '');
+        if (digits) out.whatsapp = `https://wa.me/${digits}`;
+        if (user) out.telegram = `https://t.me/${encodeURIComponent(user)}`;
+        return out;
+    }
+
     function renderContact() {
         const u = ui(), c = u.contact, site = state.data.site;
         $('#contactTitle').innerHTML = heading(u.sections.contact);
@@ -125,6 +147,12 @@
         $('#copyMail').innerHTML = `${esc(c.copy)}${icon('ph-copy')}`;
         $('#mailBig').textContent = site.email;
         $('#mailBig').href = `mailto:${site.email}`;
+        const links = messengers();
+        for (const m of [['whatsapp', 'ph-whatsapp-logo', 'WhatsApp'], ['telegram', 'ph-telegram-logo', 'Telegram']]) {
+            const a = $(`#contact${m[2]}`), href = links[m[0]];
+            a.hidden = !href;
+            if (href) { a.href = href; a.innerHTML = `${m[2]}${icon(m[1])}`; }
+        }
     }
 
     function renderAll() {
@@ -205,7 +233,7 @@
 
     /* ---------- Words slide in from their own side, once ---------- */
     let revealIO = null;
-    const REVEAL = '.sec:not(.hero) .floor, .sec:not(.hero) h2, .sec:not(.hero) .lede, .row-meta, .row h3, .row-sub, .row-desc, .tags, .go, .thumb, .svc, .chips li, .why li, .steps li, .mail-big, .contact .cta';
+    const REVEAL = '.sec:not(.hero) .floor, .sec:not(.hero) h2, .sec:not(.hero) .lede, .row-meta, .row h3, .row-sub, .stickers, .row-desc, .row-points, .tags, .go, .thumb, .svc, .chips li, .why li, .steps li, .mail-big, .contact .cta';
     function markReveals() {
         if (reduced || !('IntersectionObserver' in window)) return;
         root.classList.add('anim');
@@ -225,6 +253,64 @@
             el.setAttribute('data-r', '');
             revealIO.observe(el);
         });
+    }
+
+    /* ---------- Themes: the new one spreads from the click across the whole page ---------- */
+    const THEMES = ['prism', 'ember', 'aurora', 'arctic', 'paper'];
+    const THEME_MS = 1500;
+    function syncThemeUi() {
+        const u = ui().theme, current = root.dataset.theme;
+        $('#themeBtn').setAttribute('aria-label', u.label);
+        $('#themeMenu').setAttribute('aria-label', u.label);
+        $('#themeMenu').innerHTML = THEMES.map((id) => `<button type="button" class="swatch" data-theme="${id}" data-set="${id}" aria-pressed="${id === current}" aria-label="${esc(u[id])}" title="${esc(u[id])}"><span class="hexa"></span></button>`).join('');
+    }
+    function paintTheme(id, x, y, animate) {
+        root.dataset.theme = id;
+        try { localStorage.setItem('theme', id); } catch (e) { /* storage blocked */ }
+        const meta = $('meta[name="theme-color"]');
+        if (meta) meta.content = getComputedStyle(root).getPropertyValue('--bg').trim();
+        $$('#themeMenu .swatch').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === id)));
+        if (scene) scene.setTheme(x, y, animate);
+    }
+    // A jagged edge rather than a circle: the same low-poly shape as everything else on the page.
+    function edge(cx, cy, r, jag) {
+        return jag.map((j, i) => {
+            const a = i / jag.length * Math.PI * 2;
+            return `${(cx + Math.cos(a) * r * j).toFixed(1)}px ${(cy + Math.sin(a) * r * j).toFixed(1)}px`;
+        });
+    }
+    function setTheme(id, x, y) {
+        if (id === root.dataset.theme) return;
+        if (reduced || !document.startViewTransition) { paintTheme(id, x, y, false); return; }
+        const rim = $('#themeRim');
+        const far = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+        const jag = Array.from({ length: 26 }, () => .74 + Math.random() * .46);
+        const end = far / .74 * 1.05, band = Math.max(10, Math.min(innerWidth, innerHeight) * .018);
+        const vt = document.startViewTransition(() => { rim.style.display = 'block'; paintTheme(id, x, y, true); });
+        vt.ready.then(() => {
+            const shape = (r) => `polygon(${edge(x, y, r, jag).join(', ')})`;
+            const ring = (r) => {
+                const inner = edge(x, y, r, jag), outer = edge(x, y, r + band, jag);
+                return `polygon(evenodd, ${outer.join(', ')}, ${outer[0]}, ${inner.join(', ')}, ${inner[0]}, ${outer[0]})`;
+            };
+            const timing = { duration: THEME_MS, easing: 'cubic-bezier(.42, .16, .46, 1)', fill: 'both' };
+            root.animate({ clipPath: [shape(0), shape(end)] }, { ...timing, pseudoElement: '::view-transition-new(root)' });
+            root.animate({ clipPath: [ring(0), ring(end)], opacity: [1, 1, .9, 0], offset: [0, .1, .85, 1] }, { ...timing, pseudoElement: '::view-transition-new(theme-rim)' });
+        }).catch(() => { /* a newer click took over */ });
+        vt.finished.finally(() => { rim.style.display = ''; });
+    }
+    function setupThemes() {
+        const btn = $('#themeBtn'), menu = $('#themeMenu');
+        const open = (v) => { menu.hidden = !v; btn.setAttribute('aria-expanded', String(v)); };
+        btn.addEventListener('click', () => open(menu.hidden));
+        menu.addEventListener('click', (e) => {
+            const b = e.target.closest('.swatch');
+            if (!b) return;
+            const r = b.getBoundingClientRect();
+            setTheme(b.dataset.set, r.left + r.width / 2, r.top + r.height / 2);
+        });
+        document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('#themeBox')) open(false); });
+        addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) { open(false); btn.focus(); } });
     }
 
     /* ---------- Pause the motion ---------- */
@@ -321,7 +407,7 @@
             root.classList.toggle('gl-capable', glPossible());
             $$('.lang button').forEach((b) => b.addEventListener('click', () => { if (b.dataset.lang !== state.lang) setLanguage(b.dataset.lang); }));
             setLanguage(state.lang);
-            setupNav(); setupCopy(); setupHighlights(); setupMotionBtn();
+            setupNav(); setupCopy(); setupHighlights(); setupMotionBtn(); setupThemes();
             root.classList.add('ready');
             // The page is readable now; the scene can take its time.
             if ('requestIdleCallback' in window) requestIdleCallback(loadScene, { timeout: 800 }); else setTimeout(loadScene, 200);

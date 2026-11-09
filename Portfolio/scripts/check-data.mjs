@@ -33,6 +33,8 @@ for (const [i, p] of data.projects.entries()) {
     ids.add(p.id);
     for (const key of ['title', 'subtitle', 'description']) needBilingual(p[key], `${at}.${key}`);
     p.tags.forEach((t, j) => textOrBilingual(t, `${at}.tags[${j}]`));
+    (p.stickers || []).forEach((t, j) => needBilingual(t, `${at}.stickers[${j}]`));
+    (p.points || []).forEach((t, j) => needBilingual(t, `${at}.points[${j}]`));
     if (!existsSync(join(root, p.image))) fail(`${at}: image not found (${p.image})`);
     if (!existsSync(join(root, p.image.replace('Assets/', 'Assets/thumbs/')))) fail(`${at}: thumbnail not found (Assets/thumbs/)`);
     if (!existsSync(join(root, p.image.replace('Assets/', 'Assets/thumbs/').replace('.webp', '-480.webp')))) fail(`${at}: 480px thumbnail not found (Assets/thumbs/)`);
@@ -40,6 +42,12 @@ for (const [i, p] of data.projects.entries()) {
     if (p.link && !/^https?:/.test(p.link) && !existsSync(join(root, p.link, 'index.html'))) fail(`${at}: link target not found (${p.link})`);
     for (const c of p.categories) if (!(c in data.ui.en.filters)) fail(`${at}: unknown category "${c}"`);
 }
+
+// Contact channels are optional: empty means no button on the page.
+if (data.site.whatsapp && !/^\+?[\d\s()-]{8,20}$/.test(data.site.whatsapp)) fail('site.whatsapp: use the international format, like +213 XXX XXX XXX');
+if (data.site.telegram && !/^@?[A-Za-z][A-Za-z0-9_]{4,31}$/.test(data.site.telegram)) fail('site.telegram: use the username, like @name');
+// The placeholders in the hero line must exist in both languages, untranslated.
+for (const l of LANGS) for (const key of ['{years}', '{projects}', '{tech}']) if (!data.ui[l].hero.fact.includes(key)) fail(`ui.${l}.hero.fact: missing ${key}`);
 
 if (errors.length) {
     console.error(`data.json: ${errors.length} problem(s)\n - ${errors.join('\n - ')}`);

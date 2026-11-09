@@ -1,7 +1,9 @@
 {
     "site": {
-        "name": "topplay020",
+        "name": "Topplay020",
         "email": "topplay020@gmail.com",
+        "whatsapp": "",
+        "telegram": "",
         "yearsExperience": 6,
         "social": [
             { "name": "GitHub", "href": "https://github.com/TopPlay020", "icon": "ph-github-logo" }
@@ -14,9 +16,10 @@
             "home": "Top",
             "menu": "Menu",
             "close": "Close menu",
+            "theme": { "label": "Change the colours", "prism": "Prism", "ember": "Ember", "aurora": "Aurora", "arctic": "Arctic", "paper": "Paper" },
             "pause": "Pause the 3D motion",
             "play": "Play the 3D motion",
-            "meta": { "title": "topplay020 · Custom desktop & web apps in C# / .NET" },
+            "meta": { "title": "Topplay020 · Custom desktop & web apps in C# / .NET" },
             "nav": { "features": "Why me", "services": "Services", "stack": "Toolbox", "portfolio": "Work", "process": "Process", "contact": "Contact" },
             "hero": {
                 "badge": "Open to new projects",
@@ -50,9 +53,10 @@
             "home": "الأعلى",
             "menu": "القائمة",
             "close": "أغلق القائمة",
+            "theme": { "label": "غيّر الألوان", "prism": "موشور", "ember": "جمر", "aurora": "شفق", "arctic": "قطبي", "paper": "ورق" },
             "pause": "أوقف الحركة ثلاثية الأبعاد",
             "play": "شغّل الحركة ثلاثية الأبعاد",
-            "meta": { "title": "topplay020 · تطبيقات سطح مكتب وويب مخصصة بـ C# و .NET" },
+            "meta": { "title": "Topplay020 · تطبيقات سطح مكتب وويب مخصصة بـ C# و .NET" },
             "nav": { "features": "لماذا أنا", "services": "الخدمات", "stack": "الأدوات", "portfolio": "الأعمال", "process": "الخطوات", "contact": "تواصل" },
             "hero": {
                 "badge": "متاح لمشاريع جديدة",
@@ -197,6 +201,16 @@
     "projects": [
         {
             "id": "djermane-cars",
+            "stickers": [
+                { "en": "Live now", "ar": "يعمل الآن" },
+                { "en": "12,000+ cars", "ar": "+12,000 سيارة" },
+                { "en": "57 brands", "ar": "57 علامة" }
+            ],
+            "points": [
+                { "en": "Search by brand, model, code or budget in Algerian millions", "ar": "بحث حسب العلامة أو الطراز أو الرمز أو الميزانية بالمليون الجزائري" },
+                { "en": "Every price shows the transport share, line by line", "ar": "كل سعر يبيّن حصة النقل بنداً بنداً" },
+                { "en": "Transport and dollar rate charts, plus order tracking by code", "ar": "رسوم بيانية للنقل وسعر الدولار، ومتابعة الطلب برمز" }
+            ],
             "image": "Assets/project9.webp",
             "size": [1600, 1000],
             "link": "https://djermanecars.com/",
@@ -212,6 +226,16 @@
         },
         {
             "id": "wach-taaref",
+            "stickers": [
+                { "en": "On Google Play", "ar": "على Google Play" },
+                { "en": "69 wilayas", "ar": "69 ولاية" },
+                { "en": "3000+ questions", "ar": "+3000 سؤال" }
+            ],
+            "points": [
+                { "en": "A 3D low-poly map of Algeria with day and night", "ar": "خريطة 3D للجزائر بأسلوب low-poly بالنهار والليل" },
+                { "en": "Hexagon word boards and daily challenges", "ar": "لوحات كلمات سداسية وتحديات يومية" },
+                { "en": "AdMob, Google Play purchases and Play Games built in", "ar": "إعلانات AdMob ومشتريات Google Play و Play Games مدمجة" }
+            ],
             "image": "Assets/project8.webp",
             "size": [1600, 900],
             "link": "wach-taaref/",
@@ -230,6 +254,16 @@
         },
         {
             "id": "stations",
+            "stickers": [
+                { "en": "Nationwide fleet", "ar": "أسطول وطني" },
+                { "en": "Windows desktop", "ar": "سطح مكتب Windows" },
+                { "en": "Maintenance tracking", "ar": "متابعة الصيانة" }
+            ],
+            "points": [
+                { "en": "A dashboard with fleet availability and maintenance charts", "ar": "لوحة تحكم بجاهزية الأسطول ورسوم الصيانة" },
+                { "en": "A map of technical units across the country", "ar": "خريطة للوحدات التقنية عبر الوطن" },
+                { "en": "Repairs, spare parts, contracts and documents in one place", "ar": "الإصلاحات وقطع الغيار والعقود والوثائق في مكان واحد" }
+            ],
             "image": "Assets/project7.webp",
             "size": [1536, 816],
             "categories": ["desktop"],
@@ -243,6 +277,16 @@
         },
         {
             "id": "dztutor",
+            "stickers": [
+                { "en": "Arabic first", "ar": "بالعربية أولاً" },
+                { "en": "All wilayas", "ar": "كل الولايات" },
+                { "en": "Prices in dinars", "ar": "الأسعار بالدينار" }
+            ],
+            "points": [
+                { "en": "Search for a tutor by subject and wilaya", "ar": "البحث عن مدرّس حسب المادة والولاية" },
+                { "en": "A separate path for tutors to join", "ar": "مسار خاص لانضمام المدرّسين" },
+                { "en": "A right-to-left interface built for Algerian students", "ar": "واجهة من اليمين إلى اليسار مصممة للطلاب الجزائريين" }
+            ],
             "image": "Assets/project4.webp",
             "size": [1901, 873],
             "categories": ["web"],
@@ -256,6 +300,16 @@
         },
         {
             "id": "dss",
+            "stickers": [
+                { "en": "261,850 variables", "ar": "261,850 متغيراً" },
+                { "en": "67,787 constraints", "ar": "67,787 قيداً" },
+                { "en": "OR-Tools solver", "ar": "محلّل OR-Tools" }
+            ],
+            "points": [
+                { "en": "Plans on a budget, by availability or by mission", "ar": "يخطط ضمن ميزانية، حسب الجاهزية أو حسب المهمة" },
+                { "en": "Charts each solution's budget against fleet availability", "ar": "يرسم ميزانية كل حل مقابل جاهزية الأسطول" },
+                { "en": "You can watch the solver work and interrupt it at any time", "ar": "يمكنك متابعة المحلّل وإيقافه في أي وقت" }
+            ],
             "image": "Assets/project5.webp",
             "size": [1915, 1217],
             "categories": ["web"],
@@ -269,6 +323,16 @@
         },
         {
             "id": "wpf-tools",
+            "stickers": [
+                { "en": "Live network graph", "ar": "رسم شبكة مباشر" },
+                { "en": "Image converter", "ar": "محوّل صور" },
+                { "en": "Custom dark UI", "ar": "واجهة داكنة مخصصة" }
+            ],
+            "points": [
+                { "en": "Live download and upload speeds on a chart", "ar": "سرعات التنزيل والرفع مباشرة على رسم بياني" },
+                { "en": "Shows which adapters are online, Wi-Fi or Ethernet", "ar": "يبيّن المحولات المتصلة، Wi-Fi أو Ethernet" },
+                { "en": "Converts images between formats", "ar": "يحوّل الصور بين الصيغ" }
+            ],
             "image": "Assets/project1.webp",
             "size": [1500, 750],
             "categories": ["desktop"],
@@ -282,6 +346,16 @@
         },
         {
             "id": "qtosgearth",
+            "stickers": [
+                { "en": "3D globe", "ar": "كرة أرضية 3D" },
+                { "en": "C++ and Qt", "ar": "C++ و Qt" },
+                { "en": "GDAL layers", "ar": "طبقات GDAL" }
+            ],
+            "points": [
+                { "en": "Image, elevation and feature layers on a 3D Earth", "ar": "طبقات صور وارتفاعات ومعالم على كرة أرضية 3D" },
+                { "en": "Add labels and 3D models, and measure distance", "ar": "إضافة تسميات ونماذج 3D وقياس المسافات" },
+                { "en": "Live latitude, longitude and altitude readout", "ar": "عرض مباشر لخط العرض والطول والارتفاع" }
+            ],
             "image": "Assets/project2.webp",
             "size": [1920, 1020],
             "categories": ["desktop"],
@@ -295,6 +369,16 @@
         },
         {
             "id": "p2p-chat",
+            "stickers": [
+                { "en": "No central server", "ar": "بلا خادم مركزي" },
+                { "en": "Direct sockets", "ar": "مقابس مباشرة" },
+                { "en": "Windows app", "ar": "تطبيق Windows" }
+            ],
+            "points": [
+                { "en": "Messages go straight from one user to another", "ar": "تنتقل الرسائل مباشرة من مستخدم إلى آخر" },
+                { "en": "User accounts with sign-in and registration", "ar": "حسابات مستخدمين مع تسجيل الدخول والتسجيل" },
+                { "en": "Built on raw sockets in WPF", "ar": "مبني على المقابس مباشرة في WPF" }
+            ],
             "image": "Assets/project3.webp",
             "size": [1483, 805],
             "categories": ["desktop"],
@@ -308,6 +392,16 @@
         },
         {
             "id": "workstation",
+            "stickers": [
+                { "en": "Desktop and mobile", "ar": "سطح مكتب وموبايل" },
+                { "en": "MAUI + Blazor", "ar": "MAUI + Blazor" },
+                { "en": "Staff evaluations", "ar": "تقييم الموظفين" }
+            ],
+            "points": [
+                { "en": "A searchable, sortable list of people", "ar": "قائمة أشخاص قابلة للبحث والترتيب" },
+                { "en": "A profile for each person: job details, family, evaluation, activity", "ar": "ملف لكل شخص: تفاصيل العمل والعائلة والتقييم والنشاط" },
+                { "en": "Scored evaluation forms for qualities, training and performance", "ar": "استمارات تقييم بالنقاط للصفات والتدريب والأداء" }
+            ],
             "image": "Assets/project6.webp",
             "size": [1677, 907],
             "categories": ["desktop", "mobile"],

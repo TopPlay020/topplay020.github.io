@@ -1,6 +1,6 @@
-# topplay020 portfolio
+# Topplay020 portfolio
 
-Portfolio site for topplay020: custom desktop and web apps in C# / .NET. A low-poly 3D world sits behind the page: as you scroll, the camera walks down a faceted gradient wall while 1,500 triangles shatter and reassemble into a new shape for each section, including each project's real screenshot.
+Portfolio site for Topplay020: custom desktop and web apps in C# / .NET. A low-poly 3D world sits behind the page: as you scroll, the camera walks down a faceted gradient wall while 1,500 triangles shatter and reassemble into a new shape for each section, including each project's real screenshot.
 
 ## Structure
 
@@ -25,8 +25,10 @@ node scripts/check-data.mjs     # run after editing data.json
 ```
 
 - **Add a project:** append an object to `projects` in `data.json`, set its `size`, drop its image in `Assets/` and 960px and 480px copies in `Assets/thumbs/` (`name.webp`, `name-480.webp`), run the check. The scene adds a stop for it by itself.
+- **WhatsApp / Telegram:** fill `site.whatsapp` (international format) and `site.telegram` (username) in `data.json`. An empty field hides that button everywhere.
+- **Themes:** each theme is a `[data-theme]` block of tokens at the top of `Assets/site.css`, including `--pal`, the eight stops the 3D scene reads. To add one, copy a block and add its id to `THEMES` in `site.js`, the check in the `<head>` of `index.html`, and `ui.*.theme` in `data.json`.
 - **Language:** the site opens in the visitor's last choice, then their browser language. `?lang=ar` / `?lang=en` forces one.
 
 ## Design notes
 
-Deep indigo ground with the blue, violet, pink, gold low-poly gradient, Urbanist + DM Mono + IBM Plex Sans Arabic, logical CSS properties so one stylesheet serves LTR and RTL. Wide screens and landscape phones trade the words and the shape from side to side; phones and portrait tablets stack them, with each stop's `.window` as the open space its shape stays locked to. The media query for that switch appears in both `site.css` and `isStacked()` in `site.js`. The scene spins gently at half frame rate when idle (a button pauses it), lowers its resolution on slow devices, and falls back to the still poster under data-saver or without WebGL. Under `prefers-reduced-motion` it jumps between stops and nothing animates on its own. Each project's surface, pose and shard move come from `SURFACE_ORDER`, `POSES` and `MOVES` at the top of `scene.js`.
+Five themes, each a ground and a low-poly gradient, Urbanist + DM Mono + IBM Plex Sans Arabic, logical CSS properties so one stylesheet serves LTR and RTL. Wide screens and landscape phones trade the words and the shape from side to side; phones and portrait tablets stack them, with each stop's `.window` as the open space its shape stays locked to. The media query for that switch appears in both `site.css` and `isStacked()` in `site.js`. The scene spins gently at half frame rate when idle (a button pauses it), lowers its resolution on slow devices, and falls back to the still poster under data-saver or without WebGL. Under `prefers-reduced-motion` it jumps between stops and nothing animates on its own. Each project's surface, pose and shard move come from `SURFACE_ORDER`, `POSES` and `MOVES` at the top of `scene.js`.
