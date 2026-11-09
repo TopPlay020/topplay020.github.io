@@ -1,34 +1,32 @@
-<h1 align="center">topplay020 Portfolio</h1>
+# topplay020 portfolio
 
-<p align="center">
-Portfolio website for topplay020, Full Stack .NET Developer.
-</p>
-
-<p align="center">
-  <img src="Assets/image.png" alt="Profile Image">
-</p>
+Portfolio site for topplay020: custom desktop and web apps in C# / .NET. A low-poly 3D world sits behind the page: as you scroll, the camera walks down a faceted gradient wall while 1,500 triangles shatter and reassemble into a new shape for each section, including each project's real screenshot.
 
 ## Structure
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Page skeleton. All content is rendered from `data.json`. |
+| `index.html` | Page skeleton. Content is rendered from `data.json`. |
+| `data.json` | Every piece of content. Each item holds both languages (`{ "en": "...", "ar": "..." }`). |
 | `Assets/site.css`, `Assets/site.js` | Styles and behaviour (no framework, no build step). |
-| `data.json` | Every piece of content. Each item holds **both** languages (`{ "en": "...", "ar": "..." }`), so English and Arabic cannot drift apart. |
-| `wach-taaref/` | Sub-site for the Wach Ta3ref game (`index.html`, `privacy.html`, `game.css`, `game.js`). |
+| `Assets/scene.js` | The Three.js shard mesh and gradient wall. Reads the scroll position; never captures it. |
+| `Assets/vendor/` | Three.js r170, self-hosted. |
+| `Assets/icons.svg` | Phosphor icon sprite, only the icons in use. Add a `<symbol>` for a new one. |
+| `Assets/thumbs/` | 960px and 480px copies of the project images for the list. The full images assemble in the 3D scene. |
+| `Assets/scene-poster.webp` | Still of the scene, shown while the scene loads and when WebGL is unavailable. |
+| `wach-taaref/` | Sub-site for the Wach Ta3ref game. |
 | `scripts/check-data.mjs` | Validates `data.json` (both languages present, images and links exist). |
 
 ## Working on it
 
 ```bash
-python -m http.server 5173      # or: npx serve   (fetch() needs http, not file://)
+python -m http.server 5173      # fetch() and modules need http, not file://
 node scripts/check-data.mjs     # run after editing data.json
 ```
 
-- **Add a project:** append an object to `projects` in `data.json` (copy an existing one), drop its image in `Assets/`, run the check.
+- **Add a project:** append an object to `projects` in `data.json`, set its `size`, drop its image in `Assets/` and 960px and 480px copies in `Assets/thumbs/` (`name.webp`, `name-480.webp`), run the check. The scene adds a stop for it by itself.
 - **Language:** the site opens in the visitor's last choice, then their browser language. `?lang=ar` / `?lang=en` forces one.
-- **Game goes live on Google Play:** set `PLAY_LIVE = true` at the top of `wach-taaref/game.js`.
 
 ## Design notes
 
-Single accent colour (the red block from the portrait), one dark theme, Bricolage Grotesque + Geist + IBM Plex Sans Arabic, logical CSS properties so one stylesheet serves LTR and RTL, motion limited to `transform`/`opacity` and disabled under `prefers-reduced-motion`.
+Deep indigo ground with the blue, violet, pink, gold low-poly gradient, Urbanist + DM Mono + IBM Plex Sans Arabic, logical CSS properties so one stylesheet serves LTR and RTL. The scene spins gently at half frame rate when idle (a button pauses it), lowers its resolution on slow devices, and falls back to the still poster under data-saver or without WebGL. Under `prefers-reduced-motion` it jumps between stops and nothing animates on its own. Each project's surface, pose and shard move come from `SURFACE_ORDER`, `POSES` and `MOVES` at the top of `scene.js`.

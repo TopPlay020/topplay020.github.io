@@ -1,54 +1,44 @@
 {
     "site": {
-        "name": { "en": "topplay020", "ar": "topplay020" },
+        "name": "topplay020",
         "email": "topplay020@gmail.com",
-        "contactLink": "https://github.com/TopPlay020",
         "yearsExperience": 6,
         "social": [
-            { "name": "LinkedIn", "href": "https://github.com/TopPlay020", "icon": "ph-linkedin-logo" },
-            { "name": "GitHub", "href": "https://github.com/TopPlay020", "icon": "ph-github-logo" },
-            { "name": "Facebook", "href": "https://github.com/TopPlay020", "icon": "ph-facebook-logo" }
+            { "name": "GitHub", "href": "https://github.com/TopPlay020", "icon": "ph-github-logo" }
         ]
     },
 
     "ui": {
         "en": {
             "skip": "Skip to content",
-            "home": "Home",
+            "home": "Top",
             "menu": "Menu",
-            "toTop": "Back to top",
-            "nav": { "features": "Why me", "services": "Services", "portfolio": "Work", "process": "Process", "contact": "Contact" },
+            "close": "Close menu",
+            "pause": "Pause the 3D motion",
+            "play": "Play the 3D motion",
+            "meta": { "title": "topplay020 · Custom desktop & web apps in C# / .NET" },
+            "nav": { "features": "Why me", "services": "Services", "stack": "Toolbox", "portfolio": "Work", "process": "Process", "contact": "Contact" },
             "hero": {
                 "badge": "Open to new projects",
-                "title": { "pre": "I build custom desktop & web apps in", "hl": "C# / .NET" },
-                "rolesPrefix": "Right now I build",
-                "roles": [
-                    "WPF desktop apps",
-                    "ASP.NET backends",
-                    "Blazor web apps",
-                    "secure REST APIs",
-                    "cloud deployments",
-                    "Unity mobile games"
-                ],
-                "description": "Professional C# and .NET solutions for Windows and the web: lightweight, fast apps with clean architecture, solid database access and a deployment you can trust.",
-                "primary": "Message me",
-                "secondary": "See the work",
-                "seal": "Full Stack .NET developer · Available for work · ",
-                "stats": { "years": "Years shipping .NET", "projects": "Projects in this portfolio", "tech": "Technologies in the toolbox" }
+                "title": { "pre": "Custom desktop & web apps in", "hl": "C# / .NET" },
+                "description": "Windows tools, web platforms, APIs and Unity games, built in short iterations you can review and deployed on Azure or your own servers.",
+                "fact": "{years}+ years shipping .NET, {projects} projects on this page, {tech} technologies in the toolbox.",
+                "primary": "Start a project",
+                "secondary": "See the work"
             },
             "sections": {
                 "features": { "pre": "Why work with", "hl": "me", "lede": "Six things clients tend to notice first." },
                 "services": { "pre": "What I", "hl": "build", "lede": "From a one-file CLI tool to a deployed, multi-service platform." },
-                "stack": { "pre": "The", "hl": "toolbox", "lede": "" },
-                "portfolio": { "pre": "Selected", "hl": "work", "lede": "Real projects, from desktop tools to a mobile game on its way to Google Play." },
+                "stack": { "pre": "The", "hl": "toolbox", "lede": "The languages, frameworks and databases I ship with." },
+                "portfolio": { "pre": "Selected", "hl": "work", "lede": "Real projects, from desktop tools to a live car marketplace and a mobile game on Google Play." },
                 "process": { "pre": "How a project", "hl": "runs", "lede": "Four steps, no surprises." },
                 "contact": { "pre": "Got an idea? Let's", "hl": "build it." }
             },
-            "filters": { "all": "All", "desktop": "Desktop", "web": "Web", "mobile": "Mobile" },
-            "project": { "open": "Open project page", "featured": "Featured", "count": "projects" },
+            "filters": { "desktop": "Desktop", "web": "Web", "mobile": "Mobile" },
+            "project": { "open": "Open project page", "visit": "Visit the live site", "featured": "Featured" },
             "contact": {
                 "text": "Tell me what you need: a desktop tool, a web platform or a backend. I reply with a plan, not a pitch.",
-                "primary": "Message on LinkedIn",
+                "primary": "Email me",
                 "copy": "Copy email",
                 "copied": "Email copied to clipboard",
                 "copyFailed": "Could not copy. Email: "
@@ -57,41 +47,34 @@
         },
         "ar": {
             "skip": "تخطَّ إلى المحتوى",
-            "home": "الرئيسية",
+            "home": "الأعلى",
             "menu": "القائمة",
-            "toTop": "العودة للأعلى",
-            "nav": { "features": "لماذا أنا", "services": "الخدمات", "portfolio": "الأعمال", "process": "الخطوات", "contact": "تواصل" },
+            "close": "أغلق القائمة",
+            "pause": "أوقف الحركة ثلاثية الأبعاد",
+            "play": "شغّل الحركة ثلاثية الأبعاد",
+            "meta": { "title": "topplay020 · تطبيقات سطح مكتب وويب مخصصة بـ C# و .NET" },
+            "nav": { "features": "لماذا أنا", "services": "الخدمات", "stack": "الأدوات", "portfolio": "الأعمال", "process": "الخطوات", "contact": "تواصل" },
             "hero": {
                 "badge": "متاح لمشاريع جديدة",
-                "title": { "pre": "أبني تطبيقات سطح مكتب وويب مخصصة بـ", "hl": "C# و .NET" },
-                "rolesPrefix": "أعمل الآن على",
-                "roles": [
-                    "تطبيقات سطح المكتب WPF",
-                    "خدمات ASP.NET الخلفية",
-                    "تطبيقات الويب Blazor",
-                    "واجهات REST API آمنة",
-                    "النشر على السحابة",
-                    "ألعاب موبايل بـ Unity"
-                ],
-                "description": "حلول احترافية بـ C# و .NET لنظام Windows والويب: تطبيقات خفيفة وسريعة بمعمارية نظيفة، وتعامل متقن مع قواعد البيانات، ونشر يمكنك الوثوق به.",
-                "primary": "راسلني",
-                "secondary": "شاهد أعمالي",
-                "seal": "Full Stack .NET developer · Available for work · ",
-                "stats": { "years": "سنوات في تطوير .NET", "projects": "مشاريع في هذا المعرض", "tech": "تقنية في صندوق الأدوات" }
+                "title": { "pre": "تطبيقات سطح مكتب وويب مخصصة بـ", "hl": "C# و .NET" },
+                "description": "أدوات Windows ومنصات ويب وواجهات API وألعاب Unity، تُبنى على دفعات قصيرة تستطيع مراجعتها وتُنشر على Azure أو على خوادمك الخاصة.",
+                "fact": "أكثر من {years} سنوات في تطوير .NET، و{projects} مشاريع في هذه الصفحة، و{tech} تقنية في صندوق الأدوات.",
+                "primary": "ابدأ مشروعاً",
+                "secondary": "شاهد أعمالي"
             },
             "sections": {
                 "features": { "pre": "لماذا", "hl": "تختارني", "lede": "ست نقاط يلاحظها العملاء أولاً." },
                 "services": { "pre": "ماذا", "hl": "أبني", "lede": "من أداة سطر أوامر بسيطة إلى منصة كاملة منشورة." },
-                "stack": { "pre": "صندوق", "hl": "الأدوات", "lede": "" },
-                "portfolio": { "pre": "أعمال", "hl": "مختارة", "lede": "مشاريع حقيقية، من أدوات سطح المكتب إلى لعبة موبايل في طريقها إلى Google Play." },
+                "stack": { "pre": "صندوق", "hl": "الأدوات", "lede": "اللغات وأطر العمل وقواعد البيانات التي أعمل بها." },
+                "portfolio": { "pre": "أعمال", "hl": "مختارة", "lede": "مشاريع حقيقية، من أدوات سطح المكتب إلى سوق سيارات يعمل على الإنترنت ولعبة موبايل على Google Play." },
                 "process": { "pre": "كيف يسير", "hl": "المشروع", "lede": "أربع خطوات واضحة، بلا مفاجآت." },
                 "contact": { "pre": "عندك فكرة؟ لنبنِها", "hl": "معاً." }
             },
-            "filters": { "all": "الكل", "desktop": "سطح المكتب", "web": "ويب", "mobile": "موبايل" },
-            "project": { "open": "افتح صفحة المشروع", "featured": "مميّز", "count": "مشاريع" },
+            "filters": { "desktop": "سطح المكتب", "web": "ويب", "mobile": "موبايل" },
+            "project": { "open": "افتح صفحة المشروع", "visit": "زر الموقع المباشر", "featured": "مميّز" },
             "contact": {
                 "text": "أخبرني بما تحتاجه: أداة سطح مكتب، منصة ويب أو خدمة خلفية. سأرد عليك بخطة، لا بعرض ترويجي.",
-                "primary": "راسلني على LinkedIn",
+                "primary": "راسلني بالبريد",
                 "copy": "انسخ البريد",
                 "copied": "تم نسخ البريد الإلكتروني",
                 "copyFailed": "تعذّر النسخ. البريد: "
@@ -170,7 +153,7 @@
         {
             "icon": "ph-globe",
             "title": { "en": "ASP.NET backend", "ar": "خدمات ASP.NET الخلفية" },
-            "text": { "en": "Robust backend services with ASP.NET.", "ar": "خدمات خلفية متينة بـ ASP.NET." }
+            "text": { "en": "Backend services and business logic on ASP.NET.", "ar": "خدمات خلفية ومنطق أعمال بـ ASP.NET." }
         },
         {
             "icon": "ph-plugs-connected",
@@ -213,8 +196,24 @@
 
     "projects": [
         {
+            "id": "djermane-cars",
+            "image": "Assets/project9.webp",
+            "size": [1600, 1000],
+            "link": "https://djermanecars.com/",
+            "featured": true,
+            "categories": ["web"],
+            "tags": ["Blazor WebAssembly", "C#", ".NET"],
+            "title": { "en": "Djermane Cars & Motos", "ar": "Djermane Cars & Motos" },
+            "subtitle": { "en": "Car import marketplace, China to Algeria", "ar": "سوق استيراد السيارات من الصين إلى الجزائر" },
+            "description": {
+                "en": "A live site for an import business in Blida, listing more than 12,000 cars from 57 brands. Buyers filter by brand and budget, see the final price in dinars with transport included, read each car's inspection grade and follow their order with a simple code. In French and Arabic.",
+                "ar": "موقع يعمل على الإنترنت لشركة استيراد في البليدة، يعرض أكثر من 12,000 سيارة من 57 علامة. يصفّي الزبون حسب العلامة والميزانية، ويرى السعر النهائي بالدينار شاملاً النقل، ويطّلع على تقييم فحص كل سيارة، ويتابع طلبه برمز بسيط. بالفرنسية والعربية."
+            }
+        },
+        {
             "id": "wach-taaref",
             "image": "Assets/project8.webp",
+            "size": [1600, 900],
             "link": "wach-taaref/",
             "featured": true,
             "categories": ["mobile"],
@@ -232,6 +231,7 @@
         {
             "id": "stations",
             "image": "Assets/project7.webp",
+            "size": [1536, 816],
             "categories": ["desktop"],
             "tags": ["WPF", "C#", "EF Core", "SQLite"],
             "title": { "en": "Stations", "ar": "Stations" },
@@ -244,6 +244,7 @@
         {
             "id": "dztutor",
             "image": "Assets/project4.webp",
+            "size": [1901, 873],
             "categories": ["web"],
             "tags": ["React", { "en": "Web", "ar": "ويب" }],
             "title": { "en": "DzTutor", "ar": "DzTutor" },
@@ -256,6 +257,7 @@
         {
             "id": "dss",
             "image": "Assets/project5.webp",
+            "size": [1915, 1217],
             "categories": ["web"],
             "tags": ["Python", "OR-Tools"],
             "title": { "en": "DSS", "ar": "DSS" },
@@ -268,6 +270,7 @@
         {
             "id": "wpf-tools",
             "image": "Assets/project1.webp",
+            "size": [1500, 750],
             "categories": ["desktop"],
             "tags": ["WPF", "C#"],
             "title": { "en": "WPF Tools", "ar": "WPF Tools" },
@@ -280,6 +283,7 @@
         {
             "id": "qtosgearth",
             "image": "Assets/project2.webp",
+            "size": [1920, 1020],
             "categories": ["desktop"],
             "tags": ["C++", "Qt"],
             "title": { "en": "QtOsgEarth", "ar": "QtOsgEarth" },
@@ -292,6 +296,7 @@
         {
             "id": "p2p-chat",
             "image": "Assets/project3.webp",
+            "size": [1483, 805],
             "categories": ["desktop"],
             "tags": ["WPF", "Sockets"],
             "title": { "en": "P2P Chat", "ar": "P2P Chat" },
@@ -304,6 +309,7 @@
         {
             "id": "workstation",
             "image": "Assets/project6.webp",
+            "size": [1677, 907],
             "categories": ["desktop", "mobile"],
             "tags": ["MAUI", "Blazor"],
             "title": { "en": "WorkStation Manager", "ar": "WorkStation Manager" },

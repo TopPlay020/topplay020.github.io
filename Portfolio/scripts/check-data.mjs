@@ -20,7 +20,6 @@ const shape = (o, path = '') => Object.entries(o).flatMap(([k, v]) =>
 const [enKeys, arKeys] = LANGS.map((l) => new Set(shape(data.ui[l])));
 for (const k of enKeys) if (!arKeys.has(k)) fail(`ui.ar is missing "${k}"`);
 for (const k of arKeys) if (!enKeys.has(k)) fail(`ui.en is missing "${k}"`);
-if (data.ui.en.hero.roles.length !== data.ui.ar.hero.roles.length) fail('ui.hero.roles: en/ar lengths differ');
 
 for (const [i, f] of data.features.entries()) { needBilingual(f.title, `features[${i}].title`); needBilingual(f.text, `features[${i}].text`); }
 for (const [i, s] of data.services.entries()) { needBilingual(s.title, `services[${i}].title`); needBilingual(s.text, `services[${i}].text`); }
@@ -35,7 +34,10 @@ for (const [i, p] of data.projects.entries()) {
     for (const key of ['title', 'subtitle', 'description']) needBilingual(p[key], `${at}.${key}`);
     p.tags.forEach((t, j) => textOrBilingual(t, `${at}.tags[${j}]`));
     if (!existsSync(join(root, p.image))) fail(`${at}: image not found (${p.image})`);
-    if (p.link && !existsSync(join(root, p.link, 'index.html'))) fail(`${at}: link target not found (${p.link})`);
+    if (!existsSync(join(root, p.image.replace('Assets/', 'Assets/thumbs/')))) fail(`${at}: thumbnail not found (Assets/thumbs/)`);
+    if (!existsSync(join(root, p.image.replace('Assets/', 'Assets/thumbs/').replace('.webp', '-480.webp')))) fail(`${at}: 480px thumbnail not found (Assets/thumbs/)`);
+    if (!Array.isArray(p.size) || p.size.length !== 2) fail(`${at}: needs "size": [width, height]`);
+    if (p.link && !/^https?:/.test(p.link) && !existsSync(join(root, p.link, 'index.html'))) fail(`${at}: link target not found (${p.link})`);
     for (const c of p.categories) if (!(c in data.ui.en.filters)) fail(`${at}: unknown category "${c}"`);
 }
 
