@@ -24,7 +24,16 @@ for (const k of arKeys) if (!enKeys.has(k)) fail(`ui.en is missing "${k}"`);
 for (const [i, f] of data.features.entries()) { needBilingual(f.title, `features[${i}].title`); needBilingual(f.text, `features[${i}].text`); }
 for (const [i, s] of data.services.entries()) { needBilingual(s.title, `services[${i}].title`); needBilingual(s.text, `services[${i}].text`); }
 for (const [i, s] of data.process.entries()) { needBilingual(s.title, `process[${i}].title`); needBilingual(s.text, `process[${i}].text`); }
-data.technologies.forEach((t, i) => textOrBilingual(t, `technologies[${i}]`));
+const iconSprite = readFileSync(join(root, 'Assets/icons.svg'), 'utf8');
+const hasIcon = (id) => iconSprite.includes(`id="${id}"`);
+data.technologies.forEach((t, i) => {
+    const at = `technologies[${i}]`;
+    if (t && typeof t === 'object' && 'name' in t) {
+        textOrBilingual(t.name, `${at}.name`);
+    } else textOrBilingual(t, at);
+});
+for (const [list, name] of [[data.features, 'features'], [data.services, 'services'], [data.process, 'process']])
+    list.forEach((x, i) => { if (!hasIcon(x.icon)) fail(`${name}[${i}]: icon "${x.icon}" is not in Assets/icons.svg`); });
 
 const ids = new Set();
 for (const [i, p] of data.projects.entries()) {

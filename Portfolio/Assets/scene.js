@@ -56,20 +56,30 @@ const mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2, (p[2] + q[2]) / 2];
 /* Split the largest triangle along its longest edge until there are exactly n. Each split stays coplanar,
    so a big facet still reads as one big flat facet until it shatters. */
 function fillTo(list, n) {
-    const out = list.slice(), areas = out.map(area);
+    const out = list.slice(0, n), heap = out.map((f, i) => [area(f), i]);
+    const up = (k) => { while (k > 0) { const pa = (k - 1) >> 1; if (heap[pa][0] >= heap[k][0]) break; [heap[pa], heap[k]] = [heap[k], heap[pa]]; k = pa; } };
+    const down = (k) => {
+        for (;;) {
+            const l = 2 * k + 1, r = l + 1;
+            let m = k;
+            if (l < heap.length && heap[l][0] > heap[m][0]) m = l;
+            if (r < heap.length && heap[r][0] > heap[m][0]) m = r;
+            if (m === k) return;
+            [heap[m], heap[k]] = [heap[k], heap[m]]; k = m;
+        }
+    };
+    for (let k = (heap.length >> 1) - 1; k >= 0; k--) down(k);
     while (out.length < n) {
-        let best = 0;
-        for (let i = 1; i < out.length; i++) if (areas[i] > areas[best]) best = i;
-        const f = out[best];
+        const best = heap[0][1], f = out[best];
         const ab = dist2(f.a, f.b), bc = dist2(f.b, f.c), ca = dist2(f.c, f.a);
         let p, q, r;
         if (ab >= bc && ab >= ca) { p = f.a; q = f.b; r = f.c; } else if (bc >= ca) { p = f.b; q = f.c; r = f.a; } else { p = f.c; q = f.a; r = f.b; }
         const m = mid(p, q);
         const f1 = { ...f, a: p, b: m, c: r }, f2 = { ...f, a: m, b: q, c: r };
-        out[best] = f1; areas[best] = area(f1);
-        out.push(f2); areas.push(area(f2));
+        out[best] = f1; heap[0] = [area(f1), best]; down(0);
+        out.push(f2); heap.push([area(f2), out.length - 1]); up(heap.length - 1);
     }
-    return out.slice(0, n);
+    return out;
 }
 
 /* Facet colour: a band of the gradient, shifted across the shape, with a little per-facet variation. */
@@ -220,24 +230,33 @@ function pack(mainList, loose, seed) {
     const main = fillTo(mainList, MAIN).map((f, i) => ({ f, k: key(f) + hash(i + seed) * 2.5 })).sort((x, y) => x.k - y.k).map((o) => o.f);
     const all = main.concat(loose);
     const n = SHARDS * 3;
-    const pos = new Float32Array(n * 3), cen = new Float32Array(n * 3), col = new Float32Array(n * 3), uv = new Float32Array(n * 2), grp = new Float32Array(n);
+    const pos = new Float32Array(n * 3), cen = new Float32Array(n * 3), col = new Float32Array(n * 3), uv = new Float32Array(n * 2), gc = new Float32Array(n * 4);
+    const sums = new Map();
+    for (const f of all) {
+        if (f.group < 0 || f.gc) continue;
+        const t = sums.get(f.group) || [0, 0, 0, 0];
+        for (const p of [f.a, f.b, f.c]) { t[0] += p[0]; t[1] += p[1]; t[2] += p[2]; t[3]++; }
+        sums.set(f.group, t);
+    }
+    const centreOf = (f) => { if (f.gc) return f.gc; const t = sums.get(f.group); return t ? [t[0] / t[3], t[1] / t[3], t[2] / t[3]] : [0, 0, 0]; };
     all.forEach((f, i) => {
         const c = [(f.a[0] + f.b[0] + f.c[0]) / 3, (f.a[1] + f.b[1] + f.c[1]) / 3, (f.a[2] + f.b[2] + f.c[2]) / 3];
         [f.a, f.b, f.c].forEach((p, k) => {
             const o = i * 3 + k;
             pos.set(p, o * 3); cen.set(c, o * 3); col.set(f.col, o * 3);
             if (f.uvs) uv.set(f.uvs[k], o * 2);
-            grp[o] = f.group;
+            gc.set([...centreOf(f), f.group], o * 4);
         });
     });
-    return { pos, cen, col, uv, grp };
+    return { pos, cen, col, uv, gc };
 }
 
 /* ---------- Shaders ---------- */
 const SHARD_VERT = `
     attribute vec3 aA, aB, aCA, aCB, aColA, aColB;
     attribute vec2 aUvA, aUvB;
-    attribute float aGrpA, aGrpB, aLoose;
+    attribute vec4 aGcA, aGcB;
+    attribute float aLoose;
     attribute vec4 aRand;
     uniform float uT, uIntro, uScatter, uHoverGroup, uHoverAmt, uKickX, uStyle, uTime, uVel, uKindA, uKindB, uPush, uLooseY, uPulse;
     uniform mat3 uRotA, uRotB;
@@ -258,7 +277,8 @@ const SHARD_VERT = `
         return vec3(c * p.x + s * p.z, p.y, -s * p.x + c * p.z);
     }
     // Each shape's own life: slabs counter-rotate, gems orbit, crystals breathe, pillars rise and fall.
-    vec3 local(vec3 p, float g, float kind) {
+    vec3 local(vec3 p, vec4 gg, float kind) {
+        float g = gg.w;
         if (g < -.5 || kind < .5) return p;
         if (kind < 1.5) return rotY(p, uTime * .35 * (mod(g, 2.) * 2. - 1.) * (.6 + fract(g * .37)));
         if (kind < 2.5) {
@@ -279,8 +299,8 @@ const SHARD_VERT = `
         float arc = sin(e * 3.14159);
         vec3 ax = normalize(aRand.xyz - .5 + 1e-3), rnd = aRand.xyz - .5;
 
-        vec3 la = local(aA, aGrpA, uKindA), lb = local(aB, aGrpB, uKindB);
-        vec3 ca = local(aCA, aGrpA, uKindA), cb = local(aCB, aGrpB, uKindB);
+        vec3 la = local(aA, aGcA, uKindA), lb = local(aB, aGcB, uKindB);
+        vec3 ca = local(aCA, aGcA, uKindA), cb = local(aCB, aGcB, uKindB);
         vec3 c = mix(uCenterA + uRotA * ca, uCenterB + uRotB * cb, e);
         vec3 rel = mix(uRotA * (la - ca), uRotB * (lb - cb), e);
         vec3 mid = mix(uCenterA, uCenterB, e);
@@ -334,7 +354,7 @@ const SHARD_VERT = `
         c += rnd * vec3(44., 34., 40.) * ii * ii;
         rel *= 1. - ii * .6;
 
-        float h = uHoverAmt * step(abs(aGrpA - uHoverGroup), .5) * (1. - e);
+        float h = uHoverAmt * step(abs(aGcA.w - uHoverGroup), .5) * (1. - e);
         c += vec3(0., 0., h * 1.5);
         vHover = h;
 
@@ -490,7 +510,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     });
     let k = nProjects + 1;
     addForm(slabs(HUE.service, data.services.length), { spin: [0, .2], tilt: .36, kind: 'service' }, k, HUE.service); k++;
-    addForm(orbit(HUE.tech, data.technologies.length), { spin: [.06, .24], tilt: .1, kind: 'tech' }, k, HUE.tech); k++;
+    addForm(orbit(HUE.tech, Math.min(26, data.technologies.length)), { spin: [.06, .24], tilt: .1, kind: 'tech' }, k, HUE.tech); k++;
     addForm(crystals(HUE.feature, data.features.length), { spin: [0, .12], tilt: .22, kind: 'feature', rotZ: true }, k, HUE.feature); k++;
     addForm(rising(HUE.process, data.process.length), { spin: [0, .1], tilt: .3, kind: 'process' }, k, HUE.process); k++;
     addForm(paperPlane(HUE.contact), { spin: [0, 0], tilt: 0, kind: 'contact', plane: true }, k, HUE.contact);
@@ -519,7 +539,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         aCA: attr('aCA', forms[0].cen, 3), aCB: attr('aCB', forms[1].cen, 3),
         aColA: attr('aColA', forms[0].col, 3), aColB: attr('aColB', forms[1].col, 3),
         aUvA: attr('aUvA', forms[0].uv, 2), aUvB: attr('aUvB', forms[1].uv, 2),
-        aGrpA: attr('aGrpA', forms[0].grp, 1), aGrpB: attr('aGrpB', forms[1].grp, 1)
+        aGcA: attr('aGcA', forms[0].gc, 4), aGcB: attr('aGcB', forms[1].gc, 4)
     };
     const loose = new Float32Array(n);
     for (let i = MAIN * 3; i < n; i++) loose[i] = 1;
@@ -662,7 +682,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         const put = (attribute, array) => { attribute.array = array; attribute.needsUpdate = true; };
         put(A.aA, a.pos); put(A.aB, b.pos); put(A.aCA, a.cen); put(A.aCB, b.cen);
         put(A.aColA, a.col); put(A.aColB, b.col); put(A.aUvA, a.uv); put(A.aUvB, b.uv);
-        put(A.aGrpA, a.grp); put(A.aGrpB, b.grp);
+        put(A.aGcA, a.gc); put(A.aGcB, b.gc);
         U.uKindA.value = a.kindId; U.uKindB.value = b.kindId;
         U.uStyle.value = reduced ? 0 : MOVES[i % MOVES.length];
         const texA = a.image !== null ? textures[a.image] : null, texB = b.image !== null ? textures[b.image] : null;

@@ -2,49 +2,106 @@
     "site": {
         "name": "Topplay020",
         "email": "topplay020@gmail.com",
-        "whatsapp": "",
+        "whatsapp": "+213 560 44 90 03",
         "telegram": "",
         "yearsExperience": 6,
         "social": [
-            { "name": "GitHub", "href": "https://github.com/TopPlay020", "icon": "ph-github-logo" }
+            {
+                "name": "GitHub",
+                "href": "https://github.com/TopPlay020",
+                "icon": "ph-github-logo"
+            }
         ]
     },
-
     "ui": {
         "en": {
             "skip": "Skip to content",
             "home": "Top",
             "menu": "Menu",
             "close": "Close menu",
-            "theme": { "label": "Change the colours", "prism": "Prism", "ember": "Ember", "aurora": "Aurora", "arctic": "Arctic", "paper": "Paper" },
+            "theme": {
+                "label": "Change the colours",
+                "prism": "Prism",
+                "ember": "Ember",
+                "aurora": "Aurora",
+                "arctic": "Arctic",
+                "paper": "Paper"
+            },
             "pause": "Pause the 3D motion",
             "play": "Play the 3D motion",
-            "meta": { "title": "Topplay020 · Custom desktop & web apps in C# / .NET" },
-            "nav": { "features": "Why me", "services": "Services", "stack": "Toolbox", "portfolio": "Work", "process": "Process", "contact": "Contact" },
+            "meta": {
+                "title": "Topplay020 · Custom desktop & web apps in C# / .NET"
+            },
+            "nav": {
+                "features": "Why me",
+                "services": "Services",
+                "stack": "Toolbox",
+                "portfolio": "Work",
+                "process": "Process",
+                "contact": "Contact"
+            },
             "hero": {
                 "badge": "Open to new projects",
-                "title": { "pre": "Custom desktop & web apps in", "hl": "C# / .NET" },
+                "title": {
+                    "pre": "Custom desktop & web apps in",
+                    "hl": "C# / .NET"
+                },
                 "description": "Windows tools, web platforms, APIs and Unity games, built in short iterations you can review and deployed on Azure or your own servers.",
-                "fact": "{years}+ years shipping .NET, {projects} projects on this page, {tech} technologies in the toolbox.",
+                "fact": "{years}+ years shipping .NET, from .NET Framework 4.7.2 to .NET 10. {projects} projects on this page, {tech} technologies in the toolbox.",
                 "primary": "Start a project",
                 "secondary": "See the work"
             },
             "sections": {
-                "features": { "pre": "Why work with", "hl": "me", "lede": "Six things clients tend to notice first." },
-                "services": { "pre": "What I", "hl": "build", "lede": "From a one-file CLI tool to a deployed, multi-service platform." },
-                "stack": { "pre": "The", "hl": "toolbox", "lede": "The languages, frameworks and databases I ship with." },
-                "portfolio": { "pre": "Selected", "hl": "work", "lede": "Real projects, from desktop tools to a live car marketplace and a mobile game on Google Play." },
-                "process": { "pre": "How a project", "hl": "runs", "lede": "Four steps, no surprises." },
-                "contact": { "pre": "Got an idea? Let's", "hl": "build it." }
+                "features": {
+                    "pre": "Why work with",
+                    "hl": "me",
+                    "lede": "Six things clients tend to notice first."
+                },
+                "services": {
+                    "pre": "What I",
+                    "hl": "build",
+                    "lede": "From a one-file CLI tool to a deployed, multi-service platform."
+                },
+                "stack": {
+                    "pre": "The",
+                    "hl": "toolbox",
+                    "lede": "The languages, frameworks and databases I ship with.",
+                    "legend": "What 2026 job posts ask for most",
+                    "hot": "in demand"
+                },
+                "portfolio": {
+                    "pre": "Selected",
+                    "hl": "work",
+                    "lede": "Real projects, from desktop tools to a live car marketplace and a mobile game on Google Play."
+                },
+                "process": {
+                    "pre": "How a project",
+                    "hl": "runs",
+                    "lede": "Four steps, no surprises."
+                },
+                "contact": {
+                    "pre": "Got an idea? Let's",
+                    "hl": "build it."
+                }
             },
-            "filters": { "desktop": "Desktop", "web": "Web", "mobile": "Mobile" },
-            "project": { "open": "Open project page", "visit": "Visit the live site", "featured": "Featured" },
+            "filters": {
+                "desktop": "Desktop",
+                "web": "Web",
+                "mobile": "Mobile"
+            },
+            "project": {
+                "open": "Open project page",
+                "visit": "Visit the live site",
+                "featured": "Featured"
+            },
             "contact": {
                 "text": "Tell me what you need: a desktop tool, a web platform or a backend. I reply with a plan, not a pitch.",
                 "primary": "Email me",
                 "copy": "Copy email",
                 "copied": "Email copied to clipboard",
-                "copyFailed": "Could not copy. Email: "
+                "copyFailed": "Could not copy. Email: ",
+                "subject": "New project",
+                "waText": "Hi Topplay020, I have a project:"
             },
             "footer": "Full Stack .NET developer."
         },
@@ -53,44 +110,100 @@
             "home": "الأعلى",
             "menu": "القائمة",
             "close": "أغلق القائمة",
-            "theme": { "label": "غيّر الألوان", "prism": "موشور", "ember": "جمر", "aurora": "شفق", "arctic": "قطبي", "paper": "ورق" },
+            "theme": {
+                "label": "غيّر الألوان",
+                "prism": "موشور",
+                "ember": "جمر",
+                "aurora": "شفق",
+                "arctic": "قطبي",
+                "paper": "ورق"
+            },
             "pause": "أوقف الحركة ثلاثية الأبعاد",
             "play": "شغّل الحركة ثلاثية الأبعاد",
-            "meta": { "title": "Topplay020 · تطبيقات سطح مكتب وويب مخصصة بـ C# و .NET" },
-            "nav": { "features": "لماذا أنا", "services": "الخدمات", "stack": "الأدوات", "portfolio": "الأعمال", "process": "الخطوات", "contact": "تواصل" },
+            "meta": {
+                "title": "Topplay020 · تطبيقات سطح مكتب وويب مخصصة بـ C# و .NET"
+            },
+            "nav": {
+                "features": "لماذا أنا",
+                "services": "الخدمات",
+                "stack": "الأدوات",
+                "portfolio": "الأعمال",
+                "process": "الخطوات",
+                "contact": "تواصل"
+            },
             "hero": {
                 "badge": "متاح لمشاريع جديدة",
-                "title": { "pre": "تطبيقات سطح مكتب وويب مخصصة بـ", "hl": "C# و .NET" },
+                "title": {
+                    "pre": "تطبيقات سطح مكتب وويب مخصصة بـ",
+                    "hl": "C# و .NET"
+                },
                 "description": "أدوات Windows ومنصات ويب وواجهات API وألعاب Unity، تُبنى على دفعات قصيرة تستطيع مراجعتها وتُنشر على Azure أو على خوادمك الخاصة.",
-                "fact": "أكثر من {years} سنوات في تطوير .NET، و{projects} مشاريع في هذه الصفحة، و{tech} تقنية في صندوق الأدوات.",
+                "fact": "أكثر من {years} سنوات في تطوير .NET، من .NET Framework 4.7.2 إلى .NET 10، مع {projects} مشاريع في هذه الصفحة و{tech} تقنية في صندوق الأدوات.",
                 "primary": "ابدأ مشروعاً",
                 "secondary": "شاهد أعمالي"
             },
             "sections": {
-                "features": { "pre": "لماذا", "hl": "تختارني", "lede": "ست نقاط يلاحظها العملاء أولاً." },
-                "services": { "pre": "ماذا", "hl": "أبني", "lede": "من أداة سطر أوامر بسيطة إلى منصة كاملة منشورة." },
-                "stack": { "pre": "صندوق", "hl": "الأدوات", "lede": "اللغات وأطر العمل وقواعد البيانات التي أعمل بها." },
-                "portfolio": { "pre": "أعمال", "hl": "مختارة", "lede": "مشاريع حقيقية، من أدوات سطح المكتب إلى سوق سيارات يعمل على الإنترنت ولعبة موبايل على Google Play." },
-                "process": { "pre": "كيف يسير", "hl": "المشروع", "lede": "أربع خطوات واضحة، بلا مفاجآت." },
-                "contact": { "pre": "عندك فكرة؟ لنبنِها", "hl": "معاً." }
+                "features": {
+                    "pre": "لماذا",
+                    "hl": "تختارني",
+                    "lede": "ست نقاط يلاحظها العملاء أولاً."
+                },
+                "services": {
+                    "pre": "ماذا",
+                    "hl": "أبني",
+                    "lede": "من أداة سطر أوامر بسيطة إلى منصة كاملة منشورة."
+                },
+                "stack": {
+                    "pre": "صندوق",
+                    "hl": "الأدوات",
+                    "lede": "اللغات وأطر العمل وقواعد البيانات التي أعمل بها.",
+                    "legend": "الأكثر طلباً في عروض العمل لسنة 2026",
+                    "hot": "مطلوب بكثرة"
+                },
+                "portfolio": {
+                    "pre": "أعمال",
+                    "hl": "مختارة",
+                    "lede": "مشاريع حقيقية، من أدوات سطح المكتب إلى سوق سيارات يعمل على الإنترنت ولعبة موبايل على Google Play."
+                },
+                "process": {
+                    "pre": "كيف يسير",
+                    "hl": "المشروع",
+                    "lede": "أربع خطوات واضحة، بلا مفاجآت."
+                },
+                "contact": {
+                    "pre": "عندك فكرة؟ لنبنِها",
+                    "hl": "معاً."
+                }
             },
-            "filters": { "desktop": "سطح المكتب", "web": "ويب", "mobile": "موبايل" },
-            "project": { "open": "افتح صفحة المشروع", "visit": "زر الموقع المباشر", "featured": "مميّز" },
+            "filters": {
+                "desktop": "سطح المكتب",
+                "web": "ويب",
+                "mobile": "موبايل"
+            },
+            "project": {
+                "open": "افتح صفحة المشروع",
+                "visit": "زر الموقع المباشر",
+                "featured": "مميّز"
+            },
             "contact": {
                 "text": "أخبرني بما تحتاجه: أداة سطح مكتب، منصة ويب أو خدمة خلفية. سأرد عليك بخطة، لا بعرض ترويجي.",
                 "primary": "راسلني بالبريد",
                 "copy": "انسخ البريد",
                 "copied": "تم نسخ البريد الإلكتروني",
-                "copyFailed": "تعذّر النسخ. البريد: "
+                "copyFailed": "تعذّر النسخ. البريد: ",
+                "subject": "مشروع جديد",
+                "waText": "مرحباً Topplay020، عندي مشروع:"
             },
             "footer": "مطوّر Full Stack .NET."
         }
     },
-
     "features": [
         {
             "icon": "ph-lightning",
-            "title": { "en": "Fast by default", "ar": "سريع افتراضياً" },
+            "title": {
+                "en": "Fast by default",
+                "ar": "سريع افتراضياً"
+            },
             "text": {
                 "en": "Native apps tuned for performance: they open instantly and stay responsive under load.",
                 "ar": "تطبيقات أصلية مضبوطة للأداء: تفتح فوراً وتبقى سلسة تحت الضغط."
@@ -98,7 +211,10 @@
         },
         {
             "icon": "ph-code",
-            "title": { "en": "Clean code", "ar": "كود نظيف" },
+            "title": {
+                "en": "Clean code",
+                "ar": "كود نظيف"
+            },
             "text": {
                 "en": "MVVM and MVC structure that the next developer can read, extend and trust.",
                 "ar": "بنية MVVM وMVC يستطيع المطوّر التالي قراءتها وتوسيعها والوثوق بها."
@@ -106,7 +222,10 @@
         },
         {
             "icon": "ph-database",
-            "title": { "en": "Database ready", "ar": "جاهز لقواعد البيانات" },
+            "title": {
+                "en": "Database ready",
+                "ar": "جاهز لقواعد البيانات"
+            },
             "text": {
                 "en": "ORM or raw SQL, on SQL Server, PostgreSQL, Oracle, MongoDB or MariaDB.",
                 "ar": "ORM أو SQL مباشر، على SQL Server وPostgreSQL وOracle وMongoDB وMariaDB."
@@ -114,7 +233,10 @@
         },
         {
             "icon": "ph-seal-check",
-            "title": { "en": "Reliable", "ar": "موثوق" },
+            "title": {
+                "en": "Reliable",
+                "ar": "موثوق"
+            },
             "text": {
                 "en": "I deliver what we agreed, on the date we agreed.",
                 "ar": "أسلّم ما اتفقنا عليه، في الموعد الذي اتفقنا عليه."
@@ -122,7 +244,10 @@
         },
         {
             "icon": "ph-handshake",
-            "title": { "en": "Long-term partner", "ar": "شريك طويل الأمد" },
+            "title": {
+                "en": "Long-term partner",
+                "ar": "شريك طويل الأمد"
+            },
             "text": {
                 "en": "I care about how the product does after launch, not only about the handover.",
                 "ar": "يهمّني أداء المنتج بعد الإطلاق، لا لحظة التسليم فقط."
@@ -130,95 +255,312 @@
         },
         {
             "icon": "ph-medal",
-            "title": { "en": "Proven experience", "ar": "خبرة مثبتة" },
+            "title": {
+                "en": "Proven experience",
+                "ar": "خبرة مثبتة"
+            },
             "text": {
                 "en": "6+ years solving real problems for real users.",
                 "ar": "أكثر من 6 سنوات في حل مشكلات حقيقية لمستخدمين حقيقيين."
             }
         }
     ],
-
     "services": [
         {
             "icon": "ph-terminal-window",
-            "title": { "en": "Console applications", "ar": "تطبيقات سطر الأوامر" },
-            "text": { "en": "Fast CLI tools and automation scripts.", "ar": "أدوات سطر أوامر سريعة وسكربتات أتمتة." }
+            "title": {
+                "en": "Console applications",
+                "ar": "تطبيقات سطر الأوامر"
+            },
+            "text": {
+                "en": "Fast CLI tools and automation scripts.",
+                "ar": "أدوات سطر أوامر سريعة وسكربتات أتمتة."
+            }
         },
         {
             "icon": "ph-desktop",
-            "title": { "en": "WPF applications", "ar": "تطبيقات WPF" },
-            "text": { "en": "Modern, responsive Windows interfaces.", "ar": "واجهات Windows حديثة وسريعة الاستجابة." }
+            "title": {
+                "en": "WPF applications",
+                "ar": "تطبيقات WPF"
+            },
+            "text": {
+                "en": "Modern, responsive Windows interfaces.",
+                "ar": "واجهات Windows حديثة وسريعة الاستجابة."
+            }
         },
         {
             "icon": "ph-browsers",
-            "title": { "en": "Blazor applications", "ar": "تطبيقات Blazor" },
-            "text": { "en": "Interactive web apps written in C#.", "ar": "تطبيقات ويب تفاعلية مكتوبة بـ C#." }
+            "title": {
+                "en": "Blazor applications",
+                "ar": "تطبيقات Blazor"
+            },
+            "text": {
+                "en": "Interactive web apps written in C#.",
+                "ar": "تطبيقات ويب تفاعلية مكتوبة بـ C#."
+            }
         },
         {
             "icon": "ph-globe",
-            "title": { "en": "ASP.NET backend", "ar": "خدمات ASP.NET الخلفية" },
-            "text": { "en": "Backend services and business logic on ASP.NET.", "ar": "خدمات خلفية ومنطق أعمال بـ ASP.NET." }
+            "title": {
+                "en": "ASP.NET backend",
+                "ar": "خدمات ASP.NET الخلفية"
+            },
+            "text": {
+                "en": "Backend services and business logic on ASP.NET.",
+                "ar": "خدمات خلفية ومنطق أعمال بـ ASP.NET."
+            }
+        },
+        {
+            "icon": "ph-arrow-circle-up",
+            "title": {
+                "en": "Upgrades to .NET 10",
+                "ar": "الترقية إلى .NET 10"
+            },
+            "text": {
+                "en": "Move .NET Framework 4.7.2 apps to .NET 10, step by step.",
+                "ar": "نقل تطبيقات .NET Framework 4.7.2 إلى .NET 10 خطوة بخطوة."
+            }
         },
         {
             "icon": "ph-plugs-connected",
-            "title": { "en": "API development", "ar": "تطوير واجهات API" },
-            "text": { "en": "Secure RESTful APIs on .NET Core.", "ar": "على .NET Core، واجهات REST آمنة." }
+            "title": {
+                "en": "API development",
+                "ar": "تطوير واجهات API"
+            },
+            "text": {
+                "en": "Secure RESTful APIs on .NET Core.",
+                "ar": "على .NET Core، واجهات REST آمنة."
+            }
         },
         {
             "icon": "ph-cloud",
-            "title": { "en": "Cloud deployment", "ar": "النشر السحابي" },
-            "text": { "en": "Azure and self-hosted, with full control of the environment.", "ar": "على Azure أو خوادمك الخاصة، مع تحكم كامل في البيئة." }
+            "title": {
+                "en": "Cloud deployment",
+                "ar": "النشر السحابي"
+            },
+            "text": {
+                "en": "Azure and self-hosted, with full control of the environment.",
+                "ar": "على Azure أو خوادمك الخاصة، مع تحكم كامل في البيئة."
+            }
         },
         {
             "icon": "ph-chart-line-up",
-            "title": { "en": "Interactive charts", "ar": "رسوم بيانية تفاعلية" },
-            "text": { "en": "Data visualisation that turns numbers into decisions.", "ar": "تمثيل بصري للبيانات يحوّل الأرقام إلى قرارات." }
+            "title": {
+                "en": "Interactive charts",
+                "ar": "رسوم بيانية تفاعلية"
+            },
+            "text": {
+                "en": "Data visualisation that turns numbers into decisions.",
+                "ar": "تمثيل بصري للبيانات يحوّل الأرقام إلى قرارات."
+            }
         },
         {
             "icon": "ph-game-controller",
-            "title": { "en": "Unity games", "ar": "ألعاب Unity" },
-            "text": { "en": "Android games from prototype to Play Store.", "ar": "ألعاب أندرويد من النموذج الأولي إلى متجر Play." }
+            "title": {
+                "en": "Unity games",
+                "ar": "ألعاب Unity"
+            },
+            "text": {
+                "en": "Android games from prototype to Play Store.",
+                "ar": "ألعاب أندرويد من النموذج الأولي إلى متجر Play."
+            }
         },
         {
             "icon": "ph-puzzle-piece",
-            "title": { "en": "Extensions & plugins", "ar": "الإضافات والملحقات" },
-            "text": { "en": "Scalable custom features for existing products.", "ar": "ميزات مخصصة قابلة للتوسع للمنتجات القائمة." }
+            "title": {
+                "en": "Extensions & plugins",
+                "ar": "الإضافات والملحقات"
+            },
+            "text": {
+                "en": "Scalable custom features for existing products.",
+                "ar": "ميزات مخصصة قابلة للتوسع للمنتجات القائمة."
+            }
         },
         {
             "icon": "ph-sliders-horizontal",
-            "title": { "en": "Custom features", "ar": "ميزات مخصصة" },
-            "text": { "en": "Tailored to the way your team works.", "ar": "مصممة على قياس طريقة عمل فريقك." }
+            "title": {
+                "en": "Custom features",
+                "ar": "ميزات مخصصة"
+            },
+            "text": {
+                "en": "Tailored to the way your team works.",
+                "ar": "مصممة على قياس طريقة عمل فريقك."
+            }
         }
     ],
-
     "technologies": [
-        "C#", ".NET Core", "ASP.NET", "MAUI", "WPF", "WinForms", "Java", "Kotlin", "Python",
-        "Node.js", "React", "Vue.js", "Blazor", "SQL Server", "PostgreSQL", "Oracle", "MongoDB",
-        "MariaDB", "Azure", "Git", "CI/CD", "REST APIs", "SignalR", "Unity", "Blender",
-        { "en": "AI Tools", "ar": "أدوات AI" }
+        {
+            "name": "C#",
+            "hot": true
+        },
+        {
+            "name": ".NET 10",
+            "hot": true
+        },
+        {
+            "name": "ASP.NET Core",
+            "hot": true
+        },
+        {
+            "name": "Azure",
+            "hot": true
+        },
+        {
+            "name": "REST APIs",
+            "hot": true
+        },
+        {
+            "name": "TypeScript",
+            "hot": true
+        },
+        {
+            "name": "React",
+            "hot": true
+        },
+        {
+            "name": "PostgreSQL",
+            "hot": true
+        },
+        {
+            "name": "SQL Server",
+            "hot": true
+        },
+        {
+            "name": "Docker",
+            "hot": true
+        },
+        {
+            "name": "CI/CD",
+            "hot": true
+        },
+        {
+            "name": {
+                "en": "AI integration",
+                "ar": "دمج الذكاء الاصطناعي"
+            },
+            "hot": true
+        },
+        {
+            "name": ".NET Framework 4.7.2"
+        },
+        {
+            "name": "Blazor"
+        },
+        {
+            "name": "WPF"
+        },
+        {
+            "name": "WinForms"
+        },
+        {
+            "name": "MAUI"
+        },
+        {
+            "name": "EF Core"
+        },
+        {
+            "name": "SignalR"
+        },
+        {
+            "name": "Unity"
+        },
+        {
+            "name": "Python"
+        },
+        {
+            "name": "Java"
+        },
+        {
+            "name": "Kotlin"
+        },
+        {
+            "name": "Node.js"
+        },
+        {
+            "name": "Vue.js"
+        },
+        {
+            "name": "SQLite"
+        },
+        {
+            "name": "Oracle"
+        },
+        {
+            "name": "MongoDB"
+        },
+        {
+            "name": "MariaDB"
+        },
+        {
+            "name": "C++"
+        },
+        {
+            "name": "Qt"
+        },
+        {
+            "name": "OR-Tools"
+        },
+        {
+            "name": "Git"
+        },
+        {
+            "name": "Blender"
+        }
     ],
-
     "projects": [
         {
             "id": "djermane-cars",
             "stickers": [
-                { "en": "Live now", "ar": "يعمل الآن" },
-                { "en": "12,000+ cars", "ar": "+12,000 سيارة" },
-                { "en": "57 brands", "ar": "57 علامة" }
+                {
+                    "en": "Live now",
+                    "ar": "يعمل الآن"
+                },
+                {
+                    "en": "12,000+ cars",
+                    "ar": "+12,000 سيارة"
+                },
+                {
+                    "en": "57 brands",
+                    "ar": "57 علامة"
+                }
             ],
             "points": [
-                { "en": "Search by brand, model, code or budget in Algerian millions", "ar": "بحث حسب العلامة أو الطراز أو الرمز أو الميزانية بالمليون الجزائري" },
-                { "en": "Every price shows the transport share, line by line", "ar": "كل سعر يبيّن حصة النقل بنداً بنداً" },
-                { "en": "Transport and dollar rate charts, plus order tracking by code", "ar": "رسوم بيانية للنقل وسعر الدولار، ومتابعة الطلب برمز" }
+                {
+                    "en": "Search by brand, model, code or budget in Algerian millions",
+                    "ar": "بحث حسب العلامة أو الطراز أو الرمز أو الميزانية بالمليون الجزائري"
+                },
+                {
+                    "en": "Every price shows the transport share, line by line",
+                    "ar": "كل سعر يبيّن حصة النقل بنداً بنداً"
+                },
+                {
+                    "en": "Transport and dollar rate charts, plus order tracking by code",
+                    "ar": "رسوم بيانية للنقل وسعر الدولار، ومتابعة الطلب برمز"
+                }
             ],
             "image": "Assets/project9.webp",
-            "size": [1600, 1000],
+            "size": [
+                1600,
+                1000
+            ],
             "link": "https://djermanecars.com/",
             "featured": true,
-            "categories": ["web"],
-            "tags": ["Blazor WebAssembly", "C#", ".NET"],
-            "title": { "en": "Djermane Cars & Motos", "ar": "Djermane Cars & Motos" },
-            "subtitle": { "en": "Car import marketplace, China to Algeria", "ar": "سوق استيراد السيارات من الصين إلى الجزائر" },
+            "categories": [
+                "web"
+            ],
+            "tags": [
+                "Blazor WebAssembly",
+                "C#",
+                ".NET"
+            ],
+            "title": {
+                "en": "Djermane Cars & Motos",
+                "ar": "Djermane Cars & Motos"
+            },
+            "subtitle": {
+                "en": "Car import marketplace, China to Algeria",
+                "ar": "سوق استيراد السيارات من الصين إلى الجزائر"
+            },
             "description": {
                 "en": "A live site for an import business in Blida, listing more than 12,000 cars from 57 brands. Buyers filter by brand and budget, see the final price in dinars with transport included, read each car's inspection grade and follow their order with a simple code. In French and Arabic.",
                 "ar": "موقع يعمل على الإنترنت لشركة استيراد في البليدة، يعرض أكثر من 12,000 سيارة من 57 علامة. يصفّي الزبون حسب العلامة والميزانية، ويرى السعر النهائي بالدينار شاملاً النقل، ويطّلع على تقييم فحص كل سيارة، ويتابع طلبه برمز بسيط. بالفرنسية والعربية."
@@ -227,26 +569,60 @@
         {
             "id": "wach-taaref",
             "stickers": [
-                { "en": "On Google Play", "ar": "على Google Play" },
-                { "en": "69 wilayas", "ar": "69 ولاية" },
-                { "en": "3000+ questions", "ar": "+3000 سؤال" }
+                {
+                    "en": "On Google Play",
+                    "ar": "على Google Play"
+                },
+                {
+                    "en": "69 wilayas",
+                    "ar": "69 ولاية"
+                },
+                {
+                    "en": "3000+ questions",
+                    "ar": "+3000 سؤال"
+                }
             ],
             "points": [
-                { "en": "A 3D low-poly map of Algeria with day and night", "ar": "خريطة 3D للجزائر بأسلوب low-poly بالنهار والليل" },
-                { "en": "Hexagon word boards and daily challenges", "ar": "لوحات كلمات سداسية وتحديات يومية" },
-                { "en": "AdMob, Google Play purchases and Play Games built in", "ar": "إعلانات AdMob ومشتريات Google Play و Play Games مدمجة" }
+                {
+                    "en": "A 3D low-poly map of Algeria with day and night",
+                    "ar": "خريطة 3D للجزائر بأسلوب low-poly بالنهار والليل"
+                },
+                {
+                    "en": "Hexagon word boards and daily challenges",
+                    "ar": "لوحات كلمات سداسية وتحديات يومية"
+                },
+                {
+                    "en": "AdMob, Google Play purchases and Play Games built in",
+                    "ar": "إعلانات AdMob ومشتريات Google Play و Play Games مدمجة"
+                }
             ],
             "image": "Assets/project8.webp",
-            "size": [1600, 900],
+            "size": [
+                1600,
+                900
+            ],
             "link": "wach-taaref/",
             "featured": true,
-            "categories": ["mobile"],
-            "tags": [
-                "Unity", "C#", "Android",
-                { "en": "Game", "ar": "لعبة" }
+            "categories": [
+                "mobile"
             ],
-            "title": { "en": "Wach Ta3ref", "ar": "واش تعرف؟" },
-            "subtitle": { "en": "Algerian word puzzle game", "ar": "لعبة ألغاز كلمات جزائرية" },
+            "tags": [
+                "Unity",
+                "C#",
+                "Android",
+                {
+                    "en": "Game",
+                    "ar": "لعبة"
+                }
+            ],
+            "title": {
+                "en": "Wach Ta3ref",
+                "ar": "واش تعرف؟"
+            },
+            "subtitle": {
+                "en": "Algerian word puzzle game",
+                "ar": "لعبة ألغاز كلمات جزائرية"
+            },
             "description": {
                 "en": "A Unity mobile game in Algerian darija, live on Google Play: a 3D low-poly map of the 69 wilayas that lights up at night, hexagon word boards, 3000+ local questions, daily challenges and a heritage museum. Built with AdMob, Google Play purchases and Play Games.",
                 "ar": "لعبة موبايل بـ Unity بالدارجة الجزائرية، متوفرة على Google Play: خريطة 3D للولايات الـ69 بأسلوب low-poly تضوي في الليل، لوحات كلمات سداسية، أكثر من 3000 سؤال محلي، تحديات يومية ومتحف للتراث. مبنية مع إعلانات AdMob ومشتريات Google Play و Play Games."
@@ -255,21 +631,55 @@
         {
             "id": "stations",
             "stickers": [
-                { "en": "Nationwide fleet", "ar": "أسطول وطني" },
-                { "en": "Windows desktop", "ar": "سطح مكتب Windows" },
-                { "en": "Maintenance tracking", "ar": "متابعة الصيانة" }
+                {
+                    "en": "Nationwide fleet",
+                    "ar": "أسطول وطني"
+                },
+                {
+                    "en": "Windows desktop",
+                    "ar": "سطح مكتب Windows"
+                },
+                {
+                    "en": "Maintenance tracking",
+                    "ar": "متابعة الصيانة"
+                }
             ],
             "points": [
-                { "en": "A dashboard with fleet availability and maintenance charts", "ar": "لوحة تحكم بجاهزية الأسطول ورسوم الصيانة" },
-                { "en": "A map of technical units across the country", "ar": "خريطة للوحدات التقنية عبر الوطن" },
-                { "en": "Repairs, spare parts, contracts and documents in one place", "ar": "الإصلاحات وقطع الغيار والعقود والوثائق في مكان واحد" }
+                {
+                    "en": "A dashboard with fleet availability and maintenance charts",
+                    "ar": "لوحة تحكم بجاهزية الأسطول ورسوم الصيانة"
+                },
+                {
+                    "en": "A map of technical units across the country",
+                    "ar": "خريطة للوحدات التقنية عبر الوطن"
+                },
+                {
+                    "en": "Repairs, spare parts, contracts and documents in one place",
+                    "ar": "الإصلاحات وقطع الغيار والعقود والوثائق في مكان واحد"
+                }
             ],
             "image": "Assets/project7.webp",
-            "size": [1536, 816],
-            "categories": ["desktop"],
-            "tags": ["WPF", "C#", "EF Core", "SQLite"],
-            "title": { "en": "Stations", "ar": "Stations" },
-            "subtitle": { "en": "Fleet & maintenance management platform", "ar": "منصة إدارة الأسطول والصيانة" },
+            "size": [
+                1536,
+                816
+            ],
+            "categories": [
+                "desktop"
+            ],
+            "tags": [
+                "WPF",
+                "C#",
+                "EF Core",
+                "SQLite"
+            ],
+            "title": {
+                "en": "Stations",
+                "ar": "Stations"
+            },
+            "subtitle": {
+                "en": "Fleet & maintenance management platform",
+                "ar": "منصة إدارة الأسطول والصيانة"
+            },
             "description": {
                 "en": "Desktop platform for managing a nationwide fleet of mobile technical stations: deployment, readiness, repairs and spare parts in one place.",
                 "ar": "منصة سطح مكتب لإدارة أسطول وطني من المحطات التقنية المتنقلة: النشر والجاهزية والإصلاحات وقطع الغيار في مكان واحد."
@@ -278,21 +688,56 @@
         {
             "id": "dztutor",
             "stickers": [
-                { "en": "Arabic first", "ar": "بالعربية أولاً" },
-                { "en": "All wilayas", "ar": "كل الولايات" },
-                { "en": "Prices in dinars", "ar": "الأسعار بالدينار" }
+                {
+                    "en": "Arabic first",
+                    "ar": "بالعربية أولاً"
+                },
+                {
+                    "en": "All wilayas",
+                    "ar": "كل الولايات"
+                },
+                {
+                    "en": "Prices in dinars",
+                    "ar": "الأسعار بالدينار"
+                }
             ],
             "points": [
-                { "en": "Search for a tutor by subject and wilaya", "ar": "البحث عن مدرّس حسب المادة والولاية" },
-                { "en": "A separate path for tutors to join", "ar": "مسار خاص لانضمام المدرّسين" },
-                { "en": "A right-to-left interface built for Algerian students", "ar": "واجهة من اليمين إلى اليسار مصممة للطلاب الجزائريين" }
+                {
+                    "en": "Search for a tutor by subject and wilaya",
+                    "ar": "البحث عن مدرّس حسب المادة والولاية"
+                },
+                {
+                    "en": "A separate path for tutors to join",
+                    "ar": "مسار خاص لانضمام المدرّسين"
+                },
+                {
+                    "en": "A right-to-left interface built for Algerian students",
+                    "ar": "واجهة من اليمين إلى اليسار مصممة للطلاب الجزائريين"
+                }
             ],
             "image": "Assets/project4.webp",
-            "size": [1901, 873],
-            "categories": ["web"],
-            "tags": ["React", { "en": "Web", "ar": "ويب" }],
-            "title": { "en": "DzTutor", "ar": "DzTutor" },
-            "subtitle": { "en": "Web app for private tutors", "ar": "تطبيق ويب للمدرّسين الخصوصيين" },
+            "size": [
+                1901,
+                873
+            ],
+            "categories": [
+                "web"
+            ],
+            "tags": [
+                "React",
+                {
+                    "en": "Web",
+                    "ar": "ويب"
+                }
+            ],
+            "title": {
+                "en": "DzTutor",
+                "ar": "DzTutor"
+            },
+            "subtitle": {
+                "en": "Web app for private tutors",
+                "ar": "تطبيق ويب للمدرّسين الخصوصيين"
+            },
             "description": {
                 "en": "A React web application for private tutors in Algeria, enabling tutors and students to connect and manage lessons efficiently.",
                 "ar": "تطبيق ويب بـ React للمدرّسين الخصوصيين في الجزائر، يتيح للمدرّسين والطلاب التواصل وإدارة الدروس بكفاءة."
@@ -301,21 +746,53 @@
         {
             "id": "dss",
             "stickers": [
-                { "en": "261,850 variables", "ar": "261,850 متغيراً" },
-                { "en": "67,787 constraints", "ar": "67,787 قيداً" },
-                { "en": "OR-Tools solver", "ar": "محلّل OR-Tools" }
+                {
+                    "en": "261,850 variables",
+                    "ar": "261,850 متغيراً"
+                },
+                {
+                    "en": "67,787 constraints",
+                    "ar": "67,787 قيداً"
+                },
+                {
+                    "en": "OR-Tools solver",
+                    "ar": "محلّل OR-Tools"
+                }
             ],
             "points": [
-                { "en": "Plans on a budget, by availability or by mission", "ar": "يخطط ضمن ميزانية، حسب الجاهزية أو حسب المهمة" },
-                { "en": "Charts each solution's budget against fleet availability", "ar": "يرسم ميزانية كل حل مقابل جاهزية الأسطول" },
-                { "en": "You can watch the solver work and interrupt it at any time", "ar": "يمكنك متابعة المحلّل وإيقافه في أي وقت" }
+                {
+                    "en": "Plans on a budget, by availability or by mission",
+                    "ar": "يخطط ضمن ميزانية، حسب الجاهزية أو حسب المهمة"
+                },
+                {
+                    "en": "Charts each solution's budget against fleet availability",
+                    "ar": "يرسم ميزانية كل حل مقابل جاهزية الأسطول"
+                },
+                {
+                    "en": "You can watch the solver work and interrupt it at any time",
+                    "ar": "يمكنك متابعة المحلّل وإيقافه في أي وقت"
+                }
             ],
             "image": "Assets/project5.webp",
-            "size": [1915, 1217],
-            "categories": ["web"],
-            "tags": ["Python", "OR-Tools"],
-            "title": { "en": "DSS", "ar": "DSS" },
-            "subtitle": { "en": "Spare-parts decision support", "ar": "دعم القرار لقطع الغيار" },
+            "size": [
+                1915,
+                1217
+            ],
+            "categories": [
+                "web"
+            ],
+            "tags": [
+                "Python",
+                "OR-Tools"
+            ],
+            "title": {
+                "en": "DSS",
+                "ar": "DSS"
+            },
+            "subtitle": {
+                "en": "Spare-parts decision support",
+                "ar": "دعم القرار لقطع الغيار"
+            },
             "description": {
                 "en": "A decision support system using OR-Tools to predict car spare parts demand and optimise inventory based on past usage.",
                 "ar": "نظام دعم قرار يستخدم OR-Tools للتنبؤ بالطلب على قطع غيار السيارات وتحسين المخزون اعتماداً على الاستهلاك السابق."
@@ -324,21 +801,53 @@
         {
             "id": "wpf-tools",
             "stickers": [
-                { "en": "Live network graph", "ar": "رسم شبكة مباشر" },
-                { "en": "Image converter", "ar": "محوّل صور" },
-                { "en": "Custom dark UI", "ar": "واجهة داكنة مخصصة" }
+                {
+                    "en": "Live network graph",
+                    "ar": "رسم شبكة مباشر"
+                },
+                {
+                    "en": "Image converter",
+                    "ar": "محوّل صور"
+                },
+                {
+                    "en": "Custom dark UI",
+                    "ar": "واجهة داكنة مخصصة"
+                }
             ],
             "points": [
-                { "en": "Live download and upload speeds on a chart", "ar": "سرعات التنزيل والرفع مباشرة على رسم بياني" },
-                { "en": "Shows which adapters are online, Wi-Fi or Ethernet", "ar": "يبيّن المحولات المتصلة، Wi-Fi أو Ethernet" },
-                { "en": "Converts images between formats", "ar": "يحوّل الصور بين الصيغ" }
+                {
+                    "en": "Live download and upload speeds on a chart",
+                    "ar": "سرعات التنزيل والرفع مباشرة على رسم بياني"
+                },
+                {
+                    "en": "Shows which adapters are online, Wi-Fi or Ethernet",
+                    "ar": "يبيّن المحولات المتصلة، Wi-Fi أو Ethernet"
+                },
+                {
+                    "en": "Converts images between formats",
+                    "ar": "يحوّل الصور بين الصيغ"
+                }
             ],
             "image": "Assets/project1.webp",
-            "size": [1500, 750],
-            "categories": ["desktop"],
-            "tags": ["WPF", "C#"],
-            "title": { "en": "WPF Tools", "ar": "WPF Tools" },
-            "subtitle": { "en": "Everyday utilities for Windows", "ar": "أدوات يومية لنظام Windows" },
+            "size": [
+                1500,
+                750
+            ],
+            "categories": [
+                "desktop"
+            ],
+            "tags": [
+                "WPF",
+                "C#"
+            ],
+            "title": {
+                "en": "WPF Tools",
+                "ar": "WPF Tools"
+            },
+            "subtitle": {
+                "en": "Everyday utilities for Windows",
+                "ar": "أدوات يومية لنظام Windows"
+            },
             "description": {
                 "en": "A custom WPF app with everyday tools, such as converting image types and monitoring the network.",
                 "ar": "تطبيق WPF مخصص يضم أدوات يومية، مثل تحويل صيغ الصور ومراقبة الشبكة."
@@ -347,21 +856,53 @@
         {
             "id": "qtosgearth",
             "stickers": [
-                { "en": "3D globe", "ar": "كرة أرضية 3D" },
-                { "en": "C++ and Qt", "ar": "C++ و Qt" },
-                { "en": "GDAL layers", "ar": "طبقات GDAL" }
+                {
+                    "en": "3D globe",
+                    "ar": "كرة أرضية 3D"
+                },
+                {
+                    "en": "C++ and Qt",
+                    "ar": "C++ و Qt"
+                },
+                {
+                    "en": "GDAL layers",
+                    "ar": "طبقات GDAL"
+                }
             ],
             "points": [
-                { "en": "Image, elevation and feature layers on a 3D Earth", "ar": "طبقات صور وارتفاعات ومعالم على كرة أرضية 3D" },
-                { "en": "Add labels and 3D models, and measure distance", "ar": "إضافة تسميات ونماذج 3D وقياس المسافات" },
-                { "en": "Live latitude, longitude and altitude readout", "ar": "عرض مباشر لخط العرض والطول والارتفاع" }
+                {
+                    "en": "Image, elevation and feature layers on a 3D Earth",
+                    "ar": "طبقات صور وارتفاعات ومعالم على كرة أرضية 3D"
+                },
+                {
+                    "en": "Add labels and 3D models, and measure distance",
+                    "ar": "إضافة تسميات ونماذج 3D وقياس المسافات"
+                },
+                {
+                    "en": "Live latitude, longitude and altitude readout",
+                    "ar": "عرض مباشر لخط العرض والطول والارتفاع"
+                }
             ],
             "image": "Assets/project2.webp",
-            "size": [1920, 1020],
-            "categories": ["desktop"],
-            "tags": ["C++", "Qt"],
-            "title": { "en": "QtOsgEarth", "ar": "QtOsgEarth" },
-            "subtitle": { "en": "Geospatial visualisation", "ar": "التصور الجغرافي" },
+            "size": [
+                1920,
+                1020
+            ],
+            "categories": [
+                "desktop"
+            ],
+            "tags": [
+                "C++",
+                "Qt"
+            ],
+            "title": {
+                "en": "QtOsgEarth",
+                "ar": "QtOsgEarth"
+            },
+            "subtitle": {
+                "en": "Geospatial visualisation",
+                "ar": "التصور الجغرافي"
+            },
             "description": {
                 "en": "A C++ project that combines the Qt framework with osgEarth to enhance geospatial visualisation tools.",
                 "ar": "مشروع C++ يجمع بين إطار Qt ومكتبة osgEarth لتطوير أدوات التصور الجغرافي."
@@ -370,21 +911,53 @@
         {
             "id": "p2p-chat",
             "stickers": [
-                { "en": "No central server", "ar": "بلا خادم مركزي" },
-                { "en": "Direct sockets", "ar": "مقابس مباشرة" },
-                { "en": "Windows app", "ar": "تطبيق Windows" }
+                {
+                    "en": "No central server",
+                    "ar": "بلا خادم مركزي"
+                },
+                {
+                    "en": "Direct sockets",
+                    "ar": "مقابس مباشرة"
+                },
+                {
+                    "en": "Windows app",
+                    "ar": "تطبيق Windows"
+                }
             ],
             "points": [
-                { "en": "Messages go straight from one user to another", "ar": "تنتقل الرسائل مباشرة من مستخدم إلى آخر" },
-                { "en": "User accounts with sign-in and registration", "ar": "حسابات مستخدمين مع تسجيل الدخول والتسجيل" },
-                { "en": "Built on raw sockets in WPF", "ar": "مبني على المقابس مباشرة في WPF" }
+                {
+                    "en": "Messages go straight from one user to another",
+                    "ar": "تنتقل الرسائل مباشرة من مستخدم إلى آخر"
+                },
+                {
+                    "en": "User accounts with sign-in and registration",
+                    "ar": "حسابات مستخدمين مع تسجيل الدخول والتسجيل"
+                },
+                {
+                    "en": "Built on raw sockets in WPF",
+                    "ar": "مبني على المقابس مباشرة في WPF"
+                }
             ],
             "image": "Assets/project3.webp",
-            "size": [1483, 805],
-            "categories": ["desktop"],
-            "tags": ["WPF", "Sockets"],
-            "title": { "en": "P2P Chat", "ar": "P2P Chat" },
-            "subtitle": { "en": "Direct messaging, no server", "ar": "مراسلة مباشرة بلا خادم" },
+            "size": [
+                1483,
+                805
+            ],
+            "categories": [
+                "desktop"
+            ],
+            "tags": [
+                "WPF",
+                "Sockets"
+            ],
+            "title": {
+                "en": "P2P Chat",
+                "ar": "P2P Chat"
+            },
+            "subtitle": {
+                "en": "Direct messaging, no server",
+                "ar": "مراسلة مباشرة بلا خادم"
+            },
             "description": {
                 "en": "A WPF peer-to-peer chat app that uses sockets to send messages directly between users, without a central server.",
                 "ar": "تطبيق دردشة WPF من نظير إلى نظير يستخدم المقابس لإرسال الرسائل مباشرة بين المستخدمين دون خادم مركزي."
@@ -393,48 +966,104 @@
         {
             "id": "workstation",
             "stickers": [
-                { "en": "Desktop and mobile", "ar": "سطح مكتب وموبايل" },
-                { "en": "MAUI + Blazor", "ar": "MAUI + Blazor" },
-                { "en": "Staff evaluations", "ar": "تقييم الموظفين" }
+                {
+                    "en": "Desktop and mobile",
+                    "ar": "سطح مكتب وموبايل"
+                },
+                {
+                    "en": "MAUI + Blazor",
+                    "ar": "MAUI + Blazor"
+                },
+                {
+                    "en": "Staff evaluations",
+                    "ar": "تقييم الموظفين"
+                }
             ],
             "points": [
-                { "en": "A searchable, sortable list of people", "ar": "قائمة أشخاص قابلة للبحث والترتيب" },
-                { "en": "A profile for each person: job details, family, evaluation, activity", "ar": "ملف لكل شخص: تفاصيل العمل والعائلة والتقييم والنشاط" },
-                { "en": "Scored evaluation forms for qualities, training and performance", "ar": "استمارات تقييم بالنقاط للصفات والتدريب والأداء" }
+                {
+                    "en": "A searchable, sortable list of people",
+                    "ar": "قائمة أشخاص قابلة للبحث والترتيب"
+                },
+                {
+                    "en": "A profile for each person: job details, family, evaluation, activity",
+                    "ar": "ملف لكل شخص: تفاصيل العمل والعائلة والتقييم والنشاط"
+                },
+                {
+                    "en": "Scored evaluation forms for qualities, training and performance",
+                    "ar": "استمارات تقييم بالنقاط للصفات والتدريب والأداء"
+                }
             ],
             "image": "Assets/project6.webp",
-            "size": [1677, 907],
-            "categories": ["desktop", "mobile"],
-            "tags": ["MAUI", "Blazor"],
-            "title": { "en": "WorkStation Manager", "ar": "WorkStation Manager" },
-            "subtitle": { "en": "People & equipment management", "ar": "إدارة العمال والمعدات" },
+            "size": [
+                1677,
+                907
+            ],
+            "categories": [
+                "desktop",
+                "mobile"
+            ],
+            "tags": [
+                "MAUI",
+                "Blazor"
+            ],
+            "title": {
+                "en": "WorkStation Manager",
+                "ar": "WorkStation Manager"
+            },
+            "subtitle": {
+                "en": "People & equipment management",
+                "ar": "إدارة العمال والمعدات"
+            },
             "description": {
                 "en": "A MAUI hybrid app with Blazor for managing workers and equipment efficiently inside a workstation environment.",
                 "ar": "تطبيق MAUI هجين مع Blazor لإدارة العمال والمعدات بكفاءة داخل بيئة محطة العمل."
             }
         }
     ],
-
     "process": [
         {
             "icon": "ph-chats-circle",
-            "title": { "en": "Discussion", "ar": "النقاش" },
-            "text": { "en": "We talk through goals, users and constraints.", "ar": "نناقش الأهداف والمستخدمين والقيود." }
+            "title": {
+                "en": "Discussion",
+                "ar": "النقاش"
+            },
+            "text": {
+                "en": "We talk through goals, users and constraints.",
+                "ar": "نناقش الأهداف والمستخدمين والقيود."
+            }
         },
         {
             "icon": "ph-map-trifold",
-            "title": { "en": "Planning", "ar": "التخطيط" },
-            "text": { "en": "A clear roadmap with scope and milestones.", "ar": "خارطة طريق واضحة بنطاق ومراحل محددة." }
+            "title": {
+                "en": "Planning",
+                "ar": "التخطيط"
+            },
+            "text": {
+                "en": "A clear roadmap with scope and milestones.",
+                "ar": "خارطة طريق واضحة بنطاق ومراحل محددة."
+            }
         },
         {
             "icon": "ph-code",
-            "title": { "en": "Development", "ar": "التطوير" },
-            "text": { "en": "Clean code, delivered in short iterations you can review.", "ar": "كود نظيف يُسلَّم على دفعات قصيرة تستطيع مراجعتها." }
+            "title": {
+                "en": "Development",
+                "ar": "التطوير"
+            },
+            "text": {
+                "en": "Clean code, delivered in short iterations you can review.",
+                "ar": "كود نظيف يُسلَّم على دفعات قصيرة تستطيع مراجعتها."
+            }
         },
         {
             "icon": "ph-rocket-launch",
-            "title": { "en": "Delivery", "ar": "التسليم" },
-            "text": { "en": "A working app or site, deployed and handed over.", "ar": "تطبيق أو موقع يعمل، منشور ومُسلَّم." }
+            "title": {
+                "en": "Delivery",
+                "ar": "التسليم"
+            },
+            "text": {
+                "en": "A working app or site, deployed and handed over.",
+                "ar": "تطبيق أو موقع يعمل، منشور ومُسلَّم."
+            }
         }
     ]
 }

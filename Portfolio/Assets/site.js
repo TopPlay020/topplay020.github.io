@@ -16,7 +16,7 @@
     // Arabic text containing Latin terms (C#, C++, .NET, Full Stack ...) is wrapped in LTR isolates,
     // otherwise the bidi algorithm scrambles punctuation ("#C", "NET.") and word order.
     const LATIN_WORD = String.raw`\.?[0-9]*[A-Za-z][A-Za-z0-9]*(?:[-.\/][A-Za-z0-9]+)*[#+]*`;
-    const LATIN_RUN = new RegExp(`${LATIN_WORD}(?: (?:& )?${LATIN_WORD})*`, 'g');
+    const LATIN_RUN = new RegExp(`${LATIN_WORD}(?: (?:& )?(?:${LATIN_WORD}|[0-9][0-9.]*))*`, 'g');
     const fx = (s) => (state.lang === 'ar' && typeof s === 'string' ? s.replace(LATIN_RUN, (m) => '⁦' + m + '⁩') : s);
     const mapStrings = (v) => typeof v === 'string' ? fx(v) : Array.isArray(v) ? v.map(mapStrings)
         : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, mapStrings(x)])) : v;
@@ -29,6 +29,8 @@
     const icon = (name) => `<svg class="i" aria-hidden="true"><use href="Assets/icons.svg#${name}"></use></svg>`;
     const isExternal = (href) => /^https?:/.test(href);
 
+    // A toolbox entry is a name, a { en, ar } pair, or { name, hot }.
+    const techName = (t) => (t && typeof t === 'object' && 'name' in t ? t.name : t);
     const heading = (t) => `${esc(t.pre)}${t.hl ? ` <span class="hl">${esc(t.hl)}</span>` : ''}`;
 
     // Top to bottom, the way the camera walks down them.
@@ -121,7 +123,13 @@
         const d = state.data;
         $('#servicesList').innerHTML = d.services.map((s, i) => `
             <li class="svc" data-hl="service:${i}">${icon(s.icon)}<h3>${esc(L(s.title))}</h3><p>${esc(L(s.text))}</p></li>`).join('');
-        $('#stackList').innerHTML = d.technologies.map((t, i) => `<li data-hl="tech:${i}">${esc(L(t))}</li>`).join('');
+        const st = ui().sections.stack;
+        $('#stackList').innerHTML = d.technologies.map((t, i) => {
+            const hot = t.hot ? `<span class="sr-only"> (${esc(st.hot)})</span>` : '';
+            return `<li data-hl="tech:${i}"${t.hot ? ' class="hot"' : ''}><span>${esc(L(techName(t)))}</span>${hot}</li>`;
+        }).join('');
+        $('#stackLegend').innerHTML = `<i aria-hidden="true"></i>${esc(st.legend)}`;
+        fitChips();
         $('#featuresGrid').innerHTML = d.features.map((f, i) => `
             <li data-hl="feature:${i}"><div class="why-top">${icon(f.icon)}<h3>${esc(L(f.title))}</h3></div><p>${esc(L(f.text))}</p></li>`).join('');
         $('#steps').innerHTML = d.process.map((s, i) => `
@@ -133,20 +141,40 @@
         const site = state.data.site, out = {};
         const digits = String(site.whatsapp || '').replace(/\D/g, '');
         const user = String(site.telegram || '').trim().replace(/^@/, '');
-        if (digits) out.whatsapp = `https://wa.me/${digits}`;
+        if (digits) out.whatsapp = `https://wa.me/${digits}?text=${encodeURIComponent(state.data.ui[state.lang].contact.waText)}`;
         if (user) out.telegram = `https://t.me/${encodeURIComponent(user)}`;
         return out;
     }
+
+    // Cells are all one height. A name that does not fit its cell spans two, and the grid packs around it.
+    function fitChips() {
+        const cells = $$('#stackList li');
+        cells.forEach((li) => li.classList.remove('wide'));
+        cells.forEach((li) => {
+            const name = $('span', li), room = li.clientWidth - (li.classList.contains('hot') ? 54 : 30);
+            if (name && name.scrollWidth > room) li.classList.add('wide');
+        });
+    }
+    let chipTimer;
+    addEventListener('resize', () => { clearTimeout(chipTimer); chipTimer = setTimeout(fitChips, 120); }, { passive: true });
+    if (document.fonts) document.fonts.ready.then(() => { if (state.data) fitChips(); });
 
     function renderContact() {
         const u = ui(), c = u.contact, site = state.data.site;
         $('#contactTitle').innerHTML = heading(u.sections.contact);
         $('#contactText').textContent = c.text;
         $('#contactPrimary').innerHTML = `${esc(c.primary)}${icon('ph-envelope-simple')}`;
-        $('#contactPrimary').href = `mailto:${site.email}`;
+
         $('#copyMail').innerHTML = `${esc(c.copy)}${icon('ph-copy')}`;
         $('#mailBig').textContent = site.email;
-        $('#mailBig').href = `mailto:${site.email}`;
+        // A computer often has no mail app set up, so there the button opens Gmail; a phone opens its own mail app.
+        const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const subject = encodeURIComponent(state.data.ui[state.lang].contact.subject);
+        const mailHref = fine ? `https://mail.google.com/mail/?view=cm&fs=1&to=${site.email}&su=${subject}` : `mailto:${site.email}?subject=${subject}`;
+        for (const a of [$('#contactPrimary'), $('#mailBig')]) {
+            a.href = mailHref;
+            if (fine) { a.target = '_blank'; a.rel = 'noopener'; } else a.removeAttribute('target');
+        }
         const links = messengers();
         for (const m of [['whatsapp', 'ph-whatsapp-logo', 'WhatsApp'], ['telegram', 'ph-telegram-logo', 'Telegram']]) {
             const a = $(`#contact${m[2]}`), href = links[m[0]];
@@ -233,7 +261,7 @@
 
     /* ---------- Words slide in from their own side, once ---------- */
     let revealIO = null;
-    const REVEAL = '.sec:not(.hero) .floor, .sec:not(.hero) h2, .sec:not(.hero) .lede, .row-meta, .row h3, .row-sub, .stickers, .row-desc, .row-points, .tags, .go, .thumb, .svc, .chips li, .why li, .steps li, .mail-big, .contact .cta';
+    const REVEAL = '.sec:not(.hero) .floor, .sec:not(.hero) h2, .sec:not(.hero) .lede, .legend, .row-meta, .row h3, .row-sub, .stickers, .row-desc, .row-points, .tags, .go, .thumb, .svc, .chips li, .why li, .steps li, .mail-big, .contact .cta';
     function markReveals() {
         if (reduced || !('IntersectionObserver' in window)) return;
         root.classList.add('anim');
