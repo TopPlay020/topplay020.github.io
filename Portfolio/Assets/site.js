@@ -87,10 +87,11 @@
             const ext = p.link && isExternal(p.link);
             const attrs = p.link ? `href="${esc(p.link)}"${ext ? ' target="_blank" rel="noopener"' : ''}` : '';
             const small = thumb.replace('.webp', '-480.webp');
-            const media = `<img src="${thumb}" srcset="${small} 480w, ${thumb} 960w" sizes="(max-width: 999px) 92vw, 44vw" alt="${title}" width="${p.size[0]}" height="${p.size[1]}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async">`;
+            const media = `<img src="${thumb}" srcset="${small} 480w, ${thumb} 960w" sizes="(max-width: 999px) 92vw, 44vw" alt="${title}" width="${p.size[0]}" height="${p.size[1]}" loading="lazy" decoding="async">`;
             const cats = p.categories.map((c) => u.filters[c]);
             return `
             <article class="row${p.featured ? ' featured' : ''}" data-stop data-hl="work:${i}">
+                <div class="window" aria-hidden="true"></div>
                 ${p.link ? `<a class="thumb" ${attrs} tabindex="-1" aria-hidden="true">${media}</a>` : `<div class="thumb">${media}</div>`}
                 <div class="row-body">
                     <p class="row-meta">${cats.map((c) => `<span>${esc(c)}</span>`).join('')}${p.featured ? `<span>${esc(u.project.featured)}</span>` : ''}</p>
@@ -215,7 +216,7 @@
             // Handing the element back keeps its own hover transitions working.
             setTimeout(() => { e.target.removeAttribute('data-r'); e.target.classList.remove('in'); }, 1500);
         }), { rootMargin: '0px 0px -7% 0px' });
-        const wide = innerWidth >= 1000;
+        const wide = !isStacked();
         $$(REVEAL).forEach((el) => {
             const parent = el.parentElement, i = Math.min(Array.prototype.indexOf.call(parent.children, el), 11);
             const r = el.getBoundingClientRect();
@@ -248,20 +249,26 @@
     }
 
     /* ---------- 3D ---------- */
-    // The walk stops at each row of work and at each section; on small screens at each window onto the scene.
+    // Phones and portrait tablets stack everything in one column; landscape phones keep the side-by-side layout.
+    // The same query is in site.css.
+    const isStacked = () => matchMedia('(max-width: 639px), (max-width: 999px) and (min-height: 501px), (max-width: 999px) and (orientation: portrait)').matches;
+    // The walk stops at each row of work and at each section; stacked, at each open space for the scene.
     function stopElements() {
-        const small = innerWidth < 1000;
+        const small = isStacked();
         const at = (id) => { const s = $('#' + id); return small ? $('.window', s) : s; };
-        return [at('home'), ...$$('#projects .row'), at('services'), at('stack'), at('features'), at('process'), at('contact')];
+        const rows = $$('#projects .row');
+        return [at('home'), ...(small ? rows.map((r) => $('.window', r)) : rows), at('services'), at('stack'), at('features'), at('process'), at('contact')];
     }
-    // Where the shape stands at each stop: in the middle of the free space beside that stop's words.
+    // Where the shape stands at each stop: beside that stop's words, or in that stop's own open space.
     function textOfStops() {
         return [$('#home .col'), ...$$('#projects .row-body'), $('#services .col'), $('#stack .col'), $('#features .col'), $('#process .col'), $('#contact .col')];
     }
     function focus() {
         const w = innerWidth;
-        if (w < 1000) return { split: false };
-        const rtl = root.dir === 'rtl', rail = 70, margin = 20;
+        if (isStacked()) {
+            return { split: false, spots: stopElements().map((el) => { const r = el.getBoundingClientRect(); return { cy: r.top + scrollY + r.height / 2, h: r.height }; }) };
+        }
+        const rtl = root.dir === 'rtl', rail = w < 1000 ? 16 : 70, margin = 20;
         const spots = textOfStops().map((el) => {
             const r = el.getBoundingClientRect();
             const freeRight = w - r.right > r.left;

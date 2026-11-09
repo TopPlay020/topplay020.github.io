@@ -192,7 +192,7 @@ h1 { margin-block-start: 18px; font-family: var(--f-display); font-weight: 500; 
 .wm { display: block; direction: ltr; text-align: start; font-size: clamp(60px, 8.1vw, 128px); line-height: .95; letter-spacing: -.045em; }
 html[dir="rtl"] .wm { text-align: right; }
 .h1-sub { display: block; margin-block-start: 16px; font-size: clamp(25px, 2.6vw, 38px); line-height: 1.15; letter-spacing: -.02em; }
-.h1-sub em { color: var(--accent); }
+.h1-sub em { color: var(--accent); white-space: nowrap; display: inline-block; }
 
 .hero-desc { margin-block-start: 22px; font-size: 19px; line-height: 1.5; max-inline-size: 52ch; color: var(--ink); }
 .hero-fact { margin-block-start: 12px; font-family: var(--f-mono); font-size: 14px; line-height: 1.6; color: var(--muted); max-inline-size: 60ch; }
@@ -233,7 +233,7 @@ html[dir="rtl"] .go { background-position: 100% 85%; }
 .go:hover .i { transform: translate(calc(var(--dirx, 1) * 2px), -2px); }
 
 /* With the 3D running on a wide screen, each screenshot assembles beside its row: the row is words only. */
-@media (min-width: 1000px) {
+@media (min-width: 1000px), (min-width: 640px) and (max-height: 500px) and (orientation: landscape) {
     .gl-capable .thumb { display: none; }
     .gl-capable .row, .gl-capable .row.featured { display: block; min-height: 66vh; align-content: center; padding-block: 48px; border: 0; }
 
@@ -328,9 +328,9 @@ html[dir="rtl"] #progress { transform-origin: 100% 50%; }
 #motionBtn .i { width: 18px; height: 18px; }
 .no-gl #motionBtn { display: none; }
 @media (prefers-reduced-motion: reduce) { #motionBtn { display: none; } }
-/* On a phone it stays in the first window onto the scene, and scrolls away with it: never over the words. */
-@media (max-width: 999px) {
-    #motionBtn { position: absolute; inset-block-start: calc(56svh - 58px); inset-block-end: auto; z-index: 5; }
+/* Stacked, it stays at the top of the hero and scrolls away with it: never over the words. */
+@media (max-width: 639px), (max-width: 999px) and (min-height: 501px), (max-width: 999px) and (orientation: portrait) {
+    #motionBtn { position: absolute; inset-block-start: 72px; inset-block-end: auto; inset-inline-end: var(--gutter); z-index: 5; }
 }
 
 /* ---------- Toast ---------- */
@@ -348,48 +348,124 @@ html[dir="rtl"] #progress { transform-origin: 100% 50%; }
     .row { grid-template-columns: minmax(0, 1fr); gap: 18px; }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1000px), (min-width: 640px) and (max-height: 500px) and (orientation: landscape) {
     /* The poster's dark side faces the words, and fades into the page instead of ending on an edge. */
     #poster { inset-inline-start: auto; inset-inline-end: 0; width: 56vw; -webkit-mask-image: linear-gradient(to right, transparent, #000 24%); mask-image: linear-gradient(to right, transparent, #000 24%); }
     html[dir="rtl"] #poster { inset-inline-start: auto; transform: scaleX(-1); }
 }
 
+/* ---------- No room for the links: the menu takes over ---------- */
 @media (max-width: 999px) {
     :root { --nav-h: 64px; }
     body { font-size: 16.5px; }
     .nav-links, #floors, .nav-cta { display: none; }
     .menu-btn { display: inline-flex; }
-    .nav { background: rgba(12, 10, 28, .001); }
+    .brand { padding-block: 10px; }
+    .lang button { min-height: 40px; }
+    .nav.scrolled { background: rgba(12, 10, 28, .86); backdrop-filter: none; }
+    .row h3 a { display: inline-block; padding-block: 4px; }
+    .mail-big { padding-block: 8px; }
+}
 
+/* ---------- Landscape phone: side by side, with less air ---------- */
+@media (max-width: 999px) and (min-width: 640px) and (max-height: 500px) and (orientation: landscape) {
+    .sec { padding-block: calc(var(--nav-h) + 12px) 36px; }
+    .wm { font-size: clamp(48px, 8vw, 72px); }
+    .h1-sub { font-size: 22px; margin-block-start: 8px; }
+    .hero-desc { font-size: 15px; margin-block-start: 10px; }
+    .hero-fact { display: none; }
+    .cta { margin-block-start: 14px; }
+    .btn { min-height: 44px; padding: 8px 16px; font-size: 15px; }
+    .badge { display: none; }
+    h1 { margin-block-start: 0; }
+    .svc { grid-template-columns: 26px minmax(0, 1fr); gap: 0 10px; min-height: 0; padding: 10px 4px; }
+    .svc p { grid-column: 2; font-size: 14px; }
+    .why { grid-template-columns: minmax(0, 1fr); }
+    .chips { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .chips li { padding: 9px 8px; font-size: 12.5px; }
+}
+
+/* ---------- Stacked: one column, the scene runs behind all of it ---------- */
+@media (max-width: 639px), (max-width: 999px) and (min-height: 501px), (max-width: 999px) and (orientation: portrait) {
+    :root {
+        --win: min(92vw, max(44svh, 240px));
+        --win-row: min(66vw, max(40svh, 220px));
+    }
     .sec { display: block; min-height: 0; padding: 0; }
-    .window { display: block; height: 58svh; }
-    .hero .window { height: 56svh; }
-    #poster { object-position: 62% 30%; }
-    .sec-body { background: var(--bg); padding-block: 36px 64px; box-shadow: 0 -1px 0 var(--line), 0 1px 0 var(--line); }
+    .sec-body { padding-block: 4px 56px; }
     .col { inline-size: 100%; max-inline-size: 720px; margin-inline: auto; }
+    .window { display: block; height: var(--win); }
 
-    .foot { background: var(--bg); }
-    .foot .col { border-block-start: 0; }
+    /* The poster only stands in at the top until the scene is drawn. */
+    #poster { height: 62svh; object-position: 62% 30%; -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
 
-    .wm { font-size: clamp(56px, 16.4vw, 112px); }
-    .hero .sec-body { padding-block-start: 28px; }
-    .row, .row.featured { grid-template-columns: minmax(0, 1fr); min-height: 0; padding-block: 24px; gap: 16px; }
-    .rows { margin-block-start: 24px; }
-    .row h3 { font-size: 24px; }
+    /* Hero: everything on the first screen, the shape takes what the words leave. */
+    .hero { min-height: 100svh; display: flex; flex-direction: column; }
+    .hero .window { flex: 1 1 auto; height: auto; min-height: min(84vw, 36svh); margin-block-start: var(--nav-h); }
+    .hero .sec-body { flex: none; padding-block: 0 24px; }
+    h1 { margin-block-start: 10px; }
+    .wm { font-size: clamp(50px, 16.2vw, 112px); }
+    .h1-sub { font-size: clamp(22px, 6vw, 34px); margin-block-start: 10px; }
+    .hero-desc { font-size: 16px; line-height: 1.45; margin-block-start: 12px; }
+    .hero-fact { font-size: 12px; margin-block-start: 8px; }
+    .hero .cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-block-start: 16px; }
+    .hero .cta .btn { min-height: 48px; padding: 8px 10px; font-size: 15px; }
+
+    /* Work: each project gets an open space where its screenshot assembles. */
+    #portfolio > .window { display: none; }
+    #portfolio .sec-body { padding-block: 52px 8px; }
+    .rows { margin-block-start: 4px; }
+    .row, .row.featured { display: block; min-height: 0; padding-block: 0 40px; border: 0; }
+    .row > .window { display: none; height: var(--win-row); }
+    .gl-capable .row > .window { display: block; }
+    .gl-capable .thumb { display: none; }
+    .thumb { margin-block: 20px 16px; }
+    .row h3, .row.featured h3 { font-size: 28px; letter-spacing: -.02em; margin-block-start: 6px; }
+    .row-sub { font-size: 16.5px; }
+    .row-desc { font-size: 15.5px; }
+
+    h2 { font-size: clamp(36px, 10.6vw, 60px); }
+    .contact h2 { font-size: clamp(38px, 11vw, 66px); }
+    .lede { font-size: 17px; }
+    .svc-list, .chips, .why, .steps { margin-block-start: 22px; }
+
+    .foot { padding-block-end: 20px; }
+    .foot .col { border-block-start: 1px solid var(--line); padding-block-start: 10px; }
+
+    /* No scene to draw: plain ground behind the words, a shorter glimpse of the poster. */
+    .no-gl .sec-body { background: var(--bg); padding-block-start: 28px; }
+    .no-gl .sec:not(.hero) > .sec-body { box-shadow: 0 -1px 0 var(--line); }
+    .no-gl .sec:not(.hero) > .window { height: 0; }
+    .no-gl .foot { background: var(--bg); }
 }
 
 @media (max-width: 560px) {
-    .cta .btn { inline-size: 100%; }
-    .svc { grid-template-columns: 28px minmax(0, 1fr); gap: 2px 12px; }
-    .svc p { grid-column: 2; }
+    .contact .cta .btn { flex: 1 1 40%; padding-inline: 10px; }
+    .svc { grid-template-columns: 26px minmax(0, 1fr); gap: 1px 12px; padding: 12px 4px; }
+    .svc p { grid-column: 2; font-size: 15px; }
     .why { grid-template-columns: minmax(0, 1fr); }
+    .why li { padding-block: 15px; }
     .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .steps li { grid-template-columns: 48px minmax(0, 1fr); }
-    .steps b { font-size: 24px; }
+    .chips li { padding: 11px 12px; font-size: 13.5px; }
+    .steps li { grid-template-columns: 46px minmax(0, 1fr); padding-block: 16px; }
+    .steps b { font-size: 23px; }
     .lang button { padding-inline: 10px; }
-    h2 { font-size: 40px; }
-    .contact h2 { font-size: 44px; }
-    .foot .col { padding-block-start: 12px; }
+}
+
+/* Short phones: keep the buttons on the first screen. */
+@media (max-width: 999px) and (min-height: 501px) and (max-height: 720px), (max-width: 639px) and (max-height: 720px) {
+    .hero-fact { display: none; }
+    .hero .window { min-height: 26svh; }
+    .hero-desc { font-size: 15px; }
+    .hero .badge { font-size: 12px; }
+}
+
+/* The narrowest phones: buttons lose their icons rather than their words. */
+@media (max-width: 374px) {
+    .hero .cta .btn .i { display: none; }
+    .lang button { padding-inline: 8px; font-size: 12px; }
+    .brand { font-size: 16px; }
+    .nav-end { gap: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

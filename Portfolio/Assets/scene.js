@@ -250,7 +250,7 @@ const SHARD_VERT = `
     attribute vec2 aUvA, aUvB;
     attribute float aGrpA, aGrpB, aLoose;
     attribute vec4 aRand;
-    uniform float uT, uIntro, uScatter, uHoverGroup, uHoverAmt, uKickX, uStyle, uTime, uVel, uKindA, uKindB, uPush;
+    uniform float uT, uIntro, uScatter, uHoverGroup, uHoverAmt, uKickX, uStyle, uTime, uVel, uKindA, uKindB, uPush, uLooseY;
     uniform mat3 uRotA, uRotB;
     uniform vec3 uCenterA, uCenterB, uPtr;
     varying vec3 vP, vCol;
@@ -325,6 +325,7 @@ const SHARD_VERT = `
         // Loose chips drift on their own, and streak when the page moves fast.
         c += vec3(sin(uTime * .6 + aRand.x * 6.28), cos(uTime * .5 + aRand.y * 6.28), 0.) * .42 * aLoose;
         c.y += uVel * (.4 + r0) * 4.5 * aLoose;
+        c.y = mix(c.y, mid.y + (c.y - mid.y) * uLooseY, aLoose);
 
         // The cursor presses into the shape like a thumb into a soft surface.
         vec2 dp = c.xy - uPtr.xy;
@@ -399,7 +400,7 @@ const WALL_VERT = `
 const WALL_FRAG = `
     precision highp float;
     uniform vec2 uRes, uFocus;
-    uniform float uHalf, uKMin, uKMax;
+    uniform float uHalf, uKMin, uKMax, uAxis;
     uniform vec3 uLight, uBg;
     varying vec3 vP;
     varying vec2 vHue;
@@ -413,7 +414,7 @@ const WALL_FRAG = `
         float aspect = uRes.x / uRes.y;
         float r = length((s - uFocus) * vec2(aspect, 1.));
         // The wall burns bright around the shape and falls to near dark under the words, whichever side they are on.
-        float side = 1. - smoothstep(uHalf - .1, uHalf + .03, abs(s.x - uFocus.x));
+        float side = 1. - smoothstep(uHalf - .1, uHalf + .03, uAxis > .5 ? abs(s.y - uFocus.y) : abs(s.x - uFocus.x));
         float k = mix(uKMin, uKMax, side * smoothstep(1.05, .12, r)) + vGlow * .13;
         gl_FragColor = vec4(mix(uBg, lit, k), 1.);
     }`;
@@ -521,7 +522,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     blank.needsUpdate = true;
     const U = {
         uT: { value: 0 }, uIntro: { value: reduced ? 0 : 1 }, uScatter: { value: reduced ? 0 : 1 },
-        uHoverGroup: { value: -99 }, uHoverAmt: { value: 0 }, uKickX: { value: 0 }, uStyle: { value: 0 }, uTime: { value: 0 }, uVel: { value: 0 },
+        uHoverGroup: { value: -99 }, uHoverAmt: { value: 0 }, uKickX: { value: 0 }, uStyle: { value: 0 }, uTime: { value: 0 }, uVel: { value: 0 }, uLooseY: { value: 1 },
         uKindA: { value: 0 }, uKindB: { value: 0 }, uPush: { value: reduced ? 0 : 1 }, uPtr: { value: new THREE.Vector3(999, 999, 0) },
         uRotA: { value: new THREE.Matrix3() }, uRotB: { value: new THREE.Matrix3() },
         uCenterA: { value: new THREE.Vector3() }, uCenterB: { value: new THREE.Vector3() },
@@ -534,7 +535,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
 
     const wallU = {
         uRes: { value: new THREE.Vector2(1, 1) }, uFocus: { value: new THREE.Vector2(.5, .5) },
-        uHalf: { value: .2 }, uKMin: { value: .1 }, uKMax: { value: .62 }, uTime: U.uTime, uVel: U.uVel,
+        uHalf: { value: .2 }, uAxis: { value: 0 }, uKMin: { value: .1 }, uKMax: { value: .62 }, uTime: U.uTime, uVel: U.uVel,
         uPtrW: { value: new THREE.Vector3(999, 999, 0) }, uLight: U.uLight, uBg: { value: new THREE.Color(BG) }
     };
     const wall = new THREE.Mesh(buildWall(44, -(nStops - 1) * GAP - 44, hueOfY), new THREE.ShaderMaterial({ vertexShader: WALL_VERT, fragmentShader: WALL_FRAG, uniforms: wallU, side: THREE.DoubleSide }));
@@ -545,7 +546,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     const textures = new Array(nProjects).fill(null);
     const loader = new THREE.TextureLoader();
     const maxAniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
-    const loadImages = () => data.projects.forEach((p, i) => loader.load(p.image, (tex) => {
+    const loadImages = () => data.projects.forEach((p, i) => loader.load(innerWidth < 1000 ? p.image.replace('Assets/', 'Assets/thumbs/') : p.image, (tex) => {
         tex.anisotropy = maxAniso;
         tex.minFilter = THREE.LinearMipmapLinearFilter;
         textures[i] = tex;
@@ -556,13 +557,28 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     /* ---------- Layout ---------- */
     let W = 0, H = 0, baseDist = 30, keys = [], fit = focus(), quality = 1, dirty = true, viewX = -1e5, viewY = -1e5;
     const spotX = (i) => (fit.split ? fit.spots[i].x : W / 2);
-    const sideOf = (i) => (fit.split ? (fit.spots[i].x > W / 2 ? 1 : -1) : 1);
+    const sideOf = (i) => (fit.split ? (fit.spots[i].x > W / 2 ? 1 : -1) : (i % 2 ? 1 : -1));
+    const NAV = 60;
+    let dists = [];
+    /* Stacked: each stop has its own open space, so each stop gets the camera distance that fills it. */
+    function fitStacked() {
+        const tan = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+        dists = fit.spots.map((o, i) => {
+            const work = forms[i].kind === 'work';
+            return clamp(H / (2 * tan * Math.min(W / (work ? 12.4 : 11.2), o.h / (work ? 7.4 : 10.6))), 18, 90);
+        });
+    }
     function pixelRatio() { return Math.min(devicePixelRatio || 1, small() ? 1.5 : 1.75) * quality; }
     function measureStops() {
         const els = stopElements();
         fit = focus();
         const max = Math.max(1, document.documentElement.scrollHeight - innerHeight), vh = innerHeight;
-        keys = els.map((el) => { const r = el.getBoundingClientRect(); return r.top + scrollY + r.height / 2 - vh / 2; });
+        if (fit.split) keys = els.map((el) => { const r = el.getBoundingClientRect(); return r.top + scrollY + r.height / 2 - vh / 2; });
+        else {
+            // A shape is at rest when its open space sits right under the nav, with its words below.
+            keys = fit.spots.map((o) => o.cy - NAV - o.h / 2);
+            if (H) fitStacked();
+        }
         keys[0] = 0;
         keys[keys.length - 1] = Math.min(keys[keys.length - 1], max);
         for (let i = 1; i < keys.length; i++) keys[i] = Math.max(keys[i], keys[i - 1] + 1);
@@ -571,16 +587,18 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     function applyFit() {
         const tan = Math.tan(THREE.MathUtils.degToRad(FOV / 2));
         const avail = fit.split ? Math.min(...fit.spots.map((o) => o.avail)) : W;
-        const pxPerUnit = fit.split ? Math.min(avail / 11.2, H / 12.5) : Math.min(W / 11.2, H / 16);
+        const pxPerUnit = Math.min(avail / 11.2, H / 12.5);
         baseDist = clamp(H / (2 * tan * pxPerUnit), 18, 70);
+        if (!fit.split) fitStacked();
+        U.uLooseY.value = fit.split ? 1 : .68;
+        wallU.uAxis.value = fit.split ? 0 : 1;
         camera.updateProjectionMatrix();
         viewX = viewY = -1e5;
         if (fit.split) {
             wallU.uHalf.value = avail / 2 / W;
             wallU.uKMin.value = .11; wallU.uKMax.value = .66;
         } else {
-            wallU.uHalf.value = 2;
-            wallU.uKMin.value = .5; wallU.uKMax.value = .82;
+            wallU.uKMin.value = .11; wallU.uKMax.value = .74;
         }
         dirty = true;
     }
@@ -645,7 +663,8 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
     function rotationOf(form, side, d, extra, out) {
         if (form.kind === 'work') {
             const [ry, rx, rz] = form.pose;
-            e3.set(rx + pyS * .07 - d * .12, -side * ry + pxS * .16 + d * .42 * side + extra, rz);
+            const ps = fit.split ? 1 : .5;
+            e3.set((rx + pyS * .07 - d * .12) * ps, (-side * ry + pxS * .16 + d * .42 * side) * ps + extra, rz * ps);
         } else if (form.plane) {
             e3.set(.55 + pyS * .1 + Math.sin(time * .5) * .04, side * -.65 + pxS * .2 + Math.sin(time * .32) * .08 + d * .5 + extra, side * -.28 + Math.sin(time * .42) * .05);
         } else if (form.rotZ) {
@@ -706,7 +725,8 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
 
         // Each shape floats a little, the plane flies a little.
         const bob = reduced ? 0 : Math.sin(time * .7) * .14;
-        const planeA = forms[i].plane ? past(i) * 2.6 * sA : 0, planeB = forms[i + 1].plane ? past(i + 1) * 2.6 * sB : 0;
+        const fly = fit.split ? 2.6 : .9;
+        const planeA = forms[i].plane ? past(i) * fly * sA : 0, planeB = forms[i + 1].plane ? past(i + 1) * fly * sB : 0;
         U.uCenterA.value.set(planeA, forms[i].y + bob, 0);
         U.uCenterB.value.set(planeB, forms[i + 1].y + bob, 0);
 
@@ -723,18 +743,26 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         /* Camera walks straight down, and leans in through the shards between two stops */
         const y = lerp(forms[i].y, forms[i + 1].y, smooth(0, 1, t));
         const through = Math.sin(t * Math.PI);
-        camera.position.set(pxS * .55, y - pyS * .4, baseDist * (1 - .1 * through));
+        const ease = reduced ? Math.round(t) : smooth(.12, .88, t);
+        const dist = fit.split ? baseDist : lerp(dists[i], dists[i + 1], ease);
+        camera.position.set(pxS * .55, y - pyS * .4, dist * (1 - .1 * through));
         // The shape's place on the screen slides from one side to the other, and the camera banks into the turn.
-        const sx = lerp(spotX(i), spotX(i + 1), reduced ? Math.round(t) : smooth(.12, .88, t));
-        // On a phone the hero's window onto the scene is the top of the screen: hold the gem there at first.
-        const vy = fit.split ? 0 : H * .22 * (1 - smooth(0, .6, cur));
+        const sx = lerp(spotX(i), spotX(i + 1), ease);
+        // Stacked: the shape stays locked to its open space as the page scrolls, and hands over to the next one.
+        let sy = H / 2;
+        if (!fit.split) {
+            const a = fit.spots[i], b = fit.spots[i + 1], s0 = scrollY;
+            sy = lerp(a.cy - s0, b.cy - s0, ease);
+            wallU.uHalf.value = lerp(a.h, b.h, ease) / 2 / H;
+        }
+        const vy = H / 2 - sy;
         if (sx !== viewX || vy !== viewY) {
             viewX = sx; viewY = vy;
             camera.setViewOffset(W, H, W / 2 - sx, vy, W, H);
             camera.updateProjectionMatrix();
-            wallU.uFocus.value.set(sx / W, .5);
+            wallU.uFocus.value.set(sx / W, 1 - sy / H);
         }
-        const bank = reduced ? 0 : (sA - sB) * through * .05;
+        const bank = reduced || !fit.split ? 0 : (sA - sB) * through * .05;
         camera.up.set(Math.sin(bank), Math.cos(bank), 0);
         camera.lookAt(pxS * .12, y, 0);
         camera.updateMatrixWorld();
@@ -754,8 +782,7 @@ export async function createScene({ canvas, data, reduced, stops: stopElements, 
         if (!started) {
             started = true;
             onFirstFrame && onFirstFrame();
-            // Phones list the thumbnails between the windows, so the full-size textures would be wasted bytes.
-            if (!small()) setTimeout(loadImages, 200);
+            setTimeout(loadImages, 200);
         }
 
         // Slow device: trade resolution for frames.
