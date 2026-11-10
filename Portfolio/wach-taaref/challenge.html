@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>صاحبك تحدّاك في «واش تعرف؟»</title>
+    <meta name="description" content="نفس الأسئلة تستناك. افتح اللعبة وشوف شكون يغلب.">
+    <meta name="theme-color" content="#062a1f">
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="صاحبك تحدّاك في «واش تعرف؟»">
+    <meta property="og:description" content="نفس الأسئلة تستناك. افتح اللعبة وشوف شكون يغلب.">
+    <meta property="og:image" content="https://topplay020.github.io/Portfolio/wach-taaref/og.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="icon.webp" type="image/webp">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ground: #062a1f;
+            --card: #0f4a38;
+            --line: rgba(255, 255, 255, .16);
+            --gold: #ffc93c;
+            --green: #22c07a;
+            --green-edge: #148a55;
+            --text: #fff;
+            --soft: rgba(255, 255, 255, .78);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: linear-gradient(180deg, #17634c, var(--ground));
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif;
+            text-align: center;
+        }
+
+        main {
+            width: 100%;
+            max-width: 420px;
+            padding: 28px 22px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 28px;
+        }
+
+        img { display: block; margin: 0 auto 14px; border-radius: 20px; }
+
+        h1 { margin: 0 0 6px; font-size: 26px; line-height: 1.3; color: var(--gold); }
+
+        p { margin: 0 0 18px; color: var(--soft); font-size: 16px; line-height: 1.6; }
+
+        .code {
+            margin: 0 0 18px;
+            padding: 14px 8px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 18px;
+            color: var(--gold);
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: .04em;
+            direction: ltr;
+            font-variant-numeric: tabular-nums;
+        }
+
+        a.button {
+            display: block;
+            margin: 0 0 12px;
+            padding: 16px 12px;
+            border-radius: 18px;
+            background: var(--green);
+            box-shadow: 0 5px 0 var(--green-edge);
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        a.button.second {
+            margin-top: 18px;
+            margin-bottom: 0;
+            background: rgba(255, 255, 255, .1);
+            box-shadow: none;
+            font-size: 17px;
+        }
+
+        small { display: block; margin-top: 12px; color: var(--soft); font-size: 14px; line-height: 1.6; }
+
+        [hidden] { display: none !important; }
+    </style>
+</head>
+
+<body>
+    <main>
+        <img src="icon.webp" alt="" width="84" height="84">
+        <h1 id="title">صاحبك تحدّاك!</h1>
+        <p id="words">نفس الأسئلة تستناك، شوف شكون يغلب.</p>
+        <div class="code" id="code" hidden></div>
+        <a class="button" id="open" href="#" hidden>افتح اللعبة</a>
+        <a class="button second" id="store" href="https://play.google.com/store/apps/details?id=com.wachtaaref.game">نزّل اللعبة من Google Play</a>
+        <small id="note" hidden>ما عندكش اللعبة؟ نزّلها، والكود يتنسخ وحدو: تلقاه في «تحدّى صاحبك».</small>
+    </main>
+    <script>
+        (function () {
+            var PACKAGE = 'com.wachtaaref.game', STORE = 'https://play.google.com/store/apps/details?id=' + PACKAGE;
+            var digits = (new URLSearchParams(location.search).get('code') || '').replace(/\D/g, '');
+            if (digits.length !== 12) {
+                document.getElementById('title').textContent = 'واش تعرف؟';
+                document.getElementById('words').textContent = 'لعبة الكلمات الجزائرية';
+                return;
+            }
+            var grouped = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+            var path = 'intent://challenge?code=' + digits + '#Intent;scheme=wachtaaref;action=android.intent.action.VIEW;';
+            var code = document.getElementById('code'), open = document.getElementById('open'), store = document.getElementById('store');
+            code.textContent = grouped;
+            code.hidden = false;
+            document.getElementById('note').hidden = false;
+
+            // The code stays in the clipboard, for a player who still has to install the game: «تحدّى صاحبك» finds it there.
+            function keepCode() {
+                if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(grouped).catch(function () { });
+            }
+            store.addEventListener('click', keepCode);
+
+            if (!/android/i.test(navigator.userAgent)) return; // (the game is on Android only: the code to read, and the store's page)
+            open.href = path + 'package=' + PACKAGE + ';S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end';
+            open.hidden = false;
+            open.addEventListener('click', keepCode);
+            // Into the game at once when it is there; without it nothing happens and this page stays (no package, no fallback: no jump to the store).
+            location.replace(path + 'end');
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.wachtaaref.game",
+      "sha256_cert_fingerprints": [
+        "DD:CC:20:10:9A:FA:81:CF:87:26:04:64:4B:BE:42:54:AA:C7:43:6C:0F:74:88:D4:CE:5C:34:FE:50:00:98:CD",
+        "21:E6:DC:AD:1C:F6:5E:E0:0B:E1:C2:CF:C5:5E:A9:2B:8D:8A:55:A1:89:85:8D:D6:06:63:69:06:46:7A:A7:E1",
+        "4B:11:91:6C:9E:0A:B6:3D:56:64:0C:55:22:87:CF:33:A4:08:8B:DC:53:A4:17:47:7F:C9:48:0E:97:68:5E:4C"
+      ]
+    }
+  }
+]
