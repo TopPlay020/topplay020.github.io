@@ -79,34 +79,6 @@
         "author": { "@type": "Organization", "name": "Topplay020", "url": "https://topplay020.github.io/Portfolio/" }
     }
     </script>
-    <!-- Meta Pixel Code: counts the visits from the Facebook / Instagram ads, and the taps on Google Play (game.js).
-         Visitors in Europe get it only once they say yes on the #consent bar. -->
-    <script>
-        window.metaPixel = function () {
-            if (window.fbq) return;
-            !function (f, b, e, v, n, t, s) {
-                if (f.fbq) return; n = f.fbq = function () {
-                    n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                };
-                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-                n.queue = []; t = b.createElement(e); t.async = !0;
-                t.src = v; s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s)
-            }(window, document, 'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '3272538362934372');
-            fbq('track', 'PageView');
-        };
-        (function () {
-            var c = null, tz = '';
-            try { c = localStorage.getItem('pixel'); } catch (e) { }
-            try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { }
-            window.pixelAsk = c === null && /^(Europe\/|Atlantic\/(Canary|Madeira|Azores))/.test(tz);
-            if (c !== 'no' && !window.pixelAsk) metaPixel();
-        })();
-    </script>
-    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
